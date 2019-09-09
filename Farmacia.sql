@@ -151,8 +151,93 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE EliminarEmpleado
+@nomUsu VARCHAR(20)
+AS
+BEGIN
+	IF NOT EXISTS(SELECT * FROM Empleado WHERE nomUsu = @nomUsu)
+		RETURN -1 --Esto es, Error - No existe empleado con ese nombre de usuario
+	ELSE
+		BEGIN
+			BEGIN TRAN
+				DELETE Empleado WHERE nomUsu = @nomUsu
+				IF @@ERROR <> 0
+					BEGIN
+						ROLLBACK TRAN
+						RETURN -2 --Error SQL
+					END
+				DELETE Usuario WHERE nomUsu = @nomUsu
+				IF @@ERROR <> 0
+					BEGIN
+						ROLLBACK TRAN
+						RETURN -2 --Error SQL
+					END
+			COMMIT TRAN
+			RETURN 1
+		END
+END
+GO
 
+CREATE PROCEDURE BuscarEmpleado
+@nomUsu VARCHAR(20)
+AS
+BEGIN
+	IF NOT EXISTS(SELECT * FROM Empleado WHERE nomUsu = @nomUsu)
+		RETURN -1 --No existe empleado
+	ELSE
+		BEGIN
+		SELECT * FROM Empleado WHERE nomUsu = @nomUsu
+		END
+END
+GO
 
+CREATE PROCEDURE AltaCliente
+@nomUsu VARCHAR(20),
+@pass VARCHAR(20),
+@nombre VARCHAR(20),
+@apellido VARCHAR(20),
+@dirEntrega VARCHAR(100)
+AS
+BEGIN
+	BEGIN TRAN
+		INSERT Usuario VALUES(@nomUsu, @pass, @nombre, @apellido)
+		IF @@ERROR <> 0
+			BEGIN
+				ROLLBACK TRAN
+				RETURN -1 --Error SQL
+			END
+		INSERT Cliente VALUES(@nomUsu, @dirEntrega)
+		IF @@ERROR <> 0
+			BEGIN
+				ROLLBACK TRAN
+				RETURN -1 --Error SQL
+			END
+	COMMIT TRAN
+	RETURN 1 --Transaccion exitosa
+END
+GO
+
+CREATE PROCEDURE AltaFarmaceutica
+@ruc int,
+@nombre varchar(20),
+@apellido varchar(20),
+@correo varchar(50),
+@calle varchar(50),
+@numero int,
+@apto int
+AS
+BEGIN
+	BEGIN TRAN
+		INSERT Farmaceutica VALUES(@ruc, @nombre, @apellido, @correo, @calle, @numero, @apto)
+		IF @@ERROR <> 0
+			BEGIN
+				ROLLBACK TRAN
+				RETURN -1 --Error SQL
+			END
+	COMMIT TRAN
+	RETURN 1 --Transaccion exitosa
+END
+GO
 
 /*
 ----------------SP Necesarios----------------
@@ -160,10 +245,10 @@ EliminarUsuario // HECHO
 Logueo (BuscarUsuario) // HECHO
 AltaEmpleado // HECHO
 ModificarEmpleado // HECHO
-EliminarEmpleado
-BuscarEmpleado
-AltaCliente
-AltaFarmaceutica
+EliminarEmpleado // HECHO
+BuscarEmpleado // HECHO
+AltaCliente // HECHO
+AltaFarmaceutica // HECHO
 ModificarFarmaceutica
 EliminarFarmaceutica
 BuscarFarmaceutica
