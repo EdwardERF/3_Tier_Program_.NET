@@ -192,6 +192,7 @@ INSERT Pedido VALUES("Felipe", 111111111111, 0007, 5, 0)
 INSERT Pedido VALUES("Felipe", 111111111111, 0008, 1, 0)
 INSERT Pedido VALUES("Felipe", 111111111111, 0009, 1, 0)
 INSERT Pedido VALUES("Felipe", 111111111111, 0010, 15, 0)
+GO
 
 --------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------
@@ -426,41 +427,33 @@ GO
 
 CREATE PROCEDURE AltaMedicamento
 @ruc INT,
-@codigo INT,
 @nombre VARCHAR(20),
 @descripcion VARCHAR(100),
 @precio INT
 AS
 BEGIN
-	IF EXISTS(SELECT * FROM Medicamento WHERE ruc = @ruc AND codigo = @codigo)
-		RETURN -1 --Esto es, ya existe medicamento con ese ruc y codigo
-	ELSE
-		BEGIN TRAN
-			INSERT Medicamento VALUES(@ruc, @codigo, @nombre, @descripcion, @precio)
-			IF @@ERROR <> 0
-				BEGIN
-					ROLLBACK TRAN
-					RETURN -2 --Esto es, error de SQL
-				END
-		COMMIT TRAN
-		RETURN 1 --Esto es, transaccion exitosa
+	BEGIN TRAN
+		INSERT Medicamento VALUES(@ruc, @nombre, @descripcion, @precio)
+		IF @@ERROR <> 0
+			BEGIN
+				ROLLBACK TRAN
+				RETURN -2 --Esto es, error de SQL
+			END
+	COMMIT TRAN
+	RETURN 1 --Esto es, transaccion exitosa
 END
 GO
 
 CREATE PROCEDURE ModificarMedicamento
 @ruc INT,
-@codigo INT,
 @nombre VARCHAR(20),
 @descripcion VARCHAR(100),
 @precio INT
 AS
 BEGIN
-	IF NOT EXISTS(SELECT * FROM Medicamento WHERE ruc = @ruc)
-		RETURN -1 --Esto es, no existe Medicamento con ese ruc
-	ELSE
 		BEGIN TRAN
 			UPDATE Medicamento
-			SET codigo = @codigo, nombre = @nombre, descripcion = @descripcion, precio = @precio
+			SET nombre = @nombre, descripcion = @descripcion, precio = @precio
 			WHERE ruc = @ruc
 			IF @@ERROR <> 0
 				BEGIN
@@ -515,14 +508,13 @@ END
 GO
 
 CREATE PROCEDURE AltaPedido
-@numero int,
 @cliente varchar(20),
 @rucMedicamento int,
 @codMedicamento int,
 @cantidad int
 AS
 BEGIN
-	INSERT Pedido VALUES(@numero, @cliente, @rucMedicamento, @codMedicamento, @cantidad, 0)
+	INSERT Pedido VALUES(@cliente, @rucMedicamento, @codMedicamento, @cantidad, 0)
 	IF @@ERROR <> 0
 		RETURN -1 --Esto es, error SQL
 	ELSE

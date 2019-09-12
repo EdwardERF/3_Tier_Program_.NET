@@ -10,4 +10,5 @@ Farmaceuticas:
 	- 111111111111
 
 (Arreglar procedimiento de modificar, añador medicamento, ahora codigo es identity)
+(Puedo colocar un BuscarMedicamento por RUC y Codigo y otro BuscarMedicamento por RUC y Nombre)
 (Arreglar Pedido, SPs, ahora numero Pedido es IDENTITY)
