@@ -1,0 +1,13 @@
+> 10 Farmaceuticas // HECHO
+> 5 Medicamentos por cada farmaceutica // HECHO
+> 5 Usuarios/Empleados // HECHO
+> 2 Usuarios/Clientes // HECHO
+> 10 Pedidos (Estándar) || Registrar qué Farmaceuticas están ligadas a los pedidos; cuáles se pueden eliminar, y cuáles darán error al borrar. // HECHO
+
+VAN A DAR ERROR AL BORRAR:
+Farmaceuticas:
+	- 123456789012
+	- 111111111111
+
+(Arreglar procedimiento de modificar, añador medicamento, ahora codigo es identity)
+(Arreglar Pedido, SPs, ahora numero Pedido es IDENTITY)

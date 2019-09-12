@@ -1,6 +1,9 @@
 use master
 go
 
+SET LANGUAGE SPANISH
+GO
+
 if exists(select * from SysDataBases where name = 'Farmacia')
 	begin
 		drop database Farmacia
@@ -20,14 +23,14 @@ create table Farmaceutica
 	correo varchar(50) not null,
 	calle varchar(50) not null,
 	numero int not null,
-	apto int not null
+	apto int
 )
 go
 
 create table Medicamento
 (
 	ruc int not null foreign key references Farmaceutica(ruc),
-	codigo int not null,
+	codigo int IDENTITY(0000, 1) not null,
 	nombre varchar(20) not null,
 	descripcion varchar(100),
 	precio int not null,
@@ -69,7 +72,7 @@ go
 
 create table Pedido
 (
-	numero int primary key,
+	numero int IDENTITY(1,1) primary key,
 	cliente varchar(20) foreign key references Cliente(nomUsu),
 	rucMedicamento int not null,
 	codMedicamento int not null,
@@ -79,6 +82,120 @@ create table Pedido
 )
 go
 
+--------------------------------------------------------------------------------------------------------
+-----------------------------------------Carga de Datos-------------------------------------------------
+INSERT Farmaceutica VALUES(123456789012, "MediCure", "pedidos@medicure.com", "18 de Julio", 1432, 003)
+INSERT Farmaceutica VALUES(111111111111, "FarmaCure", "pedidos@farmacure.com", "18 de Julio", 1433, 004)
+INSERT Farmaceutica VALUES(222222222222, "MediCasa", "pedidos@medicasa.com", "Canelones", 1336, 005)
+INSERT Farmaceutica VALUES(333333333333, "MediPlus", "pedidos@mediplus.com", "Bv. Artigas", 2735, null)
+INSERT Farmaceutica VALUES(444444444444, "FarmaCatec", "pedidos@farmacatec.com", "18 de Julio", 1001, 101)
+INSERT Farmaceutica VALUES(555555555555, "HealthFarma", "pedidos@healthfarma.com", "Av. Brasil", 1781, null)
+INSERT Farmaceutica VALUES(666666666666, "FarmaSalus", "pedidos@farmasalus.com", "Av. Gral. Garibaldi", 2934, null)
+INSERT Farmaceutica VALUES(777777777777, "SaludPrimero", "pedidos@saludprimero.com", "Maldonado", 1022, 103)
+INSERT Farmaceutica VALUES(888888888888, "Farmaceuticasa", "pedidos@farmaceuticasa.com", "Av. Libertador", 731, null)
+INSERT Farmaceutica VALUES(999999999999, "RondeauMedicamentos", "pedidos@rondeaumedicamentos.com", "Av. Gral. Rondeau", 1012, null)
+GO
+
+INSERT Medicamento VALUES(123456789012, "Dipirona", "Calma dolores en general", 100)
+INSERT Medicamento VALUES(123456789012, "AntiGripal", "Calma sintomas gripales", 120)
+INSERT Medicamento VALUES(123456789012, "AntiMigra", "Calma dolor de cabeza", 90)
+INSERT Medicamento VALUES(123456789012, "AntiFem", "Calma dolores menstruales", 90)
+INSERT Medicamento VALUES(123456789012, "Alergel", "Inhibidor de alergias", 90)
+
+INSERT Medicamento VALUES(111111111111, "Dipirona", "Calma dolores en general", 100)
+INSERT Medicamento VALUES(111111111111, "AntiGripal", "Calma sintomas gripales", 120)
+INSERT Medicamento VALUES(111111111111, "AntiMigra", "Calma dolor de cabeza", 90)
+INSERT Medicamento VALUES(111111111111, "AntiFem", "Calma dolores menstruales", 90)
+INSERT Medicamento VALUES(111111111111, "Alergel", "Inhibidor de alergias", 90)
+
+INSERT Medicamento VALUES(222222222222, "Dipirona", "Calma dolores en general", 100)
+INSERT Medicamento VALUES(222222222222, "AntiGripal", "Calma sintomas gripales", 120)
+INSERT Medicamento VALUES(222222222222, "AntiMigra", "Calma dolor de cabeza", 90)
+INSERT Medicamento VALUES(222222222222, "AntiFem", "Calma dolores menstruales", 90)
+INSERT Medicamento VALUES(222222222222, "Alergel", "Inhibidor de alergias", 90)
+
+INSERT Medicamento VALUES(333333333333, "Dipirona", "Calma dolores en general", 100)
+INSERT Medicamento VALUES(333333333333, "AntiGripal", "Calma sintomas gripales", 120)
+INSERT Medicamento VALUES(333333333333, "AntiMigra", "Calma dolor de cabeza", 90)
+INSERT Medicamento VALUES(333333333333, "AntiFem", "Calma dolores menstruales", 90)
+INSERT Medicamento VALUES(333333333333, "Alergel", "Inhibidor de alergias", 90)
+
+INSERT Medicamento VALUES(444444444444, "Dipirona", "Calma dolores en general", 100)
+INSERT Medicamento VALUES(444444444444, "AntiGripal", "Calma sintomas gripales", 120)
+INSERT Medicamento VALUES(444444444444, "AntiMigra", "Calma dolor de cabeza", 90)
+INSERT Medicamento VALUES(444444444444, "AntiFem", "Calma dolores menstruales", 90)
+INSERT Medicamento VALUES(444444444444, "Alergel", "Inhibidor de alergias", 90)
+
+INSERT Medicamento VALUES(555555555555, "Dipirona", "Calma dolores en general", 100)
+INSERT Medicamento VALUES(555555555555, "AntiGripal", "Calma sintomas gripales", 120)
+INSERT Medicamento VALUES(555555555555, "AntiMigra", "Calma dolor de cabeza", 90)
+INSERT Medicamento VALUES(555555555555, "AntiFem", "Calma dolores menstruales", 90)
+INSERT Medicamento VALUES(555555555555, "Alergel", "Inhibidor de alergias", 90)
+
+INSERT Medicamento VALUES(666666666666, "Dipirona", "Calma dolores en general", 100)
+INSERT Medicamento VALUES(666666666666, "AntiGripal", "Calma sintomas gripales", 120)
+INSERT Medicamento VALUES(666666666666, "AntiMigra", "Calma dolor de cabeza", 90)
+INSERT Medicamento VALUES(666666666666, "AntiFem", "Calma dolores menstruales", 90)
+INSERT Medicamento VALUES(666666666666, "Alergel", "Inhibidor de alergias", 90)
+
+INSERT Medicamento VALUES(777777777777, "Dipirona", "Calma dolores en general", 100)
+INSERT Medicamento VALUES(777777777777, "AntiGripal", "Calma sintomas gripales", 120)
+INSERT Medicamento VALUES(777777777777, "AntiMigra", "Calma dolor de cabeza", 90)
+INSERT Medicamento VALUES(777777777777, "AntiFem", "Calma dolores menstruales", 90)
+INSERT Medicamento VALUES(777777777777, "Alergel", "Inhibidor de alergias", 90)
+
+INSERT Medicamento VALUES(888888888888, "Dipirona", "Calma dolores en general", 100)
+INSERT Medicamento VALUES(888888888888, "AntiGripal", "Calma sintomas gripales", 120)
+INSERT Medicamento VALUES(888888888888, "AntiMigra", "Calma dolor de cabeza", 90)
+INSERT Medicamento VALUES(888888888888, "AntiFem", "Calma dolores menstruales", 90)
+INSERT Medicamento VALUES(888888888888, "Alergel", "Inhibidor de alergias", 90)
+
+INSERT Medicamento VALUES(999999999999, "Dipirona", "Calma dolores en general", 100)
+INSERT Medicamento VALUES(999999999999, "AntiGripal", "Calma sintomas gripales", 120)
+INSERT Medicamento VALUES(999999999999, "AntiMigra", "Calma dolor de cabeza", 90)
+INSERT Medicamento VALUES(999999999999, "AntiFem", "Calma dolores menstruales", 90)
+INSERT Medicamento VALUES(999999999999, "Alergel", "Inhibidor de alergias", 90)
+GO
+
+--Empleados
+INSERT Usuario VALUES("admin", "pass", "Generico", "Generico")
+INSERT Usuario VALUES("Edward", "pass", "Edward", "Rodriguez")
+INSERT Usuario VALUES("Jose", "pass", "Jose", "Perez")
+INSERT Usuario VALUES("Juan", "pass", "Juan", "Serrat")
+INSERT Usuario VALUES("Pepe", "pass", "Pepe", "Garcia")
+
+INSERT Empleado VALUES("admin", '20190912 08:00', '20190912 16:00')
+INSERT Empleado VALUES("Edward", '20190912 08:00', '20190912 16:00')
+INSERT Empleado VALUES("Jose", '20190912 16:00', '20190912 00:00')
+INSERT Empleado VALUES("Juan", '20190912 16:00', '20190912 00:00')
+INSERT Empleado VALUES("Pepe", '20190912 12:00', '20190912 20:00')
+
+--Clientes
+INSERT Usuario VALUES("Ramon", "pass", "Ramon", "Fernandez")
+INSERT Usuario VALUES("Felipe", "pass", "Felipe", "Fernandez")
+
+INSERT Cliente VALUES("Ramon", "18 de Julio 2030")
+INSERT Cliente VALUES("Felipe", "Gonzalo Ramirez 1204")
+
+INSERT Telefono VALUES("Ramon", 24009000)
+INSERT Telefono VALUES("Felipe", 098303353)
+GO
+
+INSERT Pedido VALUES("Ramon", 123456789012, 0001, 10, 0)
+INSERT Pedido VALUES("Ramon", 123456789012, 0002, 5, 0)
+INSERT Pedido VALUES("Ramon", 123456789012, 0003, 3, 0)
+INSERT Pedido VALUES("Ramon", 123456789012, 0004, 1, 0)
+INSERT Pedido VALUES("Ramon", 123456789012, 0005, 8, 0)
+
+INSERT Pedido VALUES("Felipe", 111111111111, 0006, 5, 0)
+INSERT Pedido VALUES("Felipe", 111111111111, 0007, 5, 0)
+INSERT Pedido VALUES("Felipe", 111111111111, 0008, 1, 0)
+INSERT Pedido VALUES("Felipe", 111111111111, 0009, 1, 0)
+INSERT Pedido VALUES("Felipe", 111111111111, 0010, 15, 0)
+
+--------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+-----------------------------------Procedimientos Almacenados-------------------------------------------
 CREATE PROCEDURE EliminarUsuario
 @nomUsu VARCHAR(20)
 AS
@@ -513,6 +630,4 @@ ListarEntregados (Pedidos) // HECHO
 BuscarPedido // HECHO
 CambioEstadoPedido // HECHO
 */
-
-
---RNE, tal numero de estado, significa tal estado.
+--------------------------------------------------------------------------------------------------------
