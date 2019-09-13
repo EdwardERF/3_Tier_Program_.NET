@@ -6,8 +6,8 @@
 
 VAN A DAR ERROR AL BORRAR:
 Farmaceuticas:
-	- 123456789012
-	- 111111111111
+	- 123456789
+	- 111111111
 
 (Arreglar procedimiento de modificar, añador medicamento, ahora codigo es identity)
 (Puedo colocar un BuscarMedicamento por RUC y Codigo y otro BuscarMedicamento por RUC y Nombre)
