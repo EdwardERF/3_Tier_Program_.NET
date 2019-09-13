@@ -65,8 +65,8 @@ go
 create table Empleado
 (
 	nomUsu varchar(20) primary key foreign key references Usuario(nomUsu),
-	horaInicio datetime not null,
-	horaFinal datetime not null
+	horaInicio time not null,
+	horaFinal time not null
 )
 go
 
@@ -164,11 +164,11 @@ INSERT Usuario VALUES('Jose', 'pass', 'Jose', 'Perez')
 INSERT Usuario VALUES('Juan', 'pass', 'Juan', 'Serrat')
 INSERT Usuario VALUES('Pepe', 'pass', 'Pepe', 'Garcia')
 
-INSERT Empleado VALUES('admin', '20190912 08:00', '20190912 16:00')
-INSERT Empleado VALUES('Edward', '20190912 08:00', '20190912 16:00')
-INSERT Empleado VALUES('Jose', '20190912 16:00', '20190912 00:00')
-INSERT Empleado VALUES('Juan', '20190912 16:00', '20190912 00:00')
-INSERT Empleado VALUES('Pepe', '20190912 12:00', '20190912 20:00')
+INSERT Empleado VALUES('admin', '20190912 08:00', '16:00:00')
+INSERT Empleado VALUES('Edward', '20190912 08:00', '16:00:00')
+INSERT Empleado VALUES('Jose', '20190912 16:00', '00:00:00')
+INSERT Empleado VALUES('Juan', '20190912 16:00', '00:00:00')
+INSERT Empleado VALUES('Pepe', '20190912 12:00', '20:00:00')
 
 --Clientes
 INSERT Usuario VALUES('Ramon', 'pass', 'Ramon', 'Fernandez')
@@ -201,7 +201,14 @@ CREATE PROCEDURE EliminarUsuario
 @nomUsu VARCHAR(20)
 AS
 BEGIN
-	DELETE Usuario WHERE nomUsu = @nomUsu
+	IF NOT EXISTS (SELECT * FROM Usuario WHERE nomUsu = @nomUsu)
+		RETURN -1 --Esto es, no existe ese Usuario
+	BEGIN TRAN
+		DELETE Cliente WHERE nomUsu = @nomUsu
+		DELETE Empleado WHERE nomUsu = @nomUsu
+		DELETE Usuario WHERE nomUsu = @nomUsu
+	COMMIT TRAN
+	RETURN 1
 END
 GO
 
@@ -221,8 +228,8 @@ CREATE PROCEDURE AltaEmpleado
 @pass VARCHAR(20),
 @nombre VARCHAR(20),
 @apellido VARCHAR(20),
-@horaInicio DATETIME,
-@horaFinal DATETIME
+@horaInicio TIME,
+@horaFinal TIME
 AS
 BEGIN
 	BEGIN TRAN
@@ -248,8 +255,8 @@ CREATE PROCEDURE ModificarEmpleado
 @pass VARCHAR(20),
 @nombre VARCHAR(20),
 @apellido VARCHAR(20),
-@horaInicio DATETIME,
-@horaFinal DATETIME
+@horaInicio TIME,
+@horaFinal TIME
 AS
 BEGIN
 	IF NOT EXISTS(SELECT * FROM Empleado WHERE nomUsu = @nomUsu)
@@ -629,3 +636,23 @@ BuscarPedido // HECHO
 CambioEstadoPedido // HECHO
 */
 --------------------------------------------------------------------------------------------------------
+--ESTE COMANDO ES EXITOSO
+/*
+DECLARE @RET INT
+EXEC @RET = EliminarUsuario "admin"
+PRINT @RET
+GO
+
+--ESTE COMANDO NO ES EXITOSO -- CLIENTE NO EXISTE
+
+DECLARE @RET INT
+EXEC @RET = EliminarUsuario "AdministradorPepe"
+PRINT @RET
+GO
+
+DECLARE @RET INT
+EXEC @RET = AltaEmpleado "AdministradorX", '1111', 'Julio', 'Boca', '08:00:00', '16:00:00'
+PRINT @RET
+GO
+
+*/
