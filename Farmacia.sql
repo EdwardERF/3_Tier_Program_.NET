@@ -439,7 +439,10 @@ CREATE PROCEDURE BuscarFarmaceutica
 @ruc INT
 AS
 BEGIN
-	SELECT * FROM Farmaceutica WHERE ruc = @ruc
+	IF EXISTS (SELECT * FROM Farmaceutica WHERE ruc = @ruc)
+		SELECT * FROM Farmaceutica WHERE ruc = @ruc
+	ELSE
+		RETURN -1 --Esto es, no se encontro Farmaceutica con ese RUC
 END	
 GO
 
@@ -464,15 +467,19 @@ GO
 
 CREATE PROCEDURE ModificarMedicamento
 @ruc INT,
+@codigo INT,
 @nombre VARCHAR(20),
 @descripcion VARCHAR(100),
 @precio INT
 AS
 BEGIN
+	IF NOT EXISTS (SELECT * FROM Medicamento WHERE ruc = @ruc AND codigo = @codigo)
+		RETURN -1 --Esto es, no existe ningun medicamento con ese codigo y ruc
+	ELSE
 		BEGIN TRAN
 			UPDATE Medicamento
 			SET nombre = @nombre, descripcion = @descripcion, precio = @precio
-			WHERE ruc = @ruc
+			WHERE ruc = @ruc AND codigo = @codigo
 			IF @@ERROR <> 0
 				BEGIN
 					ROLLBACK TRAN
@@ -484,7 +491,7 @@ END
 GO
 
 CREATE PROCEDURE EliminarMedicamento
-@ruc int,
+@ruc INT,
 @codigo INT
 AS
 BEGIN
@@ -521,7 +528,10 @@ CREATE PROCEDURE BuscarMedicamento
 @codigo INT
 AS
 BEGIN
-	SELECT * FROM Medicamento WHERE ruc = @ruc AND codigo = @codigo
+	IF NOT EXISTS (SELECT * FROM Medicamento WHERE ruc = @ruc AND codigo = @codigo)
+		RETURN -1 --Esto es, no existe medicamento con ese ruc y codigo
+	ELSE
+		SELECT * FROM Medicamento WHERE ruc = @ruc AND codigo = @codigo
 END
 GO
 
@@ -544,11 +554,16 @@ CREATE PROCEDURE EliminarPedido
 @numero INT
 AS
 BEGIN
-	DELETE Pedido WHERE numero = @numero
-	IF @@ERROR <> 0
-		RETURN -1 --Esto es, error SQL
+	IF NOT EXISTS(SELECT * FROM Pedido WHERE numero = @numero)
+		RETURN -1 --Esto es, no existe tal pedido
 	ELSE
-		RETURN 1 --Esto es, transaccion exitosa
+		BEGIN
+			DELETE Pedido WHERE numero = @numero
+			IF @@ERROR <> 0
+				RETURN -1 --Esto es, error SQL
+			ELSE
+				RETURN 1 --Esto es, transaccion exitosa
+		END
 END
 GO
 
@@ -584,7 +599,10 @@ CREATE PROCEDURE BuscarPedido
 @numero INT
 AS
 BEGIN
-	SELECT * FROM Pedido WHERE numero = @numero
+	IF NOT EXISTS (SELECT * FROM Pedido WHERE numero = @numero)
+		RETURN -1 --Esto es, no existe tal pedido
+	ELSE
+		SELECT * FROM Pedido WHERE numero = @numero
 END
 GO
 
@@ -592,22 +610,26 @@ CREATE PROCEDURE CambioEstadoPedido
 @numero INT
 AS
 BEGIN
-	UPDATE Pedido SET estado = estado+1 WHERE Pedido.numero = @numero
+	UPDATE Pedido SET estado = estado + 1 WHERE Pedido.numero = @numero AND estado < 2
+	IF @@ERROR <> 0
+		RETURN -1 --Esto es, error SQL
+	ELSE
+		RETURN 1
 END
 GO
 
 /*
 ----------------SP Necesarios----------------
-EliminarUsuario // HECHO
-Logueo (BuscarUsuario) // HECHO
-AltaEmpleado // HECHO
-ModificarEmpleado // HECHO
-EliminarEmpleado // HECHO
-BuscarEmpleado // HECHO
-AltaCliente // HECHO
-AltaFarmaceutica // HECHO
-ModificarFarmaceutica // HECHO
-EliminarFarmaceutica // HECHO
+EliminarUsuario // HECHO // TEST HECHO
+Logueo (BuscarUsuario) // HECHO // NO NECESITA TEST
+AltaEmpleado // HECHO // TEST HECHO
+ModificarEmpleado // HECHO // TEST HECHO
+EliminarEmpleado // HECHO // TEST HECHO
+BuscarEmpleado // HECHO // TEST HECHO
+AltaCliente // HECHO // TEST HECHO
+AltaFarmaceutica // HECHO // TEST HECHO
+ModificarFarmaceutica // HECHO // TEST HECHO
+EliminarFarmaceutica // HECHO // TEST HECHO
 {
 	Para eliminar Farmaceutica, hay que eliminar todas las tablas y datos que generen dependencia a ella:
 	- Si tiene pedidos asociados, no se podrá eliminar la farmacéutica.
@@ -615,27 +637,33 @@ EliminarFarmaceutica // HECHO
 	- Se deben eliminar medicamentos que tenga el ruc de la Farmaceutica
 	- Se borra, ahora si, correctamente la farmaceutica.
 }
-BuscarFarmaceutica // HECHO
-AltaMedicamento // HECHO
-ModificarMedicamento // HECHO
-EliminarMedicamento // HECHO
+BuscarFarmaceutica // HECHO // TEST HECHO
+AltaMedicamento // HECHO // TEST HECHO
+ModificarMedicamento // HECHO // TEST HECHO
+EliminarMedicamento // HECHO // TEST HECHO
 {
 	Para eliminar Medicamento, hay que eliminar dependencias
 	- Se eliminan pedidos con el medicamento asociado
 	- Ahora si, se borra correctamente el medicamento
 }
-ListarMedicamento // HECHO
-BuscarMedicamento // HECHO
-AltaPedido // HECHO
-EliminarPedido // HECHO
-ListarTodo (Todos los pedidos) // HECHO
-ListarGenerados (Pedidos) // HECHO
-ListarEnviados (Pedidos) // HECHO
-ListarEntregados (Pedidos) // HECHO
-BuscarPedido // HECHO
-CambioEstadoPedido // HECHO
+ListarMedicamento // HECHO // NO NECESITA TEST
+BuscarMedicamento // HECHO // TEST HECHO
+AltaPedido // HECHO // TEST HECHO
+EliminarPedido // HECHO // TEST HECHO
+ListarTodo (Todos los pedidos) // HECHO // NO NECESITA TEST
+ListarGenerados (Pedidos) // HECHO // NO NECESITA TEST
+ListarEnviados (Pedidos) // HECHO // NO NECESITA TEST
+ListarEntregados (Pedidos) // HECHO // NO NECESITA TEST
+BuscarPedido // HECHO //  TEST HECHO
+CambioEstadoPedido // HECHO // TEST HECHO
 */
 --------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+----------------------------------TESTEO DE PROCEDIMIENTOS ALMACENADOS----------------------------------
+--------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------ELIMINAR USUARIO
 --ESTE COMANDO ES EXITOSO
 /*
 DECLARE @RET INT
@@ -650,9 +678,214 @@ EXEC @RET = EliminarUsuario "AdministradorPepe"
 PRINT @RET
 GO
 
+--------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------ALTA EMPLEADO
+--COMANDO EXITOSO
 DECLARE @RET INT
 EXEC @RET = AltaEmpleado "AdministradorX", '1111', 'Julio', 'Boca', '08:00:00', '16:00:00'
 PRINT @RET
 GO
 
+--------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------MODIFICAR EMPLEADO
+--COMANDO EXITOSO
+DECLARE @RET INT
+EXEC @RET = ModificarEmpleado 'Jose', '3333', 'Josefin', 'Sanz', '08:00:00', '16:00:00'
+PRINT @RET
+GO
+
+--COMANDO CON ERROR - EMPLEADO INEXISTENTE
+DECLARE @RET INT
+EXEC @RET = ModificarEmpleado 'ADNROSE123', '3333', 'Josefin', 'Sanz', '08:00:00', '16:00:00'
+PRINT @RET
+GO
+
+
+--------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------ELIMINAR EMPLEADO
+--COMANDO EXITOSO
+DECLARE @RET INT
+EXEC @RET = EliminarEmpleado 'Edward'
+PRINT @RET
+GO
+
+--COMANDO NO EXITOSO - EMPLEADO INEXISTENTE
+DECLARE @RET INT
+EXEC @RET = EliminarEmpleado 'ADNROSE123'
+PRINT @RET
+GO
+
+--------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------BUSCAR EMPLEADO
+--COMANDO EXITOSO
+DECLARE @RET INT
+EXEC @RET = BuscarEmpleado 'admin'
+PRINT @RET
+GO
+
+--COMANDO NO EXITOSO - NO EXISTE EMPLEADO
+DECLARE @RET INT
+EXEC @RET = BuscarEmpleado 'ADNROSE123'
+PRINT @RET
+GO
+
+--------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------ALTA CLIENTE
+--COMANDO EXITOSO
+DECLARE @RET INT
+EXEC @RET = AltaCliente 'Usuario1', '1234', 'Pepito', 'Sanchez', 'Calle Santana 123'
+PRINT @RET
+GO
+
+--------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------ALTA FARMACEUTICA
+--COMANDO EXITOSO
+DECLARE @RET INT
+EXEC @RET = AltaFarmaceutica 121212121, 'UnaFarma', 'pedidos@unafarma.com', 'Calle', 1234, null
+PRINT @RET
+GO
+
+--------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------MODIFICAR FARMACEUTICA
+--COMANDO EXITOSO
+DECLARE @RET INT
+EXEC @RET = ModificarFarmaceutica 111111111, 'FarmaCureS', 'pedidos@farmacures.com', 'Calle', 1234, null
+PRINT @RET
+GO
+
+--COMANDO NO EXITOSO - Farmaceutica no existe
+DECLARE @RET INT
+EXEC @RET = ModificarFarmaceutica 312312312, 'FarmaCureS', 'pedidos@farmacures.com', 'Calle', 1234, null
+PRINT @RET
+GO
+
+--------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------ELIMINAR FARMACEUTICA
+--COMANDO EXITOSO - Farmaceutica no tiene pedidos asociados
+DECLARE @RET INT
+EXEC @RET = EliminarFarmaceutica 222222222
+PRINT @RET
+GO
+
+--COMANDO NO EXITOSO - Farmaceutica SI tiene pedidos asociados
+DECLARE @RET INT
+EXEC @RET = EliminarFarmaceutica 111111111
+PRINT @RET
+GO
+
+--COMANDO NO EXITOSO - Farmaceutica no existe
+DECLARE @RET INT
+EXEC @RET = EliminarFarmaceutica 432432432
+PRINT @RET
+GO
+
+--------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------BUSCAR FARMACEUTICA
+--COMANDO EXITOSO
+DECLARE @RET INT
+EXEC @RET = BuscarFarmaceutica 111111111
+PRINT @RET
+GO
+
+--COMANDO NO EXITOSO - Farmaceutica no existe
+DECLARE @RET INT
+EXEC @RET = BuscarFarmaceutica 432432432
+PRINT @RET
+GO
+
+--------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------ALTA MEDICAMENTO
+
+--COMANDO EXITOSO (NO HAY EXCEPCION DE CREAR UN MEDICAMENTO YA EXISTENTE, YA QUE EL codigo ES IDENTITY
+DECLARE @RET INT
+EXEC @RET = AltaMedicamento 111111111, 'MedicaMENTOS', 'Medicacion general', 200
+PRINT @RET
+GO
+
+--------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------MODIFICAR MEDICAMENTO
+--COMANDO EXITOSO
+DECLARE @RET INT
+EXEC @RET = ModificarMedicamento 111111111, 0005, 'Nuevo Nombre', 'Nueva Descripcion', 75
+PRINT @RET
+GO
+
+--COMANDO NO EXITOSO - NO EXISTE MEDICAMENTO
+DECLARE @RET INT
+EXEC @RET = ModificarMedicamento 000000000, 0005, 'Nuevo Nombre', 'Nueva Descripcion', 75
+PRINT @RET
+GO
+
+--------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------ELIMINAR MEDICAMENTO
+--COMANDO EXITOSO
+DECLARE @RET INT
+EXEC @RET = EliminarMedicamento 111111111, 0007
+PRINT @RET
+GO
+
+--COMANDO NO EXITOSO - NO EXISTE MEDICAMENTO
+DECLARE @RET INT
+EXEC @RET = EliminarMedicamento 000000000, 0005
+PRINT @RET
+GO
+
+--------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------BUSCAR MEDICAMENTO
+--COMANDO EXITOSO
+DECLARE @RET INT
+EXEC @RET = BuscarMedicamento 111111111, 0006
+PRINT @RET
+GO
+
+--COMANDO NO EXITOSO - NO EXISTE MEDICAMENTO
+DECLARE @RET INT
+EXEC @RET = BuscarMedicamento 111111111, 1427
+PRINT @RET
+GO
+
+--------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------ALTA PEDIDO
+--COMANDO EXITOSO
+DECLARE @RET INT
+EXEC @RET = AltaPedido 'Felipe', 111111111, 0007, 3
+PRINT @RET
+GO
+
+--------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------ELIMINAR PEDIDO
+--COMANDO EXITOSO
+DECLARE @RET INT
+EXEC @RET = EliminarPedido 1
+PRINT @RET
+GO
+
+--COMANDO NO EXITOSO - NO EXISTE PEDIDO
+DECLARE @RET INT
+EXEC @RET = EliminarPedido 173
+PRINT @RET
+GO
+
+--------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------BUSCAR PEDIDO
+--COMANDO EXITOSO
+DECLARE @RET INT
+EXEC @RET = BuscarPedido 2
+PRINT @RET
+GO
+
+--COMANDO NO EXITOSO - NO EXISTE EL PEDIDO
+DECLARE @RET INT
+EXEC @RET = BuscarPedido 173
+PRINT @RET
+GO
+
+--------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------CAMBIO ESTADO PEDIDO
+--NOTA: Como codigo defensivo, puse que no se pueda llevar el estado a mas de 2 (ya que los estados posibles
+--son 0, 1 y 2)
+DECLARE @RET INT
+EXEC @RET = CambioEstadoPedido 4
+PRINT @RET
+GO
 */
