@@ -883,7 +883,7 @@ GO
 --------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------CAMBIO ESTADO PEDIDO
 --NOTA: Como codigo defensivo, puse que no se pueda llevar el estado a mas de 2 (ya que los estados posibles
---son 0, 1 y 2)
+--son 0, 1 y 2; el SP se podrá seguir ejecutando, en caso de que estado ya tenga valor 2, pero no lo cambiará.)
 DECLARE @RET INT
 EXEC @RET = CambioEstadoPedido 4
 PRINT @RET
