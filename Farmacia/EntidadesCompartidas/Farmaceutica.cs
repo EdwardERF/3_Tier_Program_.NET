@@ -7,14 +7,14 @@ namespace EntidadesCompartidas
 {
     public class Farmaceutica
     {
-        private int _ruc;
+        private Int64 _ruc;
         private string _nombre;
         private string _correo;
         private string _calle;
         private int _numero;
         private int _apto;
 
-        public int ruc
+        public Int64 ruc
         {
             get { return _ruc; }
             set { _ruc = value; }
@@ -50,7 +50,7 @@ namespace EntidadesCompartidas
             set { _apto = value; }
         }
 
-        public Farmaceutica(int pruc, string pnombre, string pcorreo, string pcalle, int pnumero, int papto)
+        public Farmaceutica(Int64 pruc, string pnombre, string pcorreo, string pcalle, int pnumero, int papto)
         {
             ruc = pruc;
             nombre = pnombre;

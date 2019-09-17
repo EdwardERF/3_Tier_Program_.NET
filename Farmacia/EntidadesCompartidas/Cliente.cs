@@ -8,7 +8,7 @@ namespace EntidadesCompartidas
     public class Cliente : Usuario
     {
         private string _dirEntrega;
-        private List<int> _telefonos;
+        private int _telefono;
 
         public string dirEntrega
         {
@@ -16,22 +16,22 @@ namespace EntidadesCompartidas
             set { _dirEntrega = value; }
         }
 
-        public List<int> Telefonos
+        public int Telefono
         {
-            get { return _telefonos; }
-            set { _telefonos = value; }
+            get { return _telefono; }
+            set { _telefono = value; }
         }
 
-        public Cliente(string pnomUsu, string ppass, string pnombre, string papellido, string pdirEntrega, List<int> pTelefonos)
+        public Cliente(string pnomUsu, string ppass, string pnombre, string papellido, string pdirEntrega, int pTelefono)
             : base(pnomUsu, ppass, pnombre, papellido)
         {
             dirEntrega = pdirEntrega;
-            Telefonos = pTelefonos;
+            Telefono = pTelefono;
         }
 
         public override string ToString()
         {
-            return base.ToString() + "Direccion de Entrega: " + dirEntrega + "\n Telefonos: " + Telefonos; //Chequear el resultado de este string, por la List<>
+            return base.ToString() + "Direccion de Entrega: " + dirEntrega + "\n Telefonos: " + Telefono; //Chequear el resultado de este string, por la List<>
         }
     }
 }

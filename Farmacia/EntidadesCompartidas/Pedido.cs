@@ -9,7 +9,7 @@ namespace EntidadesCompartidas
     {
         private int _numero;
         private string _cliente;
-        private int _rucMedicamento;
+        private Int64 _rucMedicamento;
         private int _codMedicamento;
         private int _cantidad;
         private int _estado;
@@ -26,7 +26,7 @@ namespace EntidadesCompartidas
             set { _cliente = value; }
         }
 
-        public int rucMedicamento
+        public Int64 rucMedicamento
         {
             get { return _rucMedicamento; }
             set { _rucMedicamento = value; }
@@ -50,7 +50,7 @@ namespace EntidadesCompartidas
             set { _estado = value; }
         }
 
-        public Pedido(int pNumero, string pCliente, int pRucMedicamento, int pCodMedicamento, int pCantidad, int pEstado)
+        public Pedido(int pNumero, string pCliente, Int64 pRucMedicamento, int pCodMedicamento, int pCantidad, int pEstado)
         {
             numero = pNumero;
             cliente = pCliente;

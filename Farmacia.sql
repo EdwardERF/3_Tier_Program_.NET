@@ -18,7 +18,7 @@ go
 
 create table Farmaceutica
 (
-	ruc int primary key,
+	ruc bigint primary key,
 	nombre varchar(20) not null,
 	correo varchar(50) not null,
 	calle varchar(50) not null,
@@ -29,8 +29,8 @@ go
 
 create table Medicamento
 (
-	ruc int not null foreign key references Farmaceutica(ruc),
-	codigo int IDENTITY(0000, 1) not null,
+	ruc bigint not null foreign key references Farmaceutica(ruc),
+	codigo int not null,
 	nombre varchar(20) not null,
 	descripcion varchar(100),
 	precio int not null,
@@ -51,14 +51,7 @@ create table Cliente
 (
 	nomUsu varchar(20) primary key foreign key references Usuario(nomUsu),
 	dirEntrega varchar(100) not null,
-)
-go
-
-create table Telefono
-(
-	nomUsu varchar(20) not null foreign key references Cliente(nomUsu),
 	telefono int not null,
-	primary key(nomUsu, telefono)
 )
 go
 
@@ -74,7 +67,7 @@ create table Pedido
 (
 	numero int IDENTITY(1,1) primary key,
 	cliente varchar(20) foreign key references Cliente(nomUsu),
-	rucMedicamento int not null,
+	rucMedicamento bigint not null,
 	codMedicamento int not null,
 	foreign key (rucMedicamento, codMedicamento) references Medicamento(ruc, codigo),
 	cantidad int,
@@ -84,77 +77,77 @@ go
 
 --------------------------------------------------------------------------------------------------------
 -----------------------------------------Carga de Datos-------------------------------------------------
-INSERT Farmaceutica VALUES(123456789, 'MediCure', 'pedidos@medicure.com', '18 de Julio', 1432, 003)
-INSERT Farmaceutica VALUES(111111111, 'FarmaCure', 'pedidos@farmacure.com', '18 de Julio', 1433, 004)
-INSERT Farmaceutica VALUES(222222222, 'MediCasa', 'pedidos@medicasa.com', 'Canelones', 1336, 005)
-INSERT Farmaceutica VALUES(333333333, 'MediPlus', 'pedidos@mediplus.com', 'Bv. Artigas', 2735, null)
-INSERT Farmaceutica VALUES(444444444, 'FarmaCatec', 'pedidos@farmacatec.com', '18 de Julio', 1001, 101)
-INSERT Farmaceutica VALUES(555555555, 'HealthFarma', 'pedidos@healthfarma.com', 'Av. Brasil', 1781, null)
-INSERT Farmaceutica VALUES(666666666, 'FarmaSalus', 'pedidos@farmasalus.com', 'Av. Gral. Garibaldi', 2934, null)
-INSERT Farmaceutica VALUES(777777777, 'SaludPrimero', 'pedidos@saludprimero.com', 'Maldonado', 1022, 103)
-INSERT Farmaceutica VALUES(888888888, 'Farmaceuticasa', 'pedidos@farmaceuticasa.com', 'Av. Libertador', 731, null)
-INSERT Farmaceutica VALUES(999999999, 'RondeauMedicamentos', 'pedidos@rondeaumedicamentos.com', 'Av. Gral. Rondeau', 1012, null)
+INSERT Farmaceutica VALUES(123456789123, 'MediCure', 'pedidos@medicure.com', '18 de Julio', 1432, 003)
+INSERT Farmaceutica VALUES(111111111111, 'FarmaCure', 'pedidos@farmacure.com', '18 de Julio', 1433, 004)
+INSERT Farmaceutica VALUES(222222222222, 'MediCasa', 'pedidos@medicasa.com', 'Canelones', 1336, 005)
+INSERT Farmaceutica VALUES(333333333333, 'MediPlus', 'pedidos@mediplus.com', 'Bv. Artigas', 2735, null)
+INSERT Farmaceutica VALUES(444444444444, 'FarmaCatec', 'pedidos@farmacatec.com', '18 de Julio', 1001, 101)
+INSERT Farmaceutica VALUES(555555555555, 'HealthFarma', 'pedidos@healthfarma.com', 'Av. Brasil', 1781, null)
+INSERT Farmaceutica VALUES(666666666666, 'FarmaSalus', 'pedidos@farmasalus.com', 'Av. Gral. Garibaldi', 2934, null)
+INSERT Farmaceutica VALUES(777777777777, 'SaludPrimero', 'pedidos@saludprimero.com', 'Maldonado', 1022, 103)
+INSERT Farmaceutica VALUES(888888888888, 'Farmaceuticasa', 'pedidos@farmaceuticasa.com', 'Av. Libertador', 731, null)
+INSERT Farmaceutica VALUES(999999999999, 'RondeauMedicamentos', 'pedidos@rondeaumedicamentos.com', 'Av. Gral. Rondeau', 1012, null)
 GO
 
-INSERT Medicamento VALUES(123456789, 'Dipirona', 'Calma dolores en general', 100)
-INSERT Medicamento VALUES(123456789, 'AntiGripal', 'Calma sintomas gripales', 120)
-INSERT Medicamento VALUES(123456789, 'AntiMigra', 'Calma dolor de cabeza', 90)
-INSERT Medicamento VALUES(123456789, 'AntiFem', 'Calma dolores menstruales', 90)
-INSERT Medicamento VALUES(123456789, 'Alergel', 'Inhibidor de alergias', 90)
+INSERT Medicamento VALUES(123456789123, 0000, 'Dipirona', 'Calma dolores en general', 100)
+INSERT Medicamento VALUES(123456789123, 0001, 'AntiGripal', 'Calma sintomas gripales', 120)
+INSERT Medicamento VALUES(123456789123, 0002, 'AntiMigra', 'Calma dolor de cabeza', 90)
+INSERT Medicamento VALUES(123456789123, 0003, 'AntiFem', 'Calma dolores menstruales', 90)
+INSERT Medicamento VALUES(123456789123, 0004, 'Alergel', 'Inhibidor de alergias', 90)
 
-INSERT Medicamento VALUES(111111111, 'Dipirona', 'Calma dolores en general', 100)
-INSERT Medicamento VALUES(111111111, 'AntiGripal', 'Calma sintomas gripales', 120)
-INSERT Medicamento VALUES(111111111, 'AntiMigra', 'Calma dolor de cabeza', 90)
-INSERT Medicamento VALUES(111111111, 'AntiFem', 'Calma dolores menstruales', 90)
-INSERT Medicamento VALUES(111111111, 'Alergel', 'Inhibidor de alergias', 90)
+INSERT Medicamento VALUES(111111111111, 0005, 'Dipirona', 'Calma dolores en general', 100)
+INSERT Medicamento VALUES(111111111111, 0006, 'AntiGripal', 'Calma sintomas gripales', 120)
+INSERT Medicamento VALUES(111111111111, 0007, 'AntiMigra', 'Calma dolor de cabeza', 90)
+INSERT Medicamento VALUES(111111111111, 0008, 'AntiFem', 'Calma dolores menstruales', 90)
+INSERT Medicamento VALUES(111111111111, 0009, 'Alergel', 'Inhibidor de alergias', 90)
 
-INSERT Medicamento VALUES(222222222, 'Dipirona', 'Calma dolores en general', 100)
-INSERT Medicamento VALUES(222222222, 'AntiGripal', 'Calma sintomas gripales', 120)
-INSERT Medicamento VALUES(222222222, 'AntiMigra', 'Calma dolor de cabeza', 90)
-INSERT Medicamento VALUES(222222222, 'AntiFem', 'Calma dolores menstruales', 90)
-INSERT Medicamento VALUES(222222222, 'Alergel', 'Inhibidor de alergias', 90)
+INSERT Medicamento VALUES(222222222222, 0010, 'Dipirona', 'Calma dolores en general', 100)
+INSERT Medicamento VALUES(222222222222, 0011, 'AntiGripal', 'Calma sintomas gripales', 120)
+INSERT Medicamento VALUES(222222222222, 0012, 'AntiMigra', 'Calma dolor de cabeza', 90)
+INSERT Medicamento VALUES(222222222222, 0013, 'AntiFem', 'Calma dolores menstruales', 90)
+INSERT Medicamento VALUES(222222222222, 0014, 'Alergel', 'Inhibidor de alergias', 90)
 
-INSERT Medicamento VALUES(333333333, 'Dipirona', 'Calma dolores en general', 100)
-INSERT Medicamento VALUES(333333333, 'AntiGripal', 'Calma sintomas gripales', 120)
-INSERT Medicamento VALUES(333333333, 'AntiMigra', 'Calma dolor de cabeza', 90)
-INSERT Medicamento VALUES(333333333, 'AntiFem', 'Calma dolores menstruales', 90)
-INSERT Medicamento VALUES(333333333, 'Alergel', 'Inhibidor de alergias', 90)
+INSERT Medicamento VALUES(333333333333, 0015, 'Dipirona', 'Calma dolores en general', 100)
+INSERT Medicamento VALUES(333333333333, 0016, 'AntiGripal', 'Calma sintomas gripales', 120)
+INSERT Medicamento VALUES(333333333333, 0017, 'AntiMigra', 'Calma dolor de cabeza', 90)
+INSERT Medicamento VALUES(333333333333, 0018, 'AntiFem', 'Calma dolores menstruales', 90)
+INSERT Medicamento VALUES(333333333333, 0019, 'Alergel', 'Inhibidor de alergias', 90)
 
-INSERT Medicamento VALUES(444444444, 'Dipirona', 'Calma dolores en general', 100)
-INSERT Medicamento VALUES(444444444, 'AntiGripal', 'Calma sintomas gripales', 120)
-INSERT Medicamento VALUES(444444444, 'AntiMigra', 'Calma dolor de cabeza', 90)
-INSERT Medicamento VALUES(444444444, 'AntiFem', 'Calma dolores menstruales', 90)
-INSERT Medicamento VALUES(444444444, 'Alergel', 'Inhibidor de alergias', 90)
+INSERT Medicamento VALUES(444444444444, 0020, 'Dipirona', 'Calma dolores en general', 100)
+INSERT Medicamento VALUES(444444444444, 0021, 'AntiGripal', 'Calma sintomas gripales', 120)
+INSERT Medicamento VALUES(444444444444, 0022, 'AntiMigra', 'Calma dolor de cabeza', 90)
+INSERT Medicamento VALUES(444444444444, 0023, 'AntiFem', 'Calma dolores menstruales', 90)
+INSERT Medicamento VALUES(444444444444, 0024, 'Alergel', 'Inhibidor de alergias', 90)
 
-INSERT Medicamento VALUES(555555555, 'Dipirona', 'Calma dolores en general', 100)
-INSERT Medicamento VALUES(555555555, 'AntiGripal', 'Calma sintomas gripales', 120)
-INSERT Medicamento VALUES(555555555, 'AntiMigra', 'Calma dolor de cabeza', 90)
-INSERT Medicamento VALUES(555555555, 'AntiFem', 'Calma dolores menstruales', 90)
-INSERT Medicamento VALUES(555555555, 'Alergel', 'Inhibidor de alergias', 90)
+INSERT Medicamento VALUES(555555555555, 0025, 'Dipirona', 'Calma dolores en general', 100)
+INSERT Medicamento VALUES(555555555555, 0026, 'AntiGripal', 'Calma sintomas gripales', 120)
+INSERT Medicamento VALUES(555555555555, 0027, 'AntiMigra', 'Calma dolor de cabeza', 90)
+INSERT Medicamento VALUES(555555555555, 0028, 'AntiFem', 'Calma dolores menstruales', 90)
+INSERT Medicamento VALUES(555555555555, 0029, 'Alergel', 'Inhibidor de alergias', 90)
 
-INSERT Medicamento VALUES(666666666, 'Dipirona', 'Calma dolores en general', 100)
-INSERT Medicamento VALUES(666666666, 'AntiGripal', 'Calma sintomas gripales', 120)
-INSERT Medicamento VALUES(666666666, 'AntiMigra', 'Calma dolor de cabeza', 90)
-INSERT Medicamento VALUES(666666666, 'AntiFem', 'Calma dolores menstruales', 90)
-INSERT Medicamento VALUES(666666666, 'Alergel', 'Inhibidor de alergias', 90)
+INSERT Medicamento VALUES(666666666666, 0030, 'Dipirona', 'Calma dolores en general', 100)
+INSERT Medicamento VALUES(666666666666, 0031, 'AntiGripal', 'Calma sintomas gripales', 120)
+INSERT Medicamento VALUES(666666666666, 0032, 'AntiMigra', 'Calma dolor de cabeza', 90)
+INSERT Medicamento VALUES(666666666666, 0033, 'AntiFem', 'Calma dolores menstruales', 90)
+INSERT Medicamento VALUES(666666666666, 0034, 'Alergel', 'Inhibidor de alergias', 90)
 
-INSERT Medicamento VALUES(777777777, 'Dipirona', 'Calma dolores en general', 100)
-INSERT Medicamento VALUES(777777777, 'AntiGripal', 'Calma sintomas gripales', 120)
-INSERT Medicamento VALUES(777777777, 'AntiMigra', 'Calma dolor de cabeza', 90)
-INSERT Medicamento VALUES(777777777, 'AntiFem', 'Calma dolores menstruales', 90)
-INSERT Medicamento VALUES(777777777, 'Alergel', 'Inhibidor de alergias', 90)
+INSERT Medicamento VALUES(777777777777, 0035, 'Dipirona', 'Calma dolores en general', 100)
+INSERT Medicamento VALUES(777777777777, 0036, 'AntiGripal', 'Calma sintomas gripales', 120)
+INSERT Medicamento VALUES(777777777777, 0037, 'AntiMigra', 'Calma dolor de cabeza', 90)
+INSERT Medicamento VALUES(777777777777, 0038, 'AntiFem', 'Calma dolores menstruales', 90)
+INSERT Medicamento VALUES(777777777777, 0039, 'Alergel', 'Inhibidor de alergias', 90)
 
-INSERT Medicamento VALUES(888888888, 'Dipirona', 'Calma dolores en general', 100)
-INSERT Medicamento VALUES(888888888, 'AntiGripal', 'Calma sintomas gripales', 120)
-INSERT Medicamento VALUES(888888888, 'AntiMigra', 'Calma dolor de cabeza', 90)
-INSERT Medicamento VALUES(888888888, 'AntiFem', 'Calma dolores menstruales', 90)
-INSERT Medicamento VALUES(888888888, 'Alergel', 'Inhibidor de alergias', 90)
+INSERT Medicamento VALUES(888888888888, 0040, 'Dipirona', 'Calma dolores en general', 100)
+INSERT Medicamento VALUES(888888888888, 0041, 'AntiGripal', 'Calma sintomas gripales', 120)
+INSERT Medicamento VALUES(888888888888, 0042, 'AntiMigra', 'Calma dolor de cabeza', 90)
+INSERT Medicamento VALUES(888888888888, 0043, 'AntiFem', 'Calma dolores menstruales', 90)
+INSERT Medicamento VALUES(888888888888, 0044, 'Alergel', 'Inhibidor de alergias', 90)
 
-INSERT Medicamento VALUES(999999999, 'Dipirona', 'Calma dolores en general', 100)
-INSERT Medicamento VALUES(999999999, 'AntiGripal', 'Calma sintomas gripales', 120)
-INSERT Medicamento VALUES(999999999, 'AntiMigra', 'Calma dolor de cabeza', 90)
-INSERT Medicamento VALUES(999999999, 'AntiFem', 'Calma dolores menstruales', 90)
-INSERT Medicamento VALUES(999999999, 'Alergel', 'Inhibidor de alergias', 90)
+INSERT Medicamento VALUES(999999999999, 0045, 'Dipirona', 'Calma dolores en general', 100)
+INSERT Medicamento VALUES(999999999999, 0046, 'AntiGripal', 'Calma sintomas gripales', 120)
+INSERT Medicamento VALUES(999999999999, 0047, 'AntiMigra', 'Calma dolor de cabeza', 90)
+INSERT Medicamento VALUES(999999999999, 0048, 'AntiFem', 'Calma dolores menstruales', 90)
+INSERT Medicamento VALUES(999999999999, 0049, 'Alergel', 'Inhibidor de alergias', 90)
 GO
 
 --Empleados
@@ -174,24 +167,20 @@ INSERT Empleado VALUES('Pepe', '20190912 12:00', '20:00:00')
 INSERT Usuario VALUES('Ramon', 'pass', 'Ramon', 'Fernandez')
 INSERT Usuario VALUES('Felipe', 'pass', 'Felipe', 'Fernandez')
 
-INSERT Cliente VALUES('Ramon', '18 de Julio 2030')
-INSERT Cliente VALUES('Felipe', 'Gonzalo Ramirez 1204')
+INSERT Cliente VALUES('Ramon', '18 de Julio 2030', 24009000)
+INSERT Cliente VALUES('Felipe', 'Gonzalo Ramirez 1204', 098303353)
 
-INSERT Telefono VALUES('Ramon', 24009000)
-INSERT Telefono VALUES('Felipe', 098303353)
-GO
+INSERT Pedido VALUES('Ramon', 123456789123, 0000, 8, 0)
+INSERT Pedido VALUES('Ramon', 123456789123, 0001, 10, 0)
+INSERT Pedido VALUES('Ramon', 123456789123, 0002, 5, 0)
+INSERT Pedido VALUES('Ramon', 123456789123, 0003, 3, 0)
+INSERT Pedido VALUES('Ramon', 123456789123, 0004, 1, 0)
 
-INSERT Pedido VALUES('Ramon', 123456789, 0000, 8, 0)
-INSERT Pedido VALUES('Ramon', 123456789, 0001, 10, 0)
-INSERT Pedido VALUES('Ramon', 123456789, 0002, 5, 0)
-INSERT Pedido VALUES('Ramon', 123456789, 0003, 3, 0)
-INSERT Pedido VALUES('Ramon', 123456789, 0004, 1, 0)
-
-INSERT Pedido VALUES('Felipe', 111111111, 0005, 15, 0)
-INSERT Pedido VALUES('Felipe', 111111111, 0006, 5, 0)
-INSERT Pedido VALUES('Felipe', 111111111, 0007, 5, 0)
-INSERT Pedido VALUES('Felipe', 111111111, 0008, 1, 0)
-INSERT Pedido VALUES('Felipe', 111111111, 0009, 1, 0)
+INSERT Pedido VALUES('Felipe', 111111111111, 0005, 15, 0)
+INSERT Pedido VALUES('Felipe', 111111111111, 0006, 5, 0)
+INSERT Pedido VALUES('Felipe', 111111111111, 0007, 5, 0)
+INSERT Pedido VALUES('Felipe', 111111111111, 0008, 1, 0)
+INSERT Pedido VALUES('Felipe', 111111111111, 0009, 1, 0)
 GO
 
 --------------------------------------------------------------------------------------------------------
@@ -332,7 +321,8 @@ CREATE PROCEDURE AltaCliente
 @pass VARCHAR(20),
 @nombre VARCHAR(20),
 @apellido VARCHAR(20),
-@dirEntrega VARCHAR(100)
+@dirEntrega VARCHAR(100),
+@telefono INT
 AS
 BEGIN
 	BEGIN TRAN
@@ -342,7 +332,7 @@ BEGIN
 				ROLLBACK TRAN
 				RETURN -1 --Error SQL
 			END
-		INSERT Cliente VALUES(@nomUsu, @dirEntrega)
+		INSERT Cliente VALUES(@nomUsu, @dirEntrega, @telefono)
 		IF @@ERROR <> 0
 			BEGIN
 				ROLLBACK TRAN
@@ -354,7 +344,7 @@ END
 GO
 
 CREATE PROCEDURE AltaFarmaceutica
-@ruc int,
+@ruc BIGINT,
 @nombre varchar(20),
 @correo varchar(50),
 @calle varchar(50),
@@ -375,7 +365,7 @@ END
 GO
 
 CREATE PROCEDURE ModificarFarmaceutica
-@ruc int,
+@ruc BIGINT,
 @nombre varchar(20),
 @correo varchar(50),
 @calle varchar(50),
@@ -397,7 +387,7 @@ END
 GO
 
 CREATE PROCEDURE EliminarFarmaceutica
-@ruc int
+@ruc bigint
 AS
 BEGIN
 	IF NOT EXISTS(SELECT * FROM Farmaceutica WHERE ruc = @ruc)
@@ -436,7 +426,7 @@ END
 GO
 
 CREATE PROCEDURE BuscarFarmaceutica
-@ruc INT
+@ruc BIGINT
 AS
 BEGIN
 	IF EXISTS (SELECT * FROM Farmaceutica WHERE ruc = @ruc)
@@ -447,14 +437,15 @@ END
 GO
 
 CREATE PROCEDURE AltaMedicamento
-@ruc INT,
+@ruc BIGINT,
+@codigo INT,
 @nombre VARCHAR(20),
 @descripcion VARCHAR(100),
 @precio INT
 AS
 BEGIN
 	BEGIN TRAN
-		INSERT Medicamento VALUES(@ruc, @nombre, @descripcion, @precio)
+		INSERT Medicamento VALUES(@ruc, @codigo, @nombre, @descripcion, @precio)
 		IF @@ERROR <> 0
 			BEGIN
 				ROLLBACK TRAN
@@ -466,7 +457,7 @@ END
 GO
 
 CREATE PROCEDURE ModificarMedicamento
-@ruc INT,
+@ruc BIGINT,
 @codigo INT,
 @nombre VARCHAR(20),
 @descripcion VARCHAR(100),
@@ -491,7 +482,7 @@ END
 GO
 
 CREATE PROCEDURE EliminarMedicamento
-@ruc INT,
+@ruc BIGINT,
 @codigo INT
 AS
 BEGIN
@@ -524,7 +515,7 @@ END
 GO
 
 CREATE PROCEDURE BuscarMedicamento
-@ruc INT,
+@ruc BIGINT,
 @codigo INT
 AS
 BEGIN
@@ -537,7 +528,7 @@ GO
 
 CREATE PROCEDURE AltaPedido
 @cliente varchar(20),
-@rucMedicamento int,
+@rucMedicamento BIGINT,
 @codMedicamento int,
 @cantidad int
 AS
@@ -564,6 +555,36 @@ BEGIN
 			ELSE
 				RETURN 1 --Esto es, transaccion exitosa
 		END
+END
+GO
+
+CREATE PROCEDURE ListarPedidosXMedicamento
+@rucMedicamento BIGINT,
+@codMedicamento int
+AS
+BEGIN
+	IF NOT EXISTS (SELECT * FROM Pedido WHERE rucMedicamento = @rucMedicamento AND codMedicamento = @codMedicamento)
+		RETURN -1
+	ELSE
+		SELECT * FROM Pedido WHERE rucMedicamento = @rucMedicamento AND codMedicamento = @codMedicamento
+END
+GO
+
+CREATE PROCEDURE ListarFarmaceuticas
+AS
+BEGIN
+	SELECT * FROM Farmaceutica
+END
+GO
+
+CREATE PROCEDURE ListarMedicamentosXFarmaceutica
+@ruc BIGINT
+AS
+BEGIN
+	IF NOT EXISTS (SELECT * FROM Medicamento WHERE ruc = @ruc)
+		RETURN -1
+	ELSE
+		SELECT * FROM Medicamento WHERE ruc = @ruc
 END
 GO
 
@@ -650,6 +671,9 @@ ListarMedicamento // HECHO // NO NECESITA TEST
 BuscarMedicamento // HECHO // TEST HECHO
 AltaPedido // HECHO // TEST HECHO
 EliminarPedido // HECHO // TEST HECHO
+ListarPedidosXMedicamento // HECHO // NO NECESITA TEST
+ListarFarmaceuticas // HECHO // NO NECESITA TEST
+ListarMedicamentosXFarmaceutica // HECHO // NO NECESITA TEST
 ListarTodo (Todos los pedidos) // HECHO // NO NECESITA TEST
 ListarGenerados (Pedidos) // HECHO // NO NECESITA TEST
 ListarEnviados (Pedidos) // HECHO // NO NECESITA TEST
@@ -733,7 +757,7 @@ GO
 --------------------------------------------------------------------------------------------ALTA CLIENTE
 --COMANDO EXITOSO
 DECLARE @RET INT
-EXEC @RET = AltaCliente 'Usuario1', '1234', 'Pepito', 'Sanchez', 'Calle Santana 123'
+EXEC @RET = AltaCliente 'Usuario1', '1234', 'Pepito', 'Sanchez', 'Calle Santana 123', 24019091
 PRINT @RET
 GO
 
@@ -741,7 +765,7 @@ GO
 ---------------------------------------------------------------------------------------ALTA FARMACEUTICA
 --COMANDO EXITOSO
 DECLARE @RET INT
-EXEC @RET = AltaFarmaceutica 121212121, 'UnaFarma', 'pedidos@unafarma.com', 'Calle', 1234, null
+EXEC @RET = AltaFarmaceutica 121212121212, 'UnaFarma', 'pedidos@unafarma.com', 'Calle', 1234, null
 PRINT @RET
 GO
 
@@ -749,13 +773,13 @@ GO
 ----------------------------------------------------------------------------------MODIFICAR FARMACEUTICA
 --COMANDO EXITOSO
 DECLARE @RET INT
-EXEC @RET = ModificarFarmaceutica 111111111, 'FarmaCureS', 'pedidos@farmacures.com', 'Calle', 1234, null
+EXEC @RET = ModificarFarmaceutica 111111111111, 'FarmaCureS', 'pedidos@farmacures.com', 'Calle', 1234, null
 PRINT @RET
 GO
 
 --COMANDO NO EXITOSO - Farmaceutica no existe
 DECLARE @RET INT
-EXEC @RET = ModificarFarmaceutica 312312312, 'FarmaCureS', 'pedidos@farmacures.com', 'Calle', 1234, null
+EXEC @RET = ModificarFarmaceutica 312312312312, 'FarmaCureS', 'pedidos@farmacures.com', 'Calle', 1234, null
 PRINT @RET
 GO
 
@@ -763,19 +787,19 @@ GO
 -----------------------------------------------------------------------------------ELIMINAR FARMACEUTICA
 --COMANDO EXITOSO - Farmaceutica no tiene pedidos asociados
 DECLARE @RET INT
-EXEC @RET = EliminarFarmaceutica 222222222
+EXEC @RET = EliminarFarmaceutica 222222222222
 PRINT @RET
 GO
 
 --COMANDO NO EXITOSO - Farmaceutica SI tiene pedidos asociados
 DECLARE @RET INT
-EXEC @RET = EliminarFarmaceutica 111111111
+EXEC @RET = EliminarFarmaceutica 111111111111
 PRINT @RET
 GO
 
 --COMANDO NO EXITOSO - Farmaceutica no existe
 DECLARE @RET INT
-EXEC @RET = EliminarFarmaceutica 432432432
+EXEC @RET = EliminarFarmaceutica 432432432432
 PRINT @RET
 GO
 
@@ -783,13 +807,13 @@ GO
 -------------------------------------------------------------------------------------BUSCAR FARMACEUTICA
 --COMANDO EXITOSO
 DECLARE @RET INT
-EXEC @RET = BuscarFarmaceutica 111111111
+EXEC @RET = BuscarFarmaceutica 111111111111
 PRINT @RET
 GO
 
 --COMANDO NO EXITOSO - Farmaceutica no existe
 DECLARE @RET INT
-EXEC @RET = BuscarFarmaceutica 432432432
+EXEC @RET = BuscarFarmaceutica 432432432432
 PRINT @RET
 GO
 
@@ -798,7 +822,7 @@ GO
 
 --COMANDO EXITOSO (NO HAY EXCEPCION DE CREAR UN MEDICAMENTO YA EXISTENTE, YA QUE EL codigo ES IDENTITY
 DECLARE @RET INT
-EXEC @RET = AltaMedicamento 111111111, 'MedicaMENTOS', 'Medicacion general', 200
+EXEC @RET = AltaMedicamento 111111111111, 'MedicaMENTOS', 'Medicacion general', 200
 PRINT @RET
 GO
 
@@ -806,13 +830,13 @@ GO
 -----------------------------------------------------------------------------------MODIFICAR MEDICAMENTO
 --COMANDO EXITOSO
 DECLARE @RET INT
-EXEC @RET = ModificarMedicamento 111111111, 0005, 'Nuevo Nombre', 'Nueva Descripcion', 75
+EXEC @RET = ModificarMedicamento 111111111111, 0005, 'Nuevo Nombre', 'Nueva Descripcion', 75
 PRINT @RET
 GO
 
 --COMANDO NO EXITOSO - NO EXISTE MEDICAMENTO
 DECLARE @RET INT
-EXEC @RET = ModificarMedicamento 000000000, 0005, 'Nuevo Nombre', 'Nueva Descripcion', 75
+EXEC @RET = ModificarMedicamento 000000000000000, 0005, 'Nuevo Nombre', 'Nueva Descripcion', 75
 PRINT @RET
 GO
 
@@ -820,13 +844,13 @@ GO
 ------------------------------------------------------------------------------------ELIMINAR MEDICAMENTO
 --COMANDO EXITOSO
 DECLARE @RET INT
-EXEC @RET = EliminarMedicamento 111111111, 0007
+EXEC @RET = EliminarMedicamento 111111111111, 0007
 PRINT @RET
 GO
 
 --COMANDO NO EXITOSO - NO EXISTE MEDICAMENTO
 DECLARE @RET INT
-EXEC @RET = EliminarMedicamento 000000000, 0005
+EXEC @RET = EliminarMedicamento 000000000000, 0005
 PRINT @RET
 GO
 
@@ -834,13 +858,13 @@ GO
 --------------------------------------------------------------------------------------BUSCAR MEDICAMENTO
 --COMANDO EXITOSO
 DECLARE @RET INT
-EXEC @RET = BuscarMedicamento 111111111, 0006
+EXEC @RET = BuscarMedicamento 111111111111, 0006
 PRINT @RET
 GO
 
 --COMANDO NO EXITOSO - NO EXISTE MEDICAMENTO
 DECLARE @RET INT
-EXEC @RET = BuscarMedicamento 111111111, 1427
+EXEC @RET = BuscarMedicamento 111111111111, 1427
 PRINT @RET
 GO
 
@@ -848,7 +872,7 @@ GO
 ---------------------------------------------------------------------------------------------ALTA PEDIDO
 --COMANDO EXITOSO
 DECLARE @RET INT
-EXEC @RET = AltaPedido 'Felipe', 111111111, 0007, 3
+EXEC @RET = AltaPedido 'Felipe', 111111111111, 0007, 3
 PRINT @RET
 GO
 
