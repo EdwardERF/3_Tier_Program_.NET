@@ -560,13 +560,14 @@ GO
 
 CREATE PROCEDURE ListarPedidosXMedicamento
 @rucMedicamento BIGINT,
-@codMedicamento int
+@codMedicamento int,
+@cliente varchar(20)
 AS
 BEGIN
-	IF NOT EXISTS (SELECT * FROM Pedido WHERE rucMedicamento = @rucMedicamento AND codMedicamento = @codMedicamento)
+	IF NOT EXISTS (SELECT * FROM Pedido WHERE rucMedicamento = @rucMedicamento AND codMedicamento = @codMedicamento AND cliente = @cliente)
 		RETURN -1
 	ELSE
-		SELECT * FROM Pedido WHERE rucMedicamento = @rucMedicamento AND codMedicamento = @codMedicamento
+		SELECT * FROM Pedido WHERE rucMedicamento = @rucMedicamento AND codMedicamento = @codMedicamento AND cliente = @cliente
 END
 GO
 
@@ -589,41 +590,46 @@ END
 GO
 
 CREATE PROCEDURE ListarTodo --PEDIDOS
+@cliente VARCHAR(20)
 AS
 BEGIN
-	SELECT * FROM Pedido
+	SELECT * FROM Pedido WHERE cliente = @cliente
 END
 GO
 
 CREATE PROCEDURE ListarGenerados
+@cliente VARCHAR(20)
 AS
 BEGIN
-	SELECT * FROM Pedido WHERE estado = 0
+	SELECT * FROM Pedido WHERE estado = 0 AND cliente = @cliente
 END
 GO
 
 CREATE PROCEDURE ListarEnviados
+@cliente VARCHAR(20)
 AS
 BEGIN
-	SELECT * FROM Pedido WHERE estado = 1
+	SELECT * FROM Pedido WHERE estado = 1 AND cliente = @cliente
 END
 GO
 
 CREATE PROCEDURE ListarEntregados
+@cliente VARCHAR(20)
 AS
 BEGIN
-	SELECT * FROM Pedido WHERE estado = 2
+	SELECT * FROM Pedido WHERE estado = 2 AND cliente = @cliente
 END
 GO
 
 CREATE PROCEDURE BuscarPedido
+@cliente VARCHAR(20),
 @numero INT
 AS
 BEGIN
-	IF NOT EXISTS (SELECT * FROM Pedido WHERE numero = @numero)
+	IF NOT EXISTS (SELECT * FROM Pedido WHERE numero = @numero AND cliente = @cliente)
 		RETURN -1 --Esto es, no existe tal pedido
 	ELSE
-		SELECT * FROM Pedido WHERE numero = @numero
+		SELECT * FROM Pedido WHERE numero = @numero AND cliente = @cliente
 END
 GO
 

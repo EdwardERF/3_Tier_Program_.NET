@@ -11,16 +11,17 @@
 - Pedido: no va escrito en MER ni cliente ni medicamento (Se asume por relaciones) // HECHO
 - Falta ListaPedidosXMedicamento - ListadoFarmaceuticas - ListadoMedicamentosXFarmaceutica // HECHO
 - Poner las mismas validaciones en BD que en las EC // HECHO
+- SPs, Los ListarXEstado de Pedidos, reciben al cliente logueado por parámetro, es decir, reciben el Cliente por parámetro para los pedidos // HECHO
 
 
-- Revisar UML según conceptos // HACIENDO
-- Los Listar Estado 0, 1, 2 reciben al cliente logueado como parámetro. // HACIENDO
 - En UML, Farmaceutica y Medicamentos, hay que colocarle asociaciones, así en UML por ejemplo, en Medicamento no va el ruc: log
 	- Chequear sobre Atributo de asociación
+	- ASP y SPs solucionados; falta el Diagrama de Clases
 - Revisar UML según conceptos
 
 
 CORRECCIONES MÁS FUTURAS:
+- Los Listar Estado 0, 1, 2 reciben al cliente logueado como parámetro. 
 - Validación de correo con una función; buscarla.
 - HoraInicio y HoraFinal de Empleado, es más simple usar un string con validaciones (puede ser la función de corroborar caracteres, etc)
 - Los Listar Estado 0, 1, 2 reciben al cliente logueado como parámetro.
@@ -30,6 +31,8 @@ HACIENDO AHORA:
 - Revisar UML según conceptos
 
 HECHO:
+- SPs, Los ListarXEstado de Pedidos, reciben al cliente logueado por parámetro, es decir, reciben el Cliente por parámetro para los pedidos
+
 - Poner las mismas validaciones en BD que en las EC
 
 - Falta ListaPedidosXMedicamento - ListadoFarmaceuticas - ListadoMedicamentosXFarmaceutica
