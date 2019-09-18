@@ -7,17 +7,13 @@ namespace EntidadesCompartidas
 {
     public class Medicamento
     {
-        private Int64 _ruc;
         private int _codigo;
         private string _nombre;
         private string _descripcion;
         private int _precio;
 
-        public Int64 ruc
-        {
-            get { return _ruc; }
-            set { _ruc = value; }
-        }
+        //Atributo de asociacion
+        private Farmaceutica _far;
 
         public int codigo
         {
@@ -55,18 +51,24 @@ namespace EntidadesCompartidas
             set { _precio = value; }
         }
 
-        public Medicamento(Int64 pruc, int pcodigo, string pnombre, string pdescripcion, int pprecio)
+        public Farmaceutica Far
         {
-            ruc = pruc;
+            get { return _far; }
+            set { _far = value; }
+        }
+
+        public Medicamento(int pcodigo, string pnombre, string pdescripcion, int pprecio, Farmaceutica pFar)
+        {
             codigo = pcodigo;
             nombre = pnombre;
             descripcion = pdescripcion;
             precio = pprecio;
+            Far = pFar;
         }
 
         public override string ToString()
         {
-            return ("Farmaceutica: " + ruc + "\n Codigo: " + codigo + "\n Nombre: " + nombre + "\n Descripcion: " + descripcion + "\n Precio: " + precio);
+            return ("Farmaceutica: " + Far.ruc + "\n Codigo: " + codigo + "\n Nombre: " + nombre + "\n Descripcion: " + descripcion + "\n Precio: " + precio);
         }
     }
 }
