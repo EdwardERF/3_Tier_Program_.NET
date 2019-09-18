@@ -437,7 +437,7 @@ END
 GO
 
 CREATE PROCEDURE AltaMedicamento
-@ruc BIGINT,
+@far BIGINT,
 @codigo INT,
 @nombre VARCHAR(20),
 @descripcion VARCHAR(100),
@@ -445,7 +445,7 @@ CREATE PROCEDURE AltaMedicamento
 AS
 BEGIN
 	BEGIN TRAN
-		INSERT Medicamento VALUES(@ruc, @codigo, @nombre, @descripcion, @precio)
+		INSERT Medicamento VALUES(@far, @codigo, @nombre, @descripcion, @precio)
 		IF @@ERROR <> 0
 			BEGIN
 				ROLLBACK TRAN
@@ -457,20 +457,20 @@ END
 GO
 
 CREATE PROCEDURE ModificarMedicamento
-@ruc BIGINT,
+@far BIGINT,
 @codigo INT,
 @nombre VARCHAR(20),
 @descripcion VARCHAR(100),
 @precio INT
 AS
 BEGIN
-	IF NOT EXISTS (SELECT * FROM Medicamento WHERE ruc = @ruc AND codigo = @codigo)
+	IF NOT EXISTS (SELECT * FROM Medicamento WHERE codigo = @codigo)
 		RETURN -1 --Esto es, no existe ningun medicamento con ese codigo y ruc
 	ELSE
 		BEGIN TRAN
 			UPDATE Medicamento
 			SET nombre = @nombre, descripcion = @descripcion, precio = @precio
-			WHERE ruc = @ruc AND codigo = @codigo
+			WHERE ruc = @far AND codigo = @codigo
 			IF @@ERROR <> 0
 				BEGIN
 					ROLLBACK TRAN
@@ -482,21 +482,21 @@ END
 GO
 
 CREATE PROCEDURE EliminarMedicamento
-@ruc BIGINT,
+@far BIGINT,
 @codigo INT
 AS
 BEGIN
-	IF NOT EXISTS(SELECT * FROM Medicamento WHERE ruc = @ruc AND codigo = @codigo)
+	IF NOT EXISTS(SELECT * FROM Medicamento WHERE ruc = @far AND codigo = @codigo)
 		RETURN -1 --Esto es, no existe medicamento
 	ELSE
 		BEGIN TRAN
-			DELETE Pedido WHERE rucMedicamento = @ruc AND codMedicamento = @codigo
+			DELETE Pedido WHERE rucMedicamento = @far AND codMedicamento = @codigo
 			IF @@ERROR <> 0
 				BEGIN
 					ROLLBACK TRAN
 					RETURN -2 --Esto es, error SQL
 				END
-			DELETE Medicamento WHERE ruc = @ruc AND codigo = @codigo
+			DELETE Medicamento WHERE ruc = @far AND codigo = @codigo
 			IF @@ERROR <> 0
 				BEGIN
 					ROLLBACK TRAN
@@ -515,14 +515,14 @@ END
 GO
 
 CREATE PROCEDURE BuscarMedicamento
-@ruc BIGINT,
+@far BIGINT,
 @codigo INT
 AS
 BEGIN
-	IF NOT EXISTS (SELECT * FROM Medicamento WHERE ruc = @ruc AND codigo = @codigo)
+	IF NOT EXISTS (SELECT * FROM Medicamento WHERE ruc = @far AND codigo = @codigo)
 		RETURN -1 --Esto es, no existe medicamento con ese ruc y codigo
 	ELSE
-		SELECT * FROM Medicamento WHERE ruc = @ruc AND codigo = @codigo
+		SELECT * FROM Medicamento WHERE ruc = @far AND codigo = @codigo
 END
 GO
 
