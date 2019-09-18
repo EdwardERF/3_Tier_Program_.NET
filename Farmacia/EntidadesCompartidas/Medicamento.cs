@@ -27,14 +27,26 @@ namespace EntidadesCompartidas
 
         public string nombre
         {
+            set
+            {
+                if (value.Length <= 20)
+                    _nombre = value;
+                else
+                    throw new Exception("Error - Nombre muy extenso");
+            }
             get { return _nombre; }
-            set { _nombre = value; }
         }
 
         public string descripcion
         {
+            set
+            {
+                if (value.Length <= 100)
+                    _descripcion = value;
+                else
+                    throw new Exception("Error - Descripcion muy extensa");
+            }
             get { return _descripcion; }
-            set { _descripcion = value; }
         }
 
         public int precio

@@ -14,26 +14,50 @@ namespace EntidadesCompartidas
 
         public string nomUsu
         {
+            set
+            {
+                if (value.Length <= 20)
+                    _nomUsu = value;
+                else
+                    throw new Exception("Error - Nombre usuario muy extenso");
+            }
             get { return _nomUsu; }
-            set { _nomUsu = value; }
         }
 
         public string pass
         {
+            set
+            {
+                if (value.Length <= 20)
+                    _pass = value;
+                else
+                    throw new Exception("Error - Contraseña muy extensa");
+            }
             get { return _pass; }
-            set { _pass = value; }
         }
 
         public string nombre
         {
+            set
+            {
+                if (value.Length <= 20)
+                    _nombre = value;
+                else
+                    throw new Exception("Error - Nombre muy extenso");
+            }
             get { return _nombre; }
-            set { _nombre = value; }
         }
 
         public string apellido
         {
+            set
+            {
+                if (value.Length <= 20)
+                    _apellido = value;
+                else
+                    throw new Exception("Error - Apellido muy extenso");
+            }
             get { return _apellido; }
-            set { _apellido = value; }
         }
 
         public Usuario(string pnomUsu, string ppass, string pnombre, string papellido)

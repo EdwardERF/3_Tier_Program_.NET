@@ -12,14 +12,26 @@ namespace EntidadesCompartidas
 
         public string dirEntrega
         {
+            set
+            {
+                if (value.Length <= 100)
+                    _dirEntrega = value;
+                else
+                    throw new Exception("Error - Direccion muy extensa");
+            }
             get { return _dirEntrega; }
-            set { _dirEntrega = value; }
         }
 
         public int Telefono
         {
+            set
+            {
+                if ((value > 99999) && (value <= 999999999))
+                    _telefono = value;
+                else
+                    throw new Exception("Error - Telefono invalido");
+            }
             get { return _telefono; }
-            set { _telefono = value; }
         }
 
         public Cliente(string pnomUsu, string ppass, string pnombre, string papellido, string pdirEntrega, int pTelefono)

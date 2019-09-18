@@ -22,20 +22,38 @@ namespace EntidadesCompartidas
 
         public string nombre
         {
+            set
+            {
+                if (value.Length <= 20)
+                    _nombre = value;
+                else
+                    throw new Exception("Error - Nombre muy extenso");
+            }
             get { return _nombre; }
-            set { _nombre = value; }
         }
 
         public string correo
         {
+            set
+            {
+                if (value.Length <= 50)
+                    _correo = value;
+                else
+                    throw new Exception("Error - Correo muy extenso");
+            }
             get { return _correo; }
-            set { _correo = value; }
         }
 
         public string calle
         {
+            set
+            {
+                if (value.Length <= 50)
+                    _calle = value;
+                else
+                    throw new Exception("Error - Calle muy extensa");
+            }
             get { return _calle; }
-            set { _calle = value; }
         }
 
         public int numero

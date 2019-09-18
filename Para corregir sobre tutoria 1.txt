@@ -11,16 +11,22 @@
 - Pedido: no va escrito en MER ni cliente ni medicamento (Se asume por relaciones) // HECHO
 - Falta ListaPedidosXMedicamento - ListadoFarmaceuticas - ListadoMedicamentosXFarmaceutica // HECHO
 
+- Revisar UML según conceptos // HACIENDO
+- Poner las mismas validaciones en BD que en las EC // HACIENDO
+- Los Listar Estado 0, 1, 2 reciben al cliente logueado como parámetro. // HACIENDO
+
 - En UML, Farmaceutica y Medicamentos, hay que colocarle asociaciones, así en UML por ejemplo, en Medicamento no va el ruc: log
-- Los Listar Estado 0, 1, 2 reciben al cliente logueado como parámetro.
+	- Chequear sobre Atributo de asociación
+
 - Revisar UML según conceptos
-- Poner las mismas validaciones en BD que en las EC
 - Validación de correo con una función; buscarla.
 - HoraInicio y HoraFinal de Empleado, es más simple usar un string con validaciones (puede ser la función de corroborar caracteres, etc)
 - Hay 2 MP? Chequear eso en la letra
 
 HACIENDO AHORA:
-//nada
+- Revisar UML según conceptos
+- Poner las mismas validaciones en BD que en las EC
+- Los Listar Estado 0, 1, 2 reciben al cliente logueado como parámetro.
 
 HECHO:
 - Falta ListaPedidosXMedicamento - ListadoFarmaceuticas - ListadoMedicamentosXFarmaceutica

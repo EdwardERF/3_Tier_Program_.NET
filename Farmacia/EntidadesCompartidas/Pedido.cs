@@ -22,8 +22,14 @@ namespace EntidadesCompartidas
 
         public string cliente
         {
+            set
+            {
+                if (value.Length <= 20)
+                    _cliente = value;
+                else
+                    throw new Exception("Error - Nombre de cliente muy extenso");
+            }
             get { return _cliente; }
-            set { _cliente = value; }
         }
 
         public Int64 rucMedicamento
@@ -46,8 +52,15 @@ namespace EntidadesCompartidas
 
         public int estado
         {
+            set
+            {
+                if ((value >= 0) && (value <= 2))
+                    _estado = value;
+                else
+                    throw new Exception("Error - Solo existe estado 0, 1, 2");
+            
+            }
             get { return _estado; }
-            set { _estado = value; }
         }
 
         public Pedido(int pNumero, string pCliente, Int64 pRucMedicamento, int pCodMedicamento, int pCantidad, int pEstado)
