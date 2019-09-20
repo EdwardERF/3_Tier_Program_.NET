@@ -41,6 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexion.cs" />
+    <Compile Include="PersistenciaCliente.cs" />
+    <Compile Include="PersistenciaEmpleado.cs" />
+    <Compile Include="PersistenciaFarmaceutica.cs" />
+    <Compile Include="PersistenciaMedicamento.cs" />
+    <Compile Include="PersistenciaPedido.cs" />
+    <Compile Include="PersistenciaUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
