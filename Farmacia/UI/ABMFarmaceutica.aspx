@@ -28,7 +28,7 @@
                         <asp:TextBox ID="txtRuc" runat="server"></asp:TextBox>
                     </td>
                     <td>
-                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" />
+                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
                     </td>
                 </tr>
                 <tr>

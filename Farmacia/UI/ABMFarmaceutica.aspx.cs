@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using EntidadesCompartidas;
+using Logica;
+
 public partial class ABMFarmaceutica : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
@@ -67,5 +70,19 @@ public partial class ABMFarmaceutica : System.Web.UI.Page
         txtCorreo.Enabled = true;
         txtNomFar.Enabled = true;
         txtNumero.Enabled = true;
+    }
+
+    protected void btnBuscar_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            Int64 oRUC = Convert.ToInt64(txtRuc.Text);
+
+            //Farmaceutica oFar = Logica.LogicaFarmaceutica.Buscar(oRUC);
+        }
+        catch(Exception ex)
+        {
+            lblError.Text = ex.Message;
+        }
     }
 }

@@ -49,5 +49,15 @@
     <Compile Include="PersistenciaUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EntidadesCompartidas\EntidadesCompartidas.csproj">
+      <Project>{2c04245b-d8f3-4948-8860-acc711928a4d}</Project>
+      <Name>EntidadesCompartidas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logica\Logica.csproj">
+      <Project>{e8c95be1-3b19-4980-80ef-9711fa3c85f0}</Project>
+      <Name>Logica</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

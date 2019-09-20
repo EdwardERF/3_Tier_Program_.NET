@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Logica
 {
-    class LogicaFarmaceutica
+    public class LogicaFarmaceutica
     {
     }
 }

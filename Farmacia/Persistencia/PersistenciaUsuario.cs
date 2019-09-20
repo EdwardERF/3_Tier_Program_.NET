@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Persistencia
 {
-    class PersistenciaUsuario
+    public class PersistenciaUsuario
     {
     }
 }
