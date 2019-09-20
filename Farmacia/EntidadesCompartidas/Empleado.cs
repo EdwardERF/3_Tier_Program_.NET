@@ -7,22 +7,22 @@ namespace EntidadesCompartidas
 {
     public class Empleado : Usuario
     {
-        private DateTime _horaInicio;
-        private DateTime _horaFinal;
+        private string _horaInicio;
+        private string _horaFinal;
 
-        public DateTime horaInicio
+        public string horaInicio
         {
             get { return _horaInicio; }
             set { _horaInicio = value; }
         }
 
-        public DateTime horaFinal
+        public string horaFinal
         {
             get { return _horaFinal; }
             set { _horaFinal = value; }
         }
 
-        public Empleado(string pnomUsu, string ppass, string pnombre, string papellido, DateTime phoraInicio, DateTime phoraFinal)
+        public Empleado(string pnomUsu, string ppass, string pnombre, string papellido, string phoraInicio, string phoraFinal)
             : base(pnomUsu, ppass, pnombre, papellido)
         {
             horaInicio = phoraInicio;
