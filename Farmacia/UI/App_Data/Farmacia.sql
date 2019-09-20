@@ -58,8 +58,8 @@ go
 create table Empleado
 (
 	nomUsu varchar(20) primary key foreign key references Usuario(nomUsu),
-	horaInicio time not null,
-	horaFinal time not null
+	horaInicio varchar(20) not null,
+	horaFinal varchar(20) not null
 )
 go
 
@@ -217,8 +217,8 @@ CREATE PROCEDURE AltaEmpleado
 @pass VARCHAR(20),
 @nombre VARCHAR(20),
 @apellido VARCHAR(20),
-@horaInicio TIME,
-@horaFinal TIME
+@horaInicio VARCHAR(20),
+@horaFinal VARCHAR(20)
 AS
 BEGIN
 	BEGIN TRAN
@@ -244,8 +244,8 @@ CREATE PROCEDURE ModificarEmpleado
 @pass VARCHAR(20),
 @nombre VARCHAR(20),
 @apellido VARCHAR(20),
-@horaInicio TIME,
-@horaFinal TIME
+@horaInicio VARCHAR(20),
+@horaFinal VARCHAR(20)
 AS
 BEGIN
 	IF NOT EXISTS(SELECT * FROM Empleado WHERE nomUsu = @nomUsu)
