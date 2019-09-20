@@ -1,0 +1,6 @@
+- Para el ASPX de Listado Medicamentos y Pedidos, se pide que la GV tenga un filtro de Todos, Generados o Entregados; no se hacer el filtro.
+
+- Hay que cambiar el SP de ListarMedicamentosXPedido; hay que ordenarlos cronológicamente.
+
+- Hay que cambiar el SP de Realizar Pedido - Medicamentos (van ordenados por nombre de Medicamento)
+

@@ -29,6 +29,9 @@
             </table>
             <br />
             <asp:Label ID="lblError" runat="server"></asp:Label>
+            <br />
+            <br />
+            <asp:LinkButton ID="lbVolver" runat="server">Volver</asp:LinkButton>
         </div>
     </form>
 </body>

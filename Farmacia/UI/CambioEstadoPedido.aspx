@@ -6,10 +6,15 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+    <style type="text/css">
+        .auto-style1 {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <p>
+        <p class="auto-style1">
             Cambio de Estado de Pedido</p>
         <p>
             <asp:GridView ID="gvEstadoPedido" runat="server" AutoGenerateSelectButton="True">
@@ -18,10 +23,11 @@
         <p>
             <asp:Button ID="btnCambiarEstado" runat="server" Text="Cambiar Estado" />
         </p>
-        <p>
-            &nbsp;</p>
-        <p>
+        <p class="auto-style1">
             <asp:Label ID="lblError" runat="server"></asp:Label>
+        </p>
+        <p class="auto-style1">
+            <asp:LinkButton ID="lbVolver" runat="server">Volver</asp:LinkButton>
         </p>
     </form>
 </body>

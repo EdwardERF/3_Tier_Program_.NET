@@ -53,8 +53,14 @@ namespace EntidadesCompartidas
 
         public Farmaceutica Far
         {
+            set
+            {
+                if (value == null)
+                    throw new Exception("Error - Debe de conocerse la Farmaceutica");
+                else
+                    _far = value;
+            }
             get { return _far; }
-            set { _far = value; }
         }
 
         public Medicamento(int pcodigo, string pnombre, string pdescripcion, int pprecio, Farmaceutica pFar)
