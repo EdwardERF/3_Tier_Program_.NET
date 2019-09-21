@@ -444,6 +444,8 @@ CREATE PROCEDURE AltaMedicamento
 @precio INT
 AS
 BEGIN
+	IF EXISTS(SELECT * FROM MEDICAMENTO WHERE ruc = @far AND codigo = @codigo)
+		RETURN -1 --Esto es, ya existe dicho medicamento
 	BEGIN TRAN
 		INSERT Medicamento VALUES(@far, @codigo, @nombre, @descripcion, @precio)
 		IF @@ERROR <> 0
