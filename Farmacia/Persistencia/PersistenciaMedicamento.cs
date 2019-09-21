@@ -218,5 +218,47 @@ namespace Persistencia
             return oLista;
         }
 
+        public static List<Medicamento> ListarMedicamentosXFarmaceutica(Int64 oRUC)
+        {
+            Medicamento oMed;
+            List<Medicamento> oLista = new List<Medicamento>();
+            SqlDataReader oReader;
+
+            SqlConnection oConexion = new SqlConnection(Conexion.STR);
+            SqlCommand oComando = new SqlCommand("ListarMedicamentosXFarmaceutica", oConexion);
+            oComando.CommandType = CommandType.StoredProcedure;
+
+            oComando.Parameters.AddWithValue("ruc", oRUC);
+
+            try
+            {
+                oConexion.Open();
+                oReader = oComando.ExecuteReader();
+
+                if (oReader.HasRows)
+                {
+                    while (oReader.Read())
+                    {
+                        int oCodigo = (int)oReader["codigo"];
+
+                        oMed = PersistenciaMedicamento.Buscar(oRUC, oCodigo);
+
+                        oLista.Add(oMed);
+                    }
+
+                    oReader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oConexion.Close();
+            }
+
+            return oLista;
+        }
     }
 }

@@ -553,7 +553,7 @@ BEGIN
 		BEGIN
 			DELETE Pedido WHERE numero = @numero
 			IF @@ERROR <> 0
-				RETURN -1 --Esto es, error SQL
+				RETURN -2 --Esto es, error SQL
 			ELSE
 				RETURN 1 --Esto es, transaccion exitosa
 		END

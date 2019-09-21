@@ -46,7 +46,6 @@ namespace Persistencia
             }
         }
 
-
         //PENDIENTE: El logueo es variable, de si es Empleado o Cliente,
         //por tanto lo dejo para otro momento.
         public static Usuario Logueo(string nomUsu, string pass)

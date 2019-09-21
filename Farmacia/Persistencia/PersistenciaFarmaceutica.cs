@@ -170,5 +170,46 @@ namespace Persistencia
 
             return oFar;
         }
+
+        public static List<Farmaceutica> ListarFarmaceuticas()
+        {
+            Farmaceutica oFar;
+            List<Farmaceutica> oLista = new List<Farmaceutica>();
+            SqlDataReader oReader;
+
+            SqlConnection oConexion = new SqlConnection(Conexion.STR);
+            SqlCommand oComando = new SqlCommand("ListarFarmaceuticas", oConexion);
+            oComando.CommandType = CommandType.StoredProcedure;
+
+            try
+            {
+                oConexion.Open();
+                oReader = oComando.ExecuteReader();
+
+                if (oReader.HasRows)
+                {
+                    while (oReader.Read())
+                    {
+                        Int64 oRUC = (Int64)oReader["ruc"];
+
+                        oFar = PersistenciaFarmaceutica.Buscar(oRUC);
+
+                        oLista.Add(oFar);
+                    }
+
+                    oReader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oConexion.Close();
+            }
+
+            return oLista;
+        }
     }
 }
