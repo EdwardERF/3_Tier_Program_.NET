@@ -127,6 +127,40 @@ namespace Persistencia
             return oPed;
         }
 
+        public static void CambioEstadoPedido(int oNum)
+        {
+            SqlConnection oConexion = new SqlConnection(Conexion.STR);
+            SqlCommand oComando = new SqlCommand("CambioEstadoPedido", oConexion);
+            oComando.CommandType = CommandType.StoredProcedure;
+
+            oComando.Parameters.AddWithValue("@numero", oNum);
+
+            SqlParameter oParametro = new SqlParameter("@Retorno", SqlDbType.Int);
+            oParametro.Direction = ParameterDirection.ReturnValue;
+            oComando.Parameters.Add(oParametro);
+
+            try
+            {
+                oConexion.Open();
+                oComando.ExecuteNonQuery();
+
+                int valReturn = (int)oComando.Parameters["@Retorno"].Value;
+
+                if (valReturn == 1)
+                    throw new Exception("Cambio de Estado exitoso");
+                else if (valReturn == -1)
+                    throw new Exception("Error SQL");
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oConexion.Close();
+            }
+        }
+
         public static List<Pedido> ListarTodo(string oCliente)
         {
             Pedido oPed;
