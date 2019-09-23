@@ -6,7 +6,6 @@ using System.Data;
 using System.Data.SqlClient;
 
 using EntidadesCompartidas;
-using Logica;
 
 namespace Persistencia
 {
