@@ -1,38 +1,38 @@
 // ORDEN DE CREACIÓN DE CÓDIGO DE ASP //
 
-1 - ABMFarmaceutica // HACIENDO
+1 - ABMFarmaceutica 
 	- UI // HACIENDO
-	- Logica
-	- ADO
+	- Logica // HECHO
+	- ADO // HECHO
 2 - ABMMedicamento
 	- UI
-	- Logica
-	- ADO
+	- Logica // HECHO
+	- ADO // HECHO
 3 - ABMEmpleado
 	- UI
-	- Logica
-	- ADO
+	- Logica // HECHO
+	- ADO // HECHO
 4 - RegistroCliente
 	- UI
-	- Logica
-	- ADO
+	- Logica // HECHO
+	- ADO // HECHO
 5 - RealizarPedido
 	- UI
-	- Logica
-	- ADO
+	- Logica // HECHO
+	- ADO // HECHO
 6 - CambioEstadoPedido
 	- UI
-	- Logica
-	- ADO
+	- Logica // HECHO
+	- ADO // HECHO
 7 - ConsultaEstadoPedidos
 	- UI
-	- Logica
-	- ADO
+	- Logica // HECHO
+	- ADO // HECHO
 8 - ListadoPedidosGenerados
 	- UI
-	- Logica
-	- ADO
+	- Logica // HECHO
+	- ADO // HECHO
 9 - ListadoMedicamentosYPedidos
 	- UI
-	- Logica
-	- ADO
+	- Logica // HECHO
+	- ADO // HECHO

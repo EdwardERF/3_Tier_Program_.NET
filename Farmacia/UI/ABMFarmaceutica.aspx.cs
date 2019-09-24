@@ -78,7 +78,64 @@ public partial class ABMFarmaceutica : System.Web.UI.Page
         {
             Int64 oRUC = Convert.ToInt64(txtRuc.Text);
 
-            //Farmaceutica oFar = Logica.LogicaFarmaceutica.Buscar(oRUC);
+            Farmaceutica oFar = Logica.LogicaFarmaceutica.Buscar(oRUC);
+        }
+        catch(Exception ex)
+        {
+            lblError.Text = ex.Message;
+        }
+    }
+
+    protected void btnAlta_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            Farmaceutica oFar = new Farmaceutica(Convert.ToInt64(txtRuc.Text), txtNomFar.Text.Trim(), txtCorreo.Text.Trim(), txtCalle.Text.Trim(), Convert.ToInt32(txtNumero.Text), Convert.ToInt32(txtApto.Text));
+
+            Logica.LogicaFarmaceutica.Alta(oFar);
+
+            lblError.Text = "Alta exitosa";
+        }
+        catch(Exception ex)
+        {
+            this.LimpioFormulario();
+            lblError.Text = ex.Message;
+        }
+    }
+
+    protected void btnModificar_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            Farmaceutica oFar = (Farmaceutica)Session["ClienteABM"];
+
+            oFar.nombre = txtNomFar.Text.Trim();
+            oFar.correo = txtCorreo.Text.Trim();
+            oFar.calle = txtCalle.Text.Trim();
+            oFar.numero = Convert.ToInt32(txtNumero);
+            oFar.apto = Convert.ToInt32(txtApto);
+
+            Logica.LogicaFarmaceutica.Modificar(oFar);
+            this.LimpioFormulario();
+            lblError.Text = "Modificacion exitosa";
+        }
+        catch(Exception ex)
+        {
+            lblError.Text = ex.Message;
+        }
+    }
+
+    protected void btnEliminar_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            Farmaceutica oFar = (Farmaceutica)Session["ClienteABM"];
+
+            Logica.LogicaFarmaceutica.Eliminar(oFar.ruc);
+
+            this.LimpioFormulario();
+
+            lblError.Text = "Eliminacion exitosa";
         }
         catch(Exception ex)
         {
