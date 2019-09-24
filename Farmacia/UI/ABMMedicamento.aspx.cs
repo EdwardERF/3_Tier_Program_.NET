@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using EntidadesCompartidas;
+using Logica;
+
 public partial class ABMMedicamento : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)

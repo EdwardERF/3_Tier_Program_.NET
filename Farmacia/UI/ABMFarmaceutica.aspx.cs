@@ -79,6 +79,27 @@ public partial class ABMFarmaceutica : System.Web.UI.Page
             Int64 oRUC = Convert.ToInt64(txtRuc.Text);
 
             Farmaceutica oFar = Logica.LogicaFarmaceutica.Buscar(oRUC);
+
+            if (oFar != null)
+            {
+                this.ActivoBotonesBM();
+
+                txtRuc.Text = Convert.ToString(oFar.ruc);
+                txtNomFar.Text = Convert.ToString(oFar.nombre);
+                txtCorreo.Text = Convert.ToString(oFar.correo);
+                txtCalle.Text = Convert.ToString(oFar.calle);
+                txtNumero.Text = Convert.ToString(oFar.numero);
+                txtApto.Text = Convert.ToString(oFar.apto);
+
+                Session["FarmaceuticaABM"] = oFar;
+
+                lblError.Text = "";
+            }
+            else
+            {
+                this.ActivoBotonesA();
+                Session["FarmaceuticaABM"] = null;
+            }
         }
         catch(Exception ex)
         {
@@ -107,7 +128,7 @@ public partial class ABMFarmaceutica : System.Web.UI.Page
     {
         try
         {
-            Farmaceutica oFar = (Farmaceutica)Session["ClienteABM"];
+            Farmaceutica oFar = (Farmaceutica)Session["FarmaceuticaABM"];
 
             oFar.nombre = txtNomFar.Text.Trim();
             oFar.correo = txtCorreo.Text.Trim();
@@ -129,7 +150,7 @@ public partial class ABMFarmaceutica : System.Web.UI.Page
     {
         try
         {
-            Farmaceutica oFar = (Farmaceutica)Session["ClienteABM"];
+            Farmaceutica oFar = (Farmaceutica)Session["FarmaceuticaABM"];
 
             Logica.LogicaFarmaceutica.Eliminar(oFar.ruc);
 

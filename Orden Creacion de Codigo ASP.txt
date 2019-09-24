@@ -1,11 +1,11 @@
 // ORDEN DE CREACIÓN DE CÓDIGO DE ASP //
 
 1 - ABMFarmaceutica 
-	- UI // HACIENDO
+	- UI // HECHO
 	- Logica // HECHO
 	- ADO // HECHO
 2 - ABMMedicamento
-	- UI
+	- UI // HACIENDO
 	- Logica // HECHO
 	- ADO // HECHO
 3 - ABMEmpleado
