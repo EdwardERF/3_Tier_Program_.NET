@@ -27,7 +27,7 @@
                         <asp:TextBox ID="txtNomUsu" runat="server"></asp:TextBox>
                     </td>
                     <td>
-                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" />
+                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
                     </td>
                 </tr>
                 <tr>
@@ -67,13 +67,13 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:Button ID="btnAlta" runat="server" Text="Alta" />
+                        <asp:Button ID="btnAlta" runat="server" Text="Alta" OnClick="btnAlta_Click" />
                     </td>
                     <td>
-                        <asp:Button ID="btnModificar" runat="server" Text="Modificar" />
+                        <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" />
                     </td>
                     <td>
-                        <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" />
+                        <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" OnClick="btnEliminar_Click" />
                     </td>
                 </tr>
                 <tr>
