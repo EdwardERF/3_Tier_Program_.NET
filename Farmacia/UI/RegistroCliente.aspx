@@ -32,7 +32,7 @@
                         <asp:TextBox ID="txtNomUsu" runat="server"></asp:TextBox>
                     </td>
                     <td>
-                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" />
+                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
                     </td>
                 </tr>
                 <tr>
@@ -74,7 +74,7 @@
                     <td>
                         &nbsp;</td>
                     <td>
-                        <asp:Button ID="btnAlta" runat="server" Text="Alta" />
+                        <asp:Button ID="btnAlta" runat="server" Text="Alta" OnClick="btnAlta_Click" />
                     </td>
                     <td>
                         &nbsp;</td>

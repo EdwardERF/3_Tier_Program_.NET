@@ -343,6 +343,19 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE BuscarCliente
+@nomUsu VARCHAR(20)
+AS
+BEGIN
+	IF NOT EXISTS(SELECT * FROM Cliente WHERE nomUsu = @nomUsu)
+		RETURN -1 --No existe cliente
+	ELSE
+		BEGIN
+		SELECT * FROM Cliente WHERE nomUsu = @nomUsu
+		END
+END
+GO
+
 CREATE PROCEDURE AltaFarmaceutica
 @ruc BIGINT,
 @nombre varchar(20),
@@ -656,6 +669,7 @@ ModificarEmpleado // HECHO // TEST HECHO
 EliminarEmpleado // HECHO // TEST HECHO
 BuscarEmpleado // HECHO // TEST HECHO
 AltaCliente // HECHO // TEST HECHO
+BuscarCliente // HECHO // TEST HECHO
 AltaFarmaceutica // HECHO // TEST HECHO
 ModificarFarmaceutica // HECHO // TEST HECHO
 EliminarFarmaceutica // HECHO // TEST HECHO
@@ -758,6 +772,20 @@ GO
 --COMANDO NO EXITOSO - NO EXISTE EMPLEADO
 DECLARE @RET INT
 EXEC @RET = BuscarEmpleado 'ADNROSE123'
+PRINT @RET
+GO
+
+--------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------BUSCAR CLIENTE
+--COMANDO EXITOSO
+DECLARE @RET INT
+EXEC @RET = BuscarCliente 'Ramon'
+PRINT @RET
+GO
+
+--COMANDO NO EXITOSO - NO EXISTE CLIENTE
+DECLARE @RET INT
+EXEC @RET = BuscarCliente 'ADNROSE123'
 PRINT @RET
 GO
 

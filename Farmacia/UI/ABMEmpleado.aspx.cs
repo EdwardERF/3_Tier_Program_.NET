@@ -79,7 +79,7 @@ public partial class ABMEmpleado : System.Web.UI.Page
     {
         try
         {
-            string nomUsu = txtNomUsu.Text;
+            string nomUsu = txtNomUsu.Text.Trim();
 
             Empleado oEmp = LogicaUsuario.BuscarEmpleado(nomUsu);
 

@@ -5,11 +5,11 @@
 	- Logica // HECHO
 	- ADO // HECHO
 2 - ABMMedicamento
-	- UI // HACIENDO
+	- UI // HECHO
 	- Logica // HECHO
 	- ADO // HECHO
 3 - ABMEmpleado
-	- UI
+	- UI // HECHO
 	- Logica // HECHO
 	- ADO // HECHO
 4 - RegistroCliente

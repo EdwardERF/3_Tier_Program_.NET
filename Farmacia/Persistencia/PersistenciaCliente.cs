@@ -49,5 +49,50 @@ namespace Persistencia
                 oConexion.Close();
             }
         }
+
+        public static Cliente Buscar(string nomUsu)
+        {
+            string pass, nombre, apellido, dirEntrega;
+            int telefono;
+
+            Cliente oCli = null;
+
+            SqlDataReader oReader;
+
+            SqlConnection oConexion = new SqlConnection(Conexion.STR);
+            SqlCommand oComando = new SqlCommand("BuscarCliente", oConexion);
+            oComando.CommandType = CommandType.StoredProcedure;
+
+            oComando.Parameters.AddWithValue("@nomUsu", nomUsu);
+
+            try
+            {
+                oConexion.Open();
+                oReader = oComando.ExecuteReader();
+
+                if(oReader.Read())
+                {
+                    pass = (string)oReader["pass"];
+                    nombre = (string)oReader["nombre"];
+                    apellido = (string)oReader["apellido"];
+                    dirEntrega = (string)oReader["dirEntrega"];
+                    telefono = (int)oReader["telefono"];
+
+                    oCli = new Cliente(nomUsu, pass, nombre, apellido, dirEntrega, telefono);
+                }
+
+                oReader.Close();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oConexion.Close();
+            }
+
+            return oCli;
+        }
     }
 }

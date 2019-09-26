@@ -35,5 +35,11 @@ namespace Logica
             Empleado oEmp = PersistenciaEmpleado.Buscar(nomUsu);
             return oEmp;
         }
+
+        public static Cliente BuscarCliente(string nomUsu)
+        {
+            Cliente oCli = PersistenciaCliente.Buscar(nomUsu);
+            return oCli;
+        }
     }
 }
