@@ -13,7 +13,7 @@
     </style>
 </head>
 <body>
-    <form id="ConsultaEstadoPedidos" runat="server">
+    <form id="form1" runat="server">
         <div class="auto-style1">
             Consulta de Estado de Pedido<br />
             <table style="width:100%;">

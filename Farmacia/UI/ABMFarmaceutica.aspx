@@ -16,7 +16,7 @@
     </style>
 </head>
 <body>
-    <form id="ABMFarmaceutica" runat="server">
+    <form id="form1" runat="server">
         <div>
             <div class="auto-style3">
                 Mantenimiento de Farmaceuticas<br />

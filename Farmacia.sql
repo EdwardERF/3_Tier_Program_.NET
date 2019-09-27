@@ -51,7 +51,7 @@ create table Cliente
 (
 	nomUsu varchar(20) primary key foreign key references Usuario(nomUsu),
 	dirEntrega varchar(100) not null,
-	telefono int not null,
+	telefono int not null
 )
 go
 

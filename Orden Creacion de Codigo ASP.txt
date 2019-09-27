@@ -13,11 +13,11 @@
 	- Logica // HECHO
 	- ADO // HECHO
 4 - RegistroCliente
-	- UI
+	- UI // HECHO
 	- Logica // HECHO
 	- ADO // HECHO
 5 - RealizarPedido
-	- UI
+	- UI // HACIENDO
 	- Logica // HECHO
 	- ADO // HECHO
 6 - CambioEstadoPedido

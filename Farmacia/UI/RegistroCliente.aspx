@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-    <form id="RegistroCliente" runat="server">
+    <form id="form1" runat="server">
         <div>
             <div class="auto-style3">
                 Registro de Cliente<br />

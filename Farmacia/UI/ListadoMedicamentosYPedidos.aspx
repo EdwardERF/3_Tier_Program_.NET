@@ -13,7 +13,7 @@
     </style>
 </head>
 <body>
-    <form id="ListadoMedicamentosYPedidos" runat="server">
+    <form id="form1" runat="server">
         <div class="auto-style1">
             <div class="auto-style1">
                 Listado de Medicamentos y Pedidos<br />

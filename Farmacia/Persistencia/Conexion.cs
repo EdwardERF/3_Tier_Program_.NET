@@ -7,6 +7,6 @@ namespace Persistencia
 {
     internal class Conexion
     {
-        internal const string STR = "Data Source = PCEscritorio; Initial Catalog = Farmacia; Integrated Security = true";
+        public const string STR = "Data Source=LENOVO330S; Initial Catalog=Farmacia; Integrated Security=True";
     }
 }

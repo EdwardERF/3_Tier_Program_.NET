@@ -13,7 +13,7 @@
     </style>
 </head>
 <body>
-    <form id="RealizarPedido" runat="server">
+    <form id="form1" runat="server">
         <div>
             <div class="auto-style1">
                 Realizar Pedido<br />
@@ -24,7 +24,7 @@
                         <asp:GridView ID="gvMedicamentos" runat="server" AutoGenerateSelectButton="True">
                         </asp:GridView>
                         <br />
-                        <asp:Button ID="btnSeleccionar" runat="server" Text="Seleccionar" />
+                        <asp:Button ID="btnSeleccionar" runat="server" Text="Seleccionar"/>
                         <br />
                     </td>
                     <td>&nbsp;</td>

@@ -13,7 +13,7 @@
     </style>
 </head>
 <body>
-    <form id="ListadoPedidosGenerados" runat="server">
+    <form id="form1" runat="server">
         <div>
             Listado de Pedidos Generados - Eliminar Pedido<br />
             <table class="auto-style1">

@@ -27,7 +27,10 @@ namespace Logica
 
         public static List<Medicamento> Listar()
         {
-            return PersistenciaMedicamento.Listar();
+            List<Medicamento> oLista = new List<Medicamento>();
+            oLista.AddRange(PersistenciaMedicamento.Listar());
+
+            return oLista;
         }
 
         public static List<Medicamento> ListarMedicamentosXFarmaceutica(Int64 oRUC)

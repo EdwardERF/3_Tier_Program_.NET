@@ -178,26 +178,36 @@ namespace Persistencia
 
         public static List<Medicamento> Listar()
         {
+            Int64 ruc;
+            int codigo, precio;
+            string nombre, descripcion;
+            Farmaceutica oFar;
+
             Medicamento oMed;
             List<Medicamento> oLista = new List<Medicamento>();
             SqlDataReader oReader;
 
             SqlConnection oConexion = new SqlConnection(Conexion.STR);
             SqlCommand oComando = new SqlCommand("ListarMedicamento", oConexion);
+            oComando.CommandType = CommandType.StoredProcedure;
 
             try
             {
                 oConexion.Open();
                 oReader = oComando.ExecuteReader();
 
-                if(oReader.HasRows)
+                if (oReader.HasRows)
                 {
-                    while(oReader.Read())
+                    while (oReader.Read())
                     {
-                        Int64 oRUC = (Int64)oReader["ruc"];
-                        int oCodigo = (int)oReader["codigo"];
+                        ruc = (Int64)oReader["ruc"];
+                        codigo = (int)oReader["codigo"];
+                        precio = (int)oReader["precio"];
+                        nombre = (string)oReader["nombre"];
+                        descripcion = (string)oReader["descripcion"];
+                        oFar = PersistenciaFarmaceutica.Buscar(ruc);
 
-                        oMed = PersistenciaMedicamento.Buscar(oRUC, oCodigo);
+                        oMed = new Medicamento(codigo, nombre, descripcion, precio, oFar);
 
                         oLista.Add(oMed);
                     }

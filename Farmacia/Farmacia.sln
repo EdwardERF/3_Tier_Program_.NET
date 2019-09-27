@@ -12,7 +12,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "UI", "UI\", "{3E90AD2D-24A2-4B14-BC04-FB3B74DE7473}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		ProjectReferences = "{e8c95be1-3b19-4980-80ef-9711fa3c85f0}|Logica.dll;{2c04245b-d8f3-4948-8860-acc711928a4d}|EntidadesCompartidas.dll;"
+		ProjectReferences = "{e8c95be1-3b19-4980-80ef-9711fa3c85f0}|Logica.dll;{2c04245b-d8f3-4948-8860-acc711928a4d}|EntidadesCompartidas.dll;{93E290BB-4D68-438A-AE5D-5112958E134A}|Persistencia.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_51174"
 		Debug.AspNetCompiler.PhysicalPath = "UI\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51174\"

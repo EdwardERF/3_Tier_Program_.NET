@@ -4,3 +4,6 @@ C:\Users\Edward\Desktop\Web_Net - Proyecto Final\Farmacia\Persistencia\obj\Debug
 C:\Users\Edward\Desktop\Web_Net - Proyecto Final\Farmacia\Persistencia\obj\Debug\Persistencia.csproj.CoreCompileInputs.cache
 C:\Users\Edward\Desktop\Web_Net - Proyecto Final\Farmacia\Persistencia\obj\Debug\Persistencia.dll
 C:\Users\Edward\Desktop\Web_Net - Proyecto Final\Farmacia\Persistencia\obj\Debug\Persistencia.pdb
+C:\Users\Edward\Desktop\Web_Net - Proyecto Final\Farmacia\Persistencia\bin\Debug\EntidadesCompartidas.dll
+C:\Users\Edward\Desktop\Web_Net - Proyecto Final\Farmacia\Persistencia\bin\Debug\EntidadesCompartidas.pdb
+C:\Users\Edward\Desktop\Web_Net - Proyecto Final\Farmacia\Persistencia\obj\Debug\Persistencia.csproj.CopyComplete
