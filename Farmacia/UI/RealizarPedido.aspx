@@ -21,7 +21,7 @@
             <table style="width:100%;">
                 <tr>
                     <td class="auto-style1">
-                        <asp:GridView ID="gvMedicamentos" runat="server" AutoGenerateSelectButton="True">
+                        <asp:GridView ID="gvMedicamentos" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="gvMedicamentos_SelectedIndexChanged">
                         </asp:GridView>
                         <br />
                         <asp:Button ID="btnSeleccionar" runat="server" Text="Seleccionar"/>

@@ -17,7 +17,7 @@
 	- Logica // HECHO
 	- ADO // HECHO
 5 - RealizarPedido
-	- UI // HACIENDO
+	- UI // POSTERGADO -- NO ENCUENTRO SOLUCIÓN A PROBLEMA.
 	- Logica // HECHO
 	- ADO // HECHO
 6 - CambioEstadoPedido

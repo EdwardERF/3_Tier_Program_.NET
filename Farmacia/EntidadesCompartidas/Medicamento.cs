@@ -7,13 +7,19 @@ namespace EntidadesCompartidas
 {
     public class Medicamento
     {
+        //Atributo de asociacion
+        private Farmaceutica _far;
+
         private int _codigo;
         private string _nombre;
         private string _descripcion;
         private int _precio;
 
-        //Atributo de asociacion
-        private Farmaceutica _far;
+        public Farmaceutica Far
+        {
+            get { return _far; }
+            set { _far = value; }
+        }
 
         public int codigo
         {
@@ -51,19 +57,13 @@ namespace EntidadesCompartidas
             set { _precio = value; }
         }
 
-        public Farmaceutica Far
+        public Medicamento(Farmaceutica pFar, int pcodigo, string pnombre, string pdescripcion, int pprecio)
         {
-            get { return _far; }
-            set { _far = value; }
-        }
-
-        public Medicamento(int pcodigo, string pnombre, string pdescripcion, int pprecio, Farmaceutica pFar)
-        {
+            Far = pFar;
             codigo = pcodigo;
             nombre = pnombre;
             descripcion = pdescripcion;
             precio = pprecio;
-            Far = pFar;
         }
 
         public override string ToString()

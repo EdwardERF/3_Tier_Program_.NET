@@ -524,9 +524,7 @@ GO
 
 CREATE PROCEDURE ListarMedicamento
 AS
-BEGIN
 	SELECT * FROM Medicamento
-END
 GO
 
 CREATE PROCEDURE BuscarMedicamento

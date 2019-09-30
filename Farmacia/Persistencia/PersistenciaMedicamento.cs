@@ -179,9 +179,6 @@ namespace Persistencia
         public static List<Medicamento> Listar()
         {
             Int64 ruc;
-            int codigo, precio;
-            string nombre, descripcion;
-            Farmaceutica oFar;
 
             Medicamento oMed;
             List<Medicamento> oLista = new List<Medicamento>();
@@ -201,19 +198,16 @@ namespace Persistencia
                     while (oReader.Read())
                     {
                         ruc = (Int64)oReader["ruc"];
-                        codigo = (int)oReader["codigo"];
-                        precio = (int)oReader["precio"];
-                        nombre = (string)oReader["nombre"];
-                        descripcion = (string)oReader["descripcion"];
-                        oFar = PersistenciaFarmaceutica.Buscar(ruc);
 
-                        oMed = new Medicamento(codigo, nombre, descripcion, precio, oFar);
+                        Farmaceutica oFar = PersistenciaFarmaceutica.Buscar(ruc);
+
+                        oMed = new Medicamento(oFar, (int)oReader["codigo"], (string)oReader["nombre"], (string)oReader["descripcion"], (int)oReader["precio"]);
 
                         oLista.Add(oMed);
                     }
 
-                    oReader.Close();
                 }
+                oReader.Close();
             }
             catch(Exception ex)
             {
