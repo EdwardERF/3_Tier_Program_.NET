@@ -159,7 +159,7 @@ namespace Persistencia
                     descripcion = (string)oReader["descripcion"];
                     oFar = PersistenciaFarmaceutica.Buscar(oRUC);
 
-                    oMed = new Medicamento(codigo, nombre, descripcion, precio, oFar);
+                    oMed = new Medicamento(oFar, codigo, nombre, descripcion, precio);
                 }
 
                 oReader.Close();

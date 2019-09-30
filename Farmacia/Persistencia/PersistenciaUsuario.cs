@@ -45,12 +45,8 @@ namespace Persistencia
             }
         }
 
-        //PENDIENTE: El logueo es variable, de si es Empleado o Cliente,
-        //por tanto lo dejo para otro momento.
         public static Usuario Logueo(string nomUsu, string pass)
         {
-            string nombre, apellido;
-
             SqlConnection oConexion = new SqlConnection(Conexion.STR);
             SqlCommand oComando = new SqlCommand("LogueoUsuario", oConexion);
             oComando.CommandType = CommandType.StoredProcedure;
@@ -65,16 +61,22 @@ namespace Persistencia
                 oConexion.Open();
                 SqlDataReader oReader = oComando.ExecuteReader();
 
-                if (oReader.HasRows)
+                if (oReader.HasRows) //Si el lector puede leer, quiere decir que la pass es correcta
                 {
-                    oReader.Read();
-                    nombre = (string)oReader["nombre"];
-                    apellido = (string)oReader["apellido"];
-
-                    //oUsu = new Usuario(nomUsu, pass, nombre, apellido);
+                    if (PersistenciaCliente.Buscar(nomUsu) != null)
+                    {
+                        oUsu = PersistenciaCliente.Buscar(nomUsu);
+                    }
+                    else
+                    {
+                        oUsu = PersistenciaEmpleado.Buscar(nomUsu);
+                    }
                 }
-
-                oReader.Close();
+                else
+                {
+                    oUsu = null;
+                    throw new Exception("Usuario inexistente");
+                }
             }
             catch (Exception ex)
             {
