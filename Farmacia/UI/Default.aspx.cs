@@ -33,16 +33,18 @@ public partial class _Default : System.Web.UI.Page
                 {
                     Session["Empleado"] = oUsu;
                     Response.Redirect("ABMEmpleado.aspx");
+                    lblError.Text = "Entro a empleado";
                 }
-                else if(oUsu is Cliente)
+                else
                 {
                     Session["Cliente"] = oUsu;
                     Response.Redirect("RealizarPedido.aspx");
+                    lblError.Text = "Entro a cliente";
                 }
             }
             else
             {
-                lblError.Text = "Usuario inexistente";
+                lblError.Text = "Usuario no existe - lblError";
             }
         }
         catch(Exception ex)

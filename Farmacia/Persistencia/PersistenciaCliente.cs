@@ -94,5 +94,45 @@ namespace Persistencia
 
             return oCli;
         }
+
+        public static Cliente Logueo(string nomUsu, string pass)
+        {
+            Cliente oCli = null;
+
+            SqlConnection oConexion = new SqlConnection(Conexion.STR);
+            SqlCommand oComando = new SqlCommand("LogueoCliente", oConexion);
+            oComando.CommandType = CommandType.StoredProcedure;
+
+            oComando.Parameters.AddWithValue("@nomUsu", nomUsu);
+            oComando.Parameters.AddWithValue("@pass", pass);
+
+            SqlDataReader oReader;
+
+            try
+            {
+                oConexion.Open();
+                oReader = oComando.ExecuteReader();
+
+                if(oReader.Read())
+                {
+                    string nombre = (string)oReader["nombre"];
+                    string apellido = (string)oReader["apellido"];
+                    string dirEntrega = (string)oReader["dirEntrega"];
+                    int telefono = (int)oReader["telefono"];
+
+                    oCli = new Cliente(nomUsu, pass, nombre, apellido, dirEntrega, telefono);
+                }
+                oReader.Close();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oConexion.Close();
+            }
+            return oCli;
+        }
     }
 }

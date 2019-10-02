@@ -167,5 +167,45 @@ namespace Persistencia
 
             return oEmp;
         }
+
+        public static Empleado Logueo(string nomUsu, string pass)
+        {
+            Empleado oEmp = null;
+
+            SqlConnection oConexion = new SqlConnection(Conexion.STR);
+            SqlCommand oComando = new SqlCommand("LogueoEmpleado", oConexion);
+            oComando.CommandType = CommandType.StoredProcedure;
+
+            oComando.Parameters.AddWithValue("@nomUsu", nomUsu);
+            oComando.Parameters.AddWithValue("@pass", pass);
+
+            SqlDataReader oReader;
+
+            try
+            {
+                oConexion.Open();
+                oReader = oComando.ExecuteReader();
+
+                if(oReader.Read())
+                {
+                    string nombre = (string)oReader["nombre"];
+                    string apellido = (string)oReader["apellido"];
+                    string horaInicio = (string)oReader["horaInicio"];
+                    string horaFinal = (string)oReader["horaFinal"];
+
+                    oEmp = new Empleado(nomUsu, pass, nombre, apellido, horaInicio, horaFinal);
+                }
+                oReader.Close();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oConexion.Close();
+            }
+            return oEmp;
+        }
     }
 }

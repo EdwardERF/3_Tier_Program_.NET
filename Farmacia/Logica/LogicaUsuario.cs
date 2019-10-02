@@ -12,7 +12,16 @@ namespace Logica
     {
         public static Usuario Logueo(string nomUsu, string pass)
         {
-            return PersistenciaUsuario.Logueo(nomUsu, pass);
+            Usuario oUsu = null;
+
+            oUsu = PersistenciaEmpleado.Logueo(nomUsu, pass);
+
+            if(oUsu == null)
+            {
+                oUsu = PersistenciaCliente.Logueo(nomUsu, pass);
+            }
+
+            return oUsu;
         }
 
         public static void AltaCliente(Cliente oCli)

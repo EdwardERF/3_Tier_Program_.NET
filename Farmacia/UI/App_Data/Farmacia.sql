@@ -201,13 +201,24 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE LogueoUsuario
+CREATE PROCEDURE LogueoEmpleado
 @nomUsu VARCHAR(20),
 @pass VARCHAR(20)
 AS
 BEGIN
 	SELECT *
-	FROM Usuario U
+	FROM Usuario U INNER JOIN Empleado E ON U.nomUsu = E.nomUsu
+	WHERE U.nomUsu = @nomUsu AND U.pass = @pass
+END
+GO
+
+CREATE PROCEDURE LogueoCliente
+@nomUsu VARCHAR(20),
+@pass VARCHAR(20)
+AS
+BEGIN
+	SELECT *
+	FROM Usuario U INNER JOIN Cliente C ON U.nomUsu = C.nomUsu
 	WHERE U.nomUsu = @nomUsu AND U.pass = @pass
 END
 GO
