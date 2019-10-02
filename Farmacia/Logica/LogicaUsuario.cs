@@ -46,5 +46,10 @@ namespace Logica
             Cliente oCli = PersistenciaCliente.Buscar(nomUsu);
             return oCli;
         }
+
+        public static Usuario BuscarUsuario(string nomUsu)
+        {
+            return PersistenciaUsuario.Buscar(nomUsu);
+        }
     }
 }

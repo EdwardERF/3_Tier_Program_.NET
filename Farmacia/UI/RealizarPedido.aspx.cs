@@ -14,8 +14,6 @@ public partial class RealizarPedido : System.Web.UI.Page
     {
         try
         {
-            //List<Medicamento> oListaM = new List<Medicamento>();
-            //oListaM = LogicaMedicamento.Listar();
             gvMedicamentos.DataSource = LogicaMedicamento.Listar();
             gvMedicamentos.DataBind();
 

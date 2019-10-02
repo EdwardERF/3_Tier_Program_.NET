@@ -10,6 +10,9 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 
+using EntidadesCompartidas;
+using Logica;
+
 
 public partial class _Default : System.Web.UI.Page
 {
@@ -22,17 +25,20 @@ public partial class _Default : System.Web.UI.Page
     {
         try
         {
-            EntidadesCompartidas.Usuario oUsu = Logica.LogicaUsuario.Logueo(txtNomUsu.Text.Trim(), txtPass.Text.Trim());
+            Usuario oUsu = LogicaUsuario.Logueo(txtNomUsu.Text.Trim(), txtPass.Text.Trim());
             
-            if(oUsu is EntidadesCompartidas.Empleado)
+            if(oUsu != null)
             {
-                Session["Empleado"] = oUsu;
-                Response.Redirect("Principal.aspx");
-            }
-            else if(oUsu is EntidadesCompartidas.Cliente)
-            {
-                Session["Cliente"] = oUsu;
-                Response.Redirect("RealizarPedido.aspx");
+                if(oUsu is Empleado)
+                {
+                    Session["Empleado"] = oUsu;
+                    Response.Redirect("ABMEmpleado.aspx");
+                }
+                else if(oUsu is Cliente)
+                {
+                    Session["Cliente"] = oUsu;
+                    Response.Redirect("RealizarPedido.aspx");
+                }
             }
             else
             {

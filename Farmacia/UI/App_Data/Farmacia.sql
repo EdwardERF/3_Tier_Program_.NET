@@ -212,6 +212,16 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE BuscarUsuario
+@nomUsu VARCHAR(20)
+AS
+BEGIN
+	SELECT *
+	FROM Usuario
+	WHERE Usuario.nomUsu = @nomUsu
+END
+GO
+
 CREATE PROCEDURE AltaEmpleado
 @nomUsu VARCHAR(20),
 @pass VARCHAR(20),
@@ -250,8 +260,7 @@ AS
 BEGIN
 	IF NOT EXISTS(SELECT * FROM Empleado WHERE nomUsu = @nomUsu)
 		RETURN -1 --Esto es, no existe un empleado con ese nombre
-
-	IF EXISTS(SELECT * FROM Cliente WHERE nomUsu = @nomUsu)
+	ELSE IF EXISTS(SELECT * FROM Cliente WHERE nomUsu = @nomUsu)
 		RETURN -2 --Esto es, ERROR - Se esta intentando modificar un cliente, no un empleado
 
 	BEGIN TRAN
@@ -311,7 +320,7 @@ BEGIN
 		RETURN -1 --No existe empleado
 	ELSE
 		BEGIN
-		SELECT * FROM Empleado WHERE nomUsu = @nomUsu
+			SELECT * FROM Empleado WHERE nomUsu = @nomUsu
 		END
 END
 GO
@@ -351,7 +360,8 @@ BEGIN
 		RETURN -1 --No existe cliente
 	ELSE
 		BEGIN
-		SELECT * FROM Cliente WHERE nomUsu = @nomUsu
+			SELECT * FROM Cliente WHERE nomUsu = @nomUsu
+			RETURN 1
 		END
 END
 GO
@@ -388,14 +398,16 @@ AS
 BEGIN
 	IF NOT EXISTS(SELECT * FROM Farmaceutica WHERE ruc = @ruc)
 		RETURN -1 --Esto es, no existe una farmaceutica con ese nombre
-
-	UPDATE Farmaceutica
-	SET nombre = @nombre, correo = @correo, calle = @calle, numero = @numero, apto = @apto
-	WHERE ruc = @ruc
-	IF @@ERROR <> 0
-		RETURN -1
 	ELSE
-		RETURN 1
+		BEGIN
+			UPDATE Farmaceutica
+			SET nombre = @nombre, correo = @correo, calle = @calle, numero = @numero, apto = @apto
+			WHERE ruc = @ruc
+			IF @@ERROR <> 0
+				RETURN -1
+			ELSE
+				RETURN 1
+		END
 END
 GO
 
@@ -406,10 +418,10 @@ BEGIN
 	IF NOT EXISTS(SELECT * FROM Farmaceutica WHERE ruc = @ruc)
 		RETURN -1 --Esto es, no existe Farmaceutica con ese ruc
 
-	IF EXISTS(SELECT * FROM Pedido P INNER JOIN Medicamento M ON P.rucMedicamento = M.ruc WHERE P.rucMedicamento = @ruc)
+	ELSE IF EXISTS(SELECT * FROM Pedido P INNER JOIN Medicamento M ON P.rucMedicamento = M.ruc WHERE P.rucMedicamento = @ruc)
 		RETURN -2 --Esto es, no se puede eliminar, hay pedidos asociados a esta farmaceutica
 
-	IF NOT EXISTS(SELECT * FROM Pedido P INNER JOIN Medicamento M ON P.rucMedicamento = M.ruc WHERE P.rucMedicamento = @ruc)
+	ELSE IF NOT EXISTS(SELECT * FROM Pedido P INNER JOIN Medicamento M ON P.rucMedicamento = M.ruc WHERE P.rucMedicamento = @ruc)
 		BEGIN
 			IF NOT EXISTS(SELECT * FROM Medicamento WHERE ruc = @ruc)
 				BEGIN
@@ -459,15 +471,18 @@ AS
 BEGIN
 	IF EXISTS(SELECT * FROM MEDICAMENTO WHERE ruc = @far AND codigo = @codigo)
 		RETURN -1 --Esto es, ya existe dicho medicamento
-	BEGIN TRAN
-		INSERT Medicamento VALUES(@far, @codigo, @nombre, @descripcion, @precio)
-		IF @@ERROR <> 0
-			BEGIN
-				ROLLBACK TRAN
-				RETURN -2 --Esto es, error de SQL
-			END
-	COMMIT TRAN
-	RETURN 1 --Esto es, transaccion exitosa
+	ELSE
+		BEGIN
+			BEGIN TRAN
+				INSERT Medicamento VALUES(@far, @codigo, @nombre, @descripcion, @precio)
+				IF @@ERROR <> 0
+					BEGIN
+						ROLLBACK TRAN
+						RETURN -2 --Esto es, error de SQL
+					END
+			COMMIT TRAN
+			RETURN 1 --Esto es, transaccion exitosa
+		END
 END
 GO
 
@@ -524,7 +539,9 @@ GO
 
 CREATE PROCEDURE ListarMedicamento
 AS
+BEGIN
 	SELECT * FROM Medicamento
+END
 GO
 
 CREATE PROCEDURE BuscarMedicamento
@@ -598,7 +615,10 @@ BEGIN
 	IF NOT EXISTS (SELECT * FROM Medicamento WHERE ruc = @ruc)
 		RETURN -1
 	ELSE
-		SELECT * FROM Medicamento WHERE ruc = @ruc
+		BEGIN
+			SELECT * FROM Medicamento WHERE ruc = @ruc
+			RETURN 1
+		END
 END
 GO
 
@@ -642,7 +662,10 @@ BEGIN
 	IF NOT EXISTS (SELECT * FROM Pedido WHERE numero = @numero AND cliente = @cliente)
 		RETURN -1 --Esto es, no existe tal pedido
 	ELSE
-		SELECT * FROM Pedido WHERE numero = @numero AND cliente = @cliente
+		BEGIN
+			SELECT * FROM Pedido WHERE numero = @numero AND cliente = @cliente
+			RETURN 1
+		END
 END
 GO
 
