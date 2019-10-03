@@ -10,6 +10,7 @@ namespace EntidadesCompartidas
         //Atributo de asociacion
         private Farmaceutica _far;
 
+        private Int64 _ruc;
         private int _codigo;
         private string _nombre;
         private string _descripcion;
@@ -21,13 +22,19 @@ namespace EntidadesCompartidas
             set { _far = value; }
         }
 
-        public int codigo
+        public Int64 Ruc
+        {
+            get { return _ruc; }
+            set { _ruc = value; }
+        }
+
+        public int Codigo
         {
             get { return _codigo; }
             set { _codigo = value; }
         }
 
-        public string nombre
+        public string Nombre
         {
             set
             {
@@ -39,7 +46,7 @@ namespace EntidadesCompartidas
             get { return _nombre; }
         }
 
-        public string descripcion
+        public string Descripcion
         {
             set
             {
@@ -51,7 +58,7 @@ namespace EntidadesCompartidas
             get { return _descripcion; }
         }
 
-        public int precio
+        public int Precio
         {
             get { return _precio; }
             set { _precio = value; }
@@ -60,15 +67,26 @@ namespace EntidadesCompartidas
         public Medicamento(Farmaceutica pFar, int pcodigo, string pnombre, string pdescripcion, int pprecio)
         {
             Far = pFar;
-            codigo = pcodigo;
-            nombre = pnombre;
-            descripcion = pdescripcion;
-            precio = pprecio;
+            Codigo = pcodigo;
+            Nombre = pnombre;
+            Descripcion = pdescripcion;
+            Precio = pprecio;
+        }
+
+        //Constructor creado debido a que, de otra manera, en ListarMedicamentos, se asignaría el objeto Farmaceutica para listar en una sola columna
+        //lo cual genera un error de conversión. No pude lograr otra manera de corregirlo. 
+        public Medicamento(Int64 pRUC, int pcodigo, string pnombre, string pdescripcion, int pprecio)
+        {
+            Ruc = pRUC;
+            Codigo = pcodigo;
+            Nombre = pnombre;
+            Descripcion = pdescripcion;
+            Precio = pprecio;
         }
 
         public override string ToString()
         {
-            return ("Farmaceutica: " + Far.ruc + "\n Codigo: " + codigo + "\n Nombre: " + nombre + "\n Descripcion: " + descripcion + "\n Precio: " + precio);
+            return ("Farmaceutica: " + Far.ruc + "\n Codigo: " + Codigo + "\n Nombre: " + Nombre + "\n Descripcion: " + Descripcion + "\n Precio: " + Precio);
         }
     }
 }

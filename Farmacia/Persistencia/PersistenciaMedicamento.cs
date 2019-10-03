@@ -18,10 +18,10 @@ namespace Persistencia
             oComando.CommandType = CommandType.StoredProcedure;
 
             oComando.Parameters.AddWithValue("@far", oMed.Far.ruc);
-            oComando.Parameters.AddWithValue("@codigo", oMed.codigo);
-            oComando.Parameters.AddWithValue("@nombre", oMed.nombre);
-            oComando.Parameters.AddWithValue("@descripcion", oMed.descripcion);
-            oComando.Parameters.AddWithValue("@precio", oMed.precio);
+            oComando.Parameters.AddWithValue("@codigo", oMed.Codigo);
+            oComando.Parameters.AddWithValue("@nombre", oMed.Nombre);
+            oComando.Parameters.AddWithValue("@descripcion", oMed.Descripcion);
+            oComando.Parameters.AddWithValue("@precio", oMed.Precio);
 
             SqlParameter oParametro = new SqlParameter("@Retorno", SqlDbType.Int);
             oParametro.Direction = ParameterDirection.ReturnValue;
@@ -59,10 +59,10 @@ namespace Persistencia
             oComando.CommandType = CommandType.StoredProcedure;
 
             oComando.Parameters.AddWithValue("@far", oMed.Far.ruc);
-            oComando.Parameters.AddWithValue("@codigo", oMed.codigo);
-            oComando.Parameters.AddWithValue("@nombre", oMed.nombre);
-            oComando.Parameters.AddWithValue("@descripcion", oMed.descripcion);
-            oComando.Parameters.AddWithValue("@precio", oMed.precio);
+            oComando.Parameters.AddWithValue("@codigo", oMed.Codigo);
+            oComando.Parameters.AddWithValue("@nombre", oMed.Nombre);
+            oComando.Parameters.AddWithValue("@descripcion", oMed.Descripcion);
+            oComando.Parameters.AddWithValue("@precio", oMed.Precio);
 
             SqlParameter oParametro = new SqlParameter("@Retorno", SqlDbType.Int);
             oParametro.Direction = ParameterDirection.ReturnValue;
@@ -178,7 +178,7 @@ namespace Persistencia
 
         public static List<Medicamento> Listar()
         {
-            Int64 ruc;
+            //Int64 ruc;
 
             Medicamento oMed;
             List<Medicamento> oLista = new List<Medicamento>();
@@ -197,11 +197,16 @@ namespace Persistencia
                 {
                     while (oReader.Read())
                     {
-                        ruc = (Int64)oReader["ruc"];
+                        //ruc = (Int64)oReader["ruc"];
 
-                        Farmaceutica oFar = PersistenciaFarmaceutica.Buscar(ruc);
+                        //ruc = 111111111111; CON ESTA LINEA, SE VA EL PROBLEMA
 
-                        oMed = new Medicamento(oFar, (int)oReader["codigo"], (string)oReader["nombre"], (string)oReader["descripcion"], (int)oReader["precio"]);
+                        //ruc = Convert.ToInt64(oReader["ruc"]);
+
+                        //Farmaceutica oFar = PersistenciaFarmaceutica.Buscar(ruc);
+
+                        oMed = new Medicamento(Convert.ToInt64(oReader["ruc"]), (int)oReader["codigo"], (string)oReader["nombre"], (string)oReader["descripcion"],
+                            (int)oReader["precio"]);
 
                         oLista.Add(oMed);
                     }

@@ -78,10 +78,10 @@ public partial class ABMMedicamento : System.Web.UI.Page
                 this.ActivoBotonesBM();
 
                 txtRucMedicamento.Text = Convert.ToString(oMed.Far.ruc);
-                txtCodMedicamento.Text = Convert.ToString(oMed.codigo);
-                txtNombreMed.Text = Convert.ToString(oMed.nombre);
-                txtDescripcion.Text = Convert.ToString(oMed.descripcion);
-                txtPrecio.Text = Convert.ToString(oMed.precio);
+                txtCodMedicamento.Text = Convert.ToString(oMed.Codigo);
+                txtNombreMed.Text = Convert.ToString(oMed.Nombre);
+                txtDescripcion.Text = Convert.ToString(oMed.Descripcion);
+                txtPrecio.Text = Convert.ToString(oMed.Precio);
 
                 Session["MedicamentoABM"] = oMed;
 
@@ -124,9 +124,9 @@ public partial class ABMMedicamento : System.Web.UI.Page
         {
             Medicamento oMed = (Medicamento)Session["MedicamentoABM"];
 
-            txtNombreMed.Text = oMed.nombre;
-            txtDescripcion.Text = oMed.descripcion;
-            txtPrecio.Text = Convert.ToString(oMed.precio);
+            txtNombreMed.Text = oMed.Nombre;
+            txtDescripcion.Text = oMed.Descripcion;
+            txtPrecio.Text = Convert.ToString(oMed.Precio);
 
             LogicaMedicamento.Modificar(oMed);
             this.LimpioFormulario();
@@ -144,7 +144,7 @@ public partial class ABMMedicamento : System.Web.UI.Page
         {
             Medicamento oMed = (Medicamento)Session["MedicamentoABM"];
 
-            LogicaMedicamento.Eliminar(oMed.Far.ruc, oMed.codigo);
+            LogicaMedicamento.Eliminar(oMed.Far.ruc, oMed.Codigo);
 
             this.LimpioFormulario();
 
