@@ -12,11 +12,11 @@
         <p>
             Cambio de Estado de Pedido</p>
         <p>
-            <asp:GridView ID="gvEstadoPedido" runat="server" AutoGenerateSelectButton="True">
+            <asp:GridView ID="gvEstadoPedido" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="gvEstadoPedido_SelectedIndexChanged">
             </asp:GridView>
         </p>
         <p>
-            <asp:Button ID="btnCambiarEstado" runat="server" Text="Cambiar Estado" />
+            <asp:Button ID="btnCambiarEstado" runat="server" Text="Cambiar Estado" OnClick="btnCambiarEstado_Click" />
         </p>
         <p>
             &nbsp;</p>

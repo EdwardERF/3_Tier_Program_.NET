@@ -81,5 +81,19 @@ namespace EntidadesCompartidas
             cantidad = pCantidad;
             estado = pEstado;
         }
+
+        public override string ToString()
+        {
+            string estadoTraducido;
+            if (estado == 0)
+                estadoTraducido = "Generado";
+            else if (estado == 1)
+                estadoTraducido = "Enviado";
+            else
+                estadoTraducido = "Entregado";
+
+            return ("Nro Pedido: " + numero + " - Cliente: " + cliente + " - RUC Medicamento: " + rucMedicamento +
+                " - Codigo Medicamento: " + codMedicamento + " - Cantidad: " + cantidad + " - Estado: " + estadoTraducido);
+        }
     }
 }

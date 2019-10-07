@@ -46,6 +46,15 @@ namespace Logica
             return PersistenciaPedido.ListarEnviados(oCliente);
         }
 
+        public static List<Pedido> ListarGeneradosYEnviados(string oCliente)
+        {
+            List<Pedido> oLista = new List<Pedido>();
+            oLista.AddRange(ListarGenerados(oCliente));
+            oLista.AddRange(ListarEnviados(oCliente));
+
+            return oLista;
+        }
+
         public static List<Pedido> ListarEntregados(string oCliente)
         {
             return PersistenciaPedido.ListarEntregados(oCliente);

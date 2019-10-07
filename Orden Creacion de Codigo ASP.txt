@@ -21,7 +21,7 @@
 	- Logica // HECHO
 	- ADO // HECHO
 6 - CambioEstadoPedido
-	- UI // HECHO // HACIENDO
+	- UI // HECHO // CON ERROR (NO SE ACTUALIZA LA TABLA LUEGO DEL CAMBIO)
 	- Logica // HECHO
 	- ADO // HECHO
 7 - ConsultaEstadoPedidos
