@@ -72,5 +72,14 @@ namespace EntidadesCompartidas
             cantidad = pCantidad;
             estado = pEstado;
         }
+
+        public Pedido(string pCliente, Int64 pRucMedicamento, int pCodMedicamento, int pCantidad, int pEstado)
+        {
+            cliente = pCliente;
+            rucMedicamento = pRucMedicamento;
+            codMedicamento = pCodMedicamento;
+            cantidad = pCantidad;
+            estado = pEstado;
+        }
     }
 }

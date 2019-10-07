@@ -21,10 +21,9 @@
             <table style="width:100%;">
                 <tr>
                     <td class="auto-style1">
-                        <asp:GridView ID="gvMedicamentos" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="gvMedicamentos_SelectedIndexChanged">
+                        <asp:GridView ID="gvMedicamentos" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="gvMedicamentos_SelectedIndexChanged" AllowPaging="True" OnPageIndexChanging="gvMedicamentos_PageIndexChanging">
                         </asp:GridView>
                         <br />
-                        <asp:Button ID="btnSeleccionar" runat="server" Text="Seleccionar"/>
                         <br />
                     </td>
                     <td>&nbsp;</td>
@@ -36,7 +35,7 @@
                         </asp:GridView>
                         <br />
                         Cantidad: <asp:TextBox ID="txtCantidad" runat="server"></asp:TextBox>
-&nbsp;<asp:Button ID="btnCalcularCosto" runat="server" Text="Calcular Costo" />
+&nbsp;<asp:Button ID="btnCalcularCosto" runat="server" Text="Calcular Costo" OnClick="btnCalcularCosto_Click" />
                         <br />
                         <br />
                         <asp:Label ID="lblCostoTotal" runat="server"></asp:Label>
@@ -51,7 +50,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style1">
-                        <asp:Button ID="btnConfirmar" runat="server" Text="CONFIRMAR PEDIDO" />
+                        <asp:Button ID="btnConfirmar" runat="server" Text="CONFIRMAR PEDIDO" OnClick="btnConfirmar_Click" />
                     </td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
