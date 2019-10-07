@@ -555,6 +555,16 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE ListarMedicamentoUnico
+@ruc bigint,
+@codigo int
+AS
+BEGIN
+	SELECT * FROM Medicamento M
+	WHERE M.ruc = @ruc AND M.codigo = @codigo
+END
+GO
+
 CREATE PROCEDURE BuscarMedicamento
 @far BIGINT,
 @codigo INT

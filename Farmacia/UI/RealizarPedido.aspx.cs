@@ -29,16 +29,22 @@ public partial class RealizarPedido : System.Web.UI.Page
     {
         try
         {
-            Int64 oRUC = Convert.ToInt64(gvMedicamentos.SelectedRow.Cells[0].Text.Trim());
-            int oCodigo = Convert.ToInt32(gvMedicamentos.SelectedRow.Cells[1].Text.Trim());
+            Int64 oRUC = Convert.ToInt64(gvMedicamentos.SelectedRow.Cells[1].Text.Trim());
+            int oCodigo = Convert.ToInt32(gvMedicamentos.SelectedRow.Cells[2].Text.Trim());
 
-            Medicamento oMed = LogicaMedicamento.Buscar(oRUC, oCodigo);
+            gvSeleccion.DataSource = LogicaMedicamento.ListarMedicamentoUnico(oRUC, oCodigo);
+            gvSeleccion.DataBind();
+
+            /*Medicamento oMed;
+
+            oMed = LogicaMedicamento.Buscar(oRUC, oCodigo);
+
+            List<Medicamento> oLista = new List<Medicamento>();
 
             if(oMed != null)
             {
                 lblError.Text = oMed.ToString();
 
-                List<Medicamento> oLista = new List<Medicamento>();
                 oLista.Add(oMed);
 
                 gvSeleccion.DataSource = oLista;
@@ -49,7 +55,7 @@ public partial class RealizarPedido : System.Web.UI.Page
                 lblError.Text = "";
                 gvSeleccion.DataSource = null;
                 gvSeleccion.DataBind();
-            }
+            }*/
         }
         catch(Exception ex)
         {

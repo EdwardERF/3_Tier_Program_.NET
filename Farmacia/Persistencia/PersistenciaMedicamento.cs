@@ -132,9 +132,9 @@ namespace Persistencia
 
         public static Medicamento Buscar(Int64 oRUC, int oCodigo)
         {
+            Int64 ruc;
             int codigo, precio;
             string nombre, descripcion;
-            Farmaceutica oFar = null;
 
             Medicamento oMed = null;
             SqlDataReader oReader;
@@ -153,13 +153,13 @@ namespace Persistencia
 
                 if (oReader.Read())
                 {
+                    ruc = (Int64)oReader["ruc"];
                     codigo = (int)oReader["codigo"];
                     precio = (int)oReader["precio"];
                     nombre = (string)oReader["nombre"];
                     descripcion = (string)oReader["descripcion"];
-                    oFar = PersistenciaFarmaceutica.Buscar(oRUC);
 
-                    oMed = new Medicamento(oFar, codigo, nombre, descripcion, precio);
+                    oMed = new Medicamento(ruc, codigo, nombre, descripcion, precio);
                 }
 
                 oReader.Close();
@@ -178,8 +178,6 @@ namespace Persistencia
 
         public static List<Medicamento> Listar()
         {
-            //Int64 ruc;
-
             Medicamento oMed;
             List<Medicamento> oLista = new List<Medicamento>();
             SqlDataReader oReader;
@@ -211,6 +209,52 @@ namespace Persistencia
                         oLista.Add(oMed);
                     }
 
+                }
+                oReader.Close();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oConexion.Close();
+            }
+
+            return oLista;
+        }
+
+        public static List<Medicamento> ListarMedicamentoUnico(Int64 oRUC, int oCodigo)
+        {
+            Medicamento oMed;
+            List<Medicamento> oLista = new List<Medicamento>();
+            SqlDataReader oReader;
+
+            SqlConnection oConexion = new SqlConnection(Conexion.STR);
+            SqlCommand oComando = new SqlCommand("ListarMedicamentoUnico", oConexion);
+            oComando.CommandType = CommandType.StoredProcedure;
+
+            oComando.Parameters.AddWithValue("@ruc", oRUC);
+            oComando.Parameters.AddWithValue("@codigo", oCodigo);
+
+            try
+            {
+                oConexion.Open();
+                oReader = oComando.ExecuteReader();
+
+                if(oReader.HasRows)
+                {
+                    oReader.Read();
+
+                    Int64 ruc = (Int64)oReader["ruc"];
+                    int codigo = (int)oReader["codigo"];
+                    string nombre = (string)oReader["nombre"];
+                    string descripcion = (string)oReader["descripcion"];
+                    int precio = (int)oReader["precio"];
+
+                    oMed = new Medicamento(ruc, codigo, nombre, descripcion, precio);
+
+                    oLista.Add(oMed);
                 }
                 oReader.Close();
             }
