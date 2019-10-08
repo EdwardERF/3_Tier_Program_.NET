@@ -23,12 +23,15 @@
                         <asp:TextBox ID="txtNumPedido" runat="server"></asp:TextBox>
                     </td>
                     <td>
-                        <asp:Button ID="btnBuscar" runat="server" Text="Button" />
+                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
                     </td>
                 </tr>
             </table>
             <br />
             <asp:Label ID="lblError" runat="server"></asp:Label>
+            <br />
+            <br />
+            <asp:LinkButton ID="lbVolver" runat="server">Volver</asp:LinkButton>
         </div>
     </form>
 </body>

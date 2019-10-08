@@ -25,7 +25,7 @@
 	- Logica // HECHO
 	- ADO // HECHO
 7 - ConsultaEstadoPedidos
-	- UI
+	- UI // HECHO // FALTA CAMBIAR BUSQUEDA MANUAL A BUSQUEDA DE SESIÓN CUANDO SE COMPILE GENERAL.
 	- Logica // HECHO
 	- ADO // HECHO
 8 - ListadoPedidosGenerados
