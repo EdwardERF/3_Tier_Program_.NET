@@ -20,13 +20,11 @@
                 <tr>
                     <td>Totalidad de Pedidos</td>
                     <td>
-                        <asp:GridView ID="gvListadoPedidos" runat="server" AutoGenerateSelectButton="True">
+                        <asp:GridView ID="gvListadoPedidos" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="gvListadoPedidos_SelectedIndexChanged">
                         </asp:GridView>
                         <br />
-                        <asp:Button ID="btnVerDetalles" runat="server" Text="Ver Detalles" />
-                        <br />
-                        <br />
                         <asp:Label ID="lblCliente" runat="server"></asp:Label>
+                        <br />
                         <br />
                     </td>
                 </tr>
@@ -38,7 +36,8 @@
                         <asp:GridView ID="gvSeleccion" runat="server">
                         </asp:GridView>
                         <br />
-                        <asp:Button ID="btnEliminar" runat="server" Text="Eliminar Pedido" />
+                        <asp:Button ID="btnEliminar" runat="server" Text="Eliminar Pedido" OnClick="btnEliminar_Click" />
+                        <br />
                         <br />
                     </td>
                 </tr>
