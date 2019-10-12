@@ -190,8 +190,13 @@ namespace Persistencia
                     while (oReader.Read())
                     {
                         Int64 oRUC = (Int64)oReader["ruc"];
+                        string nombre = (string)oReader["nombre"];
+                        string correo = (string)oReader["correo"];
+                        string calle = (string)oReader["calle"];
+                        int numero = (int)oReader["numero"];
+                        int apto = (int)oReader["apto"];
 
-                        oFar = PersistenciaFarmaceutica.Buscar(oRUC);
+                        oFar = new Farmaceutica(oRUC, nombre, correo, calle, numero, apto);
 
                         oLista.Add(oFar);
                     }

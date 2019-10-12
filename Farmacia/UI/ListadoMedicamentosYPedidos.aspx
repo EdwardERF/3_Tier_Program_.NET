@@ -18,7 +18,7 @@
             <div class="auto-style1">
                 Listado de Medicamentos y Pedidos<br />
                 Seleccione:
-                <asp:DropDownList ID="ddlListadoMedicamento" runat="server">
+                <asp:DropDownList ID="ddlListadoMedicamento" runat="server" OnSelectedIndexChanged="ddlListadoMedicamento_SelectedIndexChanged">
                 </asp:DropDownList>
                 <br />
                 <br />
