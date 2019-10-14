@@ -15,21 +15,10 @@ public partial class ListadoMedicamentosYPedidos : System.Web.UI.Page
         {
             try
             {
-                List<Farmaceutica> oLista = LogicaFarmaceutica.ListarFarmaceuticas();
-
-                int i = oLista.Count;
-
-                throw new Exception("Ruc: " + oLista.Select<0,0>);
-
-                while(i <= oLista.Count)
-                {
-                    ListItem Item = new ListItem(Convert.ToString(i), Convert.ToString(oLista[i]));
-                    ddlListadoMedicamento.Items.Add(Item);
-                    i++;
-                }
+                List<string> oLista = LogicaFarmaceutica.ListarFarmaceuticas();
 
                 ddlListadoMedicamento.DataSource = oLista;
-                ddlListadoMedicamento.DataTextField = "nombre";
+                //ddlListadoMedicamento.DataTextField = "nombre";
                 ddlListadoMedicamento.DataBind();
             }
             catch(Exception ex)

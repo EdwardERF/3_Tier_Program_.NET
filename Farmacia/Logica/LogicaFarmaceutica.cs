@@ -31,7 +31,7 @@ namespace Logica
             return oFar;
         }
 
-        public static List<Farmaceutica> ListarFarmaceuticas()
+        public static List<string> ListarFarmaceuticas()
         {
             return PersistenciaFarmaceutica.ListarFarmaceuticas();
         }

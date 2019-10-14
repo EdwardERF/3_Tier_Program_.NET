@@ -170,10 +170,10 @@ namespace Persistencia
             return oFar;
         }
 
-        public static List<Farmaceutica> ListarFarmaceuticas()
+        public static List<string> ListarFarmaceuticas()
         {
-            Farmaceutica oFar;
-            List<Farmaceutica> oLista = new List<Farmaceutica>();
+            string Farm;
+            List<string> oLista = new List<string>();
             SqlDataReader oReader;
 
             SqlConnection oConexion = new SqlConnection(Conexion.STR);
@@ -189,16 +189,9 @@ namespace Persistencia
                 {
                     while (oReader.Read())
                     {
-                        Int64 oRUC = (Int64)oReader["ruc"];
-                        string nombre = (string)oReader["nombre"];
-                        string correo = (string)oReader["correo"];
-                        string calle = (string)oReader["calle"];
-                        int numero = (int)oReader["numero"];
-                        int apto = (int)oReader["apto"];
+                        Farm = (string)oReader["nombre"];
 
-                        oFar = new Farmaceutica(oRUC, nombre, correo, calle, numero, apto);
-
-                        oLista.Add(oFar);
+                        oLista.Add(Farm);
                     }
 
                     oReader.Close();
