@@ -64,8 +64,8 @@ namespace EntidadesCompartidas
 
         public int apto
         {
-            get { return _apto; }
             set { _apto = value; }
+            get { return _apto; }
         }
 
         public Farmaceutica(Int64 pruc, string pnombre, string pcorreo, string pcalle, int pnumero, int papto)

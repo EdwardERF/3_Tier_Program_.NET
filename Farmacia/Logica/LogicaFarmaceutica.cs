@@ -31,6 +31,12 @@ namespace Logica
             return oFar;
         }
 
+        public static Farmaceutica BuscarXNombre(string Nombre)
+        {
+            Farmaceutica oFar = PersistenciaFarmaceutica.BuscarXNombre(Nombre);
+            return oFar;
+        }
+
         public static List<string> ListarFarmaceuticas()
         {
             return PersistenciaFarmaceutica.ListarFarmaceuticas();

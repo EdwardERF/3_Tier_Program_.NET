@@ -18,9 +18,13 @@
             <div class="auto-style1">
                 Listado de Medicamentos y Pedidos<br />
                 Seleccione:
-                <asp:DropDownList ID="ddlListadoMedicamento" runat="server" OnSelectedIndexChanged="ddlListadoMedicamento_SelectedIndexChanged">
+                <asp:DropDownList ID="ddlListadoMedicamento" runat="server">
                 </asp:DropDownList>
                 <br />
+                <br />
+                <asp:Button ID="btnTodos" runat="server" Text="Todos" OnClick="btnTodos_Click" />
+                <asp:Button ID="btnGenerados" runat="server" Text="Generados" />
+                <asp:Button ID="btnEntregados" runat="server" Text="Entregados" />
                 <br />
             </div>
             <div class="auto-style1" id="GV">

@@ -18,7 +18,6 @@ public partial class ListadoMedicamentosYPedidos : System.Web.UI.Page
                 List<string> oLista = LogicaFarmaceutica.ListarFarmaceuticas();
 
                 ddlListadoMedicamento.DataSource = oLista;
-                //ddlListadoMedicamento.DataTextField = "nombre";
                 ddlListadoMedicamento.DataBind();
             }
             catch(Exception ex)
@@ -28,8 +27,20 @@ public partial class ListadoMedicamentosYPedidos : System.Web.UI.Page
         }
     }
 
-    protected void ddlListadoMedicamento_SelectedIndexChanged(object sender, EventArgs e)
+    protected void btnTodos_Click(object sender, EventArgs e)
     {
+        try
+        {
+            string Seleccion = ddlListadoMedicamento.SelectedValue;
 
+            Farmaceutica oFar = LogicaFarmaceutica.BuscarXNombre(Seleccion);
+
+            gvListadoMedicamento.DataSource = LogicaMedicamento.ListarMedicamentosXFarmaceutica(oFar.ruc);
+            gvListadoMedicamento.DataBind();
+        }
+        catch(Exception ex)
+        {
+            lblError.Text = ex.Message;
+        }
     }
 }
