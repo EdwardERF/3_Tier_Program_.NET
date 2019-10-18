@@ -1,0 +1,101 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            text-align: left;
+        }
+        #Image1{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #CartelLogueo{
+            display: block;
+            text-align: right;
+        }
+
+        .auto-style2 {
+            width: 168px;
+        }
+        .auto-style3 {
+            width: 963px;
+        }
+
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div class="auto-style1">
+
+        <div id="CartelLogueo">
+            <table style="width:100%;">
+                <tr>
+                    <td class="auto-style2">&nbsp;</td>
+                    <td class="auto-style3">&nbsp;</td>
+                    <td>
+            <asp:Label ID="lblUsuario" runat="server"></asp:Label>
+                        <br />
+            <asp:Label ID="lblTipoUsuario" runat="server"></asp:Label>
+                        <br />
+            <asp:LinkButton ID="lbDeslogueo" runat="server">Desloguearse</asp:LinkButton>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style2">&nbsp;</td>
+                    <td class="auto-style3">
+
+
+        <asp:Image ID="Image1" ImageAlign="Middle" runat="server" ImageUrl="~/Img/Logo a 5%.png" />
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style2">
+        <asp:Menu ID="Menu1" runat="server">
+            <Items>
+                <asp:MenuItem Text="Inicio" Value="Inicio"></asp:MenuItem>
+                <asp:MenuItem Text="Mantenimiento" Value="Mantenimiento">
+                    <asp:MenuItem NavigateUrl="~/ABMEmpleado.aspx" Text="Mantenimiento Empleado" Value="Mantenimiento Empleado"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/ABMFarmaceutica.aspx" Text="Mantenimiento Farmaceutica" Value="Mantenimiento Farmaceutica"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/ABMMedicamento.aspx" Text="Mantenimiento Medicamento" Value="Mantenimiento Medicamento"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/CambioEstadoPedido.aspx" Text="Cambio de Estado Pedido" Value="Cambio de Estado Pedido"></asp:MenuItem>
+                </asp:MenuItem>
+                <asp:MenuItem Text="Listados" Value="Listados">
+                    <asp:MenuItem NavigateUrl="~/ListadoMedicamentosYPedidos.aspx" Text="Medicamentos y Pedidos" Value="Medicamentos y Pedidos"></asp:MenuItem>
+                </asp:MenuItem>
+            </Items>
+        </asp:Menu>
+
+                    </td>
+                    <td style="width:90%;">
+                <asp:ContentPlaceHolder id="ContentPlaceHolder2" runat="server">
+        
+                </asp:ContentPlaceHolder>
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <br />
+            <br />
+        </div>
+
+
+        <br />
+
+
+        <br />
+        <br />
+
+
+    </div>
+    </form>
+</body>
+</html>
