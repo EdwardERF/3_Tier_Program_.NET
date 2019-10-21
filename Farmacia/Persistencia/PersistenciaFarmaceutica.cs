@@ -170,10 +170,55 @@ namespace Persistencia
             return oFar;
         }
 
-        public static List<Farmaceutica> ListarFarmaceuticas()
+        public static Farmaceutica BuscarXNombre(string Nombre)
         {
-            Farmaceutica oFar;
-            List<Farmaceutica> oLista = new List<Farmaceutica>();
+            string correo, calle;
+            int numero, apto;
+            Int64 ruc;
+
+            Farmaceutica oFar = null;
+            SqlDataReader oReader;
+
+            SqlConnection oConexion = new SqlConnection(Conexion.STR);
+            SqlCommand oComando = new SqlCommand("BuscarFarmaceuticaXNombre", oConexion);
+            oComando.CommandType = CommandType.StoredProcedure;
+
+            oComando.Parameters.AddWithValue("@nombre", Nombre);
+
+            try
+            {
+                oConexion.Open();
+                oReader = oComando.ExecuteReader();
+
+                if (oReader.Read())
+                {
+                    ruc = (Int64)oReader["ruc"];
+                    correo = (string)oReader["correo"];
+                    calle = (string)oReader["calle"];
+                    numero = (int)oReader["numero"];
+                    apto = (int)oReader["apto"];
+
+                    oFar = new Farmaceutica(ruc, Nombre, correo, calle, numero, apto);
+                }
+
+                oReader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oConexion.Close();
+            }
+
+            return oFar;
+        }
+
+        public static List<string> ListarFarmaceuticas()
+        {
+            string Farm;
+            List<string> oLista = new List<string>();
             SqlDataReader oReader;
 
             SqlConnection oConexion = new SqlConnection(Conexion.STR);
@@ -189,11 +234,9 @@ namespace Persistencia
                 {
                     while (oReader.Read())
                     {
-                        Int64 oRUC = (Int64)oReader["ruc"];
+                        Farm = (string)oReader["nombre"];
 
-                        oFar = PersistenciaFarmaceutica.Buscar(oRUC);
-
-                        oLista.Add(oFar);
+                        oLista.Add(Farm);
                     }
 
                     oReader.Close();

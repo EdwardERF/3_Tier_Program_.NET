@@ -1,0 +1,4 @@
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+</asp:Content>
+
+Se borra desde DOCTYPE hasta forms

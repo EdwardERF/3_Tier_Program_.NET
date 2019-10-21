@@ -1,20 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ABMMedicamento.aspx.cs" Inherits="ABMMedicamento" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ABMMedicamento.aspx.cs" Inherits="ABMMedicamento" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-    <style type="text/css">
-        .auto-style2 {
-            height: 31px;
-        }
-    </style>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <p>
+        <p class="auto-style4">
             Mantenimiento de Medicamentos</p>
         <table style="width:100%;">
             <tr>
@@ -78,6 +66,12 @@
                 <td>&nbsp;</td>
             </tr>
         </table>
-    </form>
-</body>
-</html>
+
+</asp:Content>
+<asp:Content ID="Content2" runat="server" contentplaceholderid="head">
+    <style type="text/css">
+        .auto-style4 {
+            text-align: center;
+        }
+    </style>
+</asp:Content>

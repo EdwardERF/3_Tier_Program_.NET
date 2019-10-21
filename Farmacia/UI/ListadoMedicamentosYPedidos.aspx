@@ -1,26 +1,18 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ListadoMedicamentosYPedidos.aspx.cs" Inherits="ListadoMedicamentosYPedidos" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ListadoMedicamentosYPedidos.aspx.cs" Inherits="ListadoMedicamentosYPedidos" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-    <style type="text/css">
-        .auto-style1 {
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-    <form id="form1" runat="server">
         <div class="auto-style1">
-            <div class="auto-style1">
+            <div class="auto-style4">
                 Listado de Medicamentos y Pedidos<br />
                 Seleccione:
                 <asp:DropDownList ID="ddlListadoMedicamento" runat="server">
                 </asp:DropDownList>
                 <br />
+                <br />
+                <asp:Button ID="btnTodos" runat="server" Text="Todos" OnClick="btnTodos_Click" />
+                <asp:Button ID="btnGenerados" runat="server" Text="Generados" />
+                <asp:Button ID="btnEntregados" runat="server" Text="Entregados" />
                 <br />
             </div>
             <div class="auto-style1" id="GV">
@@ -36,6 +28,12 @@
                 <asp:LinkButton ID="lbVolver" runat="server">Volver</asp:LinkButton>
             </div>
         </div>
-    </form>
-</body>
-</html>
+
+</asp:Content>
+<asp:Content ID="Content2" runat="server" contentplaceholderid="head">
+    <style type="text/css">
+        .auto-style4 {
+            text-align: center;
+        }
+    </style>
+</asp:Content>

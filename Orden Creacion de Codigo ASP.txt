@@ -17,22 +17,22 @@
 	- Logica // HECHO
 	- ADO // HECHO
 5 - RealizarPedido
-	- UI // POSTERGADO -- NO ENCUENTRO SOLUCIÓN A PROBLEMA.
+	- UI // HECHO // CON ERRORES
 	- Logica // HECHO
 	- ADO // HECHO
 6 - CambioEstadoPedido
-	- UI
+	- UI // HECHO // CON ERROR (NO SE ACTUALIZA LA TABLA LUEGO DEL CAMBIO)
 	- Logica // HECHO
 	- ADO // HECHO
 7 - ConsultaEstadoPedidos
-	- UI
+	- UI // HECHO // FALTA CAMBIAR BUSQUEDA MANUAL A BUSQUEDA DE SESIÓN CUANDO SE COMPILE GENERAL.
 	- Logica // HECHO
 	- ADO // HECHO
 8 - ListadoPedidosGenerados
-	- UI
+	- UI // HACIENDO
 	- Logica // HECHO
 	- ADO // HECHO
 9 - ListadoMedicamentosYPedidos
-	- UI
+	- UI // HACIENDO -- DDL ARREGLADO
 	- Logica // HECHO
 	- ADO // HECHO

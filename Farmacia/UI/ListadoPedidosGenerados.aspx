@@ -1,32 +1,20 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ListadoPedidosGenerados.aspx.cs" Inherits="ListadoPedidosGenerados" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ListadoPedidosGenerados.aspx.cs" Inherits="ListadoPedidosGenerados" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-    <style type="text/css">
-        .auto-style1 {
-            width: 100%;
-        }
-    </style>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
+        <div class="auto-style4">
+            <div class="auto-style4">
             Listado de Pedidos Generados - Eliminar Pedido<br />
+            </div>
             <table class="auto-style1">
                 <tr>
                     <td>Totalidad de Pedidos</td>
                     <td>
-                        <asp:GridView ID="gvListadoPedidos" runat="server" AutoGenerateSelectButton="True">
+                        <asp:GridView ID="gvListadoPedidos" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="gvListadoPedidos_SelectedIndexChanged">
                         </asp:GridView>
                         <br />
-                        <asp:Button ID="btnVerDetalles" runat="server" Text="Ver Detalles" />
-                        <br />
-                        <br />
                         <asp:Label ID="lblCliente" runat="server"></asp:Label>
+                        <br />
                         <br />
                     </td>
                 </tr>
@@ -38,7 +26,8 @@
                         <asp:GridView ID="gvSeleccion" runat="server">
                         </asp:GridView>
                         <br />
-                        <asp:Button ID="btnEliminar" runat="server" Text="Eliminar Pedido" />
+                        <asp:Button ID="btnEliminar" runat="server" Text="Eliminar Pedido" OnClick="btnEliminar_Click" />
+                        <br />
                         <br />
                     </td>
                 </tr>
@@ -60,6 +49,12 @@
                 </tr>
             </table>
         </div>
-    </form>
-</body>
-</html>
+
+</asp:Content>
+<asp:Content ID="Content2" runat="server" contentplaceholderid="head">
+    <style type="text/css">
+        .auto-style4 {
+            text-align: center;
+        }
+    </style>
+</asp:Content>

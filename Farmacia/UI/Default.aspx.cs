@@ -33,13 +33,11 @@ public partial class _Default : System.Web.UI.Page
                 {
                     Session["Empleado"] = oUsu;
                     Response.Redirect("ABMEmpleado.aspx");
-                    lblError.Text = "Entro a empleado";
                 }
                 else
                 {
                     Session["Cliente"] = oUsu;
                     Response.Redirect("RealizarPedido.aspx");
-                    lblError.Text = "Entro a cliente";
                 }
             }
             else

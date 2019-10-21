@@ -472,6 +472,17 @@ BEGIN
 END	
 GO
 
+CREATE PROCEDURE BuscarFarmaceuticaXNombre
+@nombre varchar(20)
+AS
+BEGIN
+	IF EXISTS (SELECT * FROM Farmaceutica WHERE nombre = @nombre)
+		SELECT * FROM Farmaceutica WHERE nombre = @nombre
+	ELSE
+		RETURN -1 --Esto es, no se encontro Farmaceutica con ese Nombre
+END	
+GO
+
 CREATE PROCEDURE AltaMedicamento
 @far BIGINT,
 @codigo INT,
@@ -552,6 +563,16 @@ CREATE PROCEDURE ListarMedicamento
 AS
 BEGIN
 	SELECT * FROM Medicamento
+END
+GO
+
+CREATE PROCEDURE ListarMedicamentoUnico
+@ruc bigint,
+@codigo int
+AS
+BEGIN
+	SELECT * FROM Medicamento M
+	WHERE M.ruc = @ruc AND M.codigo = @codigo
 END
 GO
 

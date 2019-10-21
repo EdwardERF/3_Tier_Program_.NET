@@ -1,30 +1,17 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="RealizarPedido.aspx.cs" Inherits="RealizarPedido" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="RealizarPedido.aspx.cs" Inherits="RealizarPedido" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-    <style type="text/css">
-        .auto-style1 {
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-    <form id="form1" runat="server">
         <div>
-            <div class="auto-style1">
+            <div class="auto-style4">
                 Realizar Pedido<br />
             </div>
             <table style="width:100%;">
                 <tr>
                     <td class="auto-style1">
-                        <asp:GridView ID="gvMedicamentos" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="gvMedicamentos_SelectedIndexChanged">
+                        <asp:GridView ID="gvMedicamentos" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="gvMedicamentos_SelectedIndexChanged" AllowPaging="True" OnPageIndexChanging="gvMedicamentos_PageIndexChanging">
                         </asp:GridView>
                         <br />
-                        <asp:Button ID="btnSeleccionar" runat="server" Text="Seleccionar"/>
                         <br />
                     </td>
                     <td>&nbsp;</td>
@@ -36,7 +23,7 @@
                         </asp:GridView>
                         <br />
                         Cantidad: <asp:TextBox ID="txtCantidad" runat="server"></asp:TextBox>
-&nbsp;<asp:Button ID="btnCalcularCosto" runat="server" Text="Calcular Costo" />
+&nbsp;<asp:Button ID="btnCalcularCosto" runat="server" Text="Calcular Costo" OnClick="btnCalcularCosto_Click" />
                         <br />
                         <br />
                         <asp:Label ID="lblCostoTotal" runat="server"></asp:Label>
@@ -51,7 +38,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style1">
-                        <asp:Button ID="btnConfirmar" runat="server" Text="CONFIRMAR PEDIDO" />
+                        <asp:Button ID="btnConfirmar" runat="server" Text="CONFIRMAR PEDIDO" OnClick="btnConfirmar_Click" />
                     </td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
@@ -83,6 +70,12 @@
                 </tr>
             </table>
         </div>
-    </form>
-</body>
-</html>
+
+</asp:Content>
+<asp:Content ID="Content2" runat="server" contentplaceholderid="head">
+    <style type="text/css">
+        .auto-style4 {
+            text-align: center;
+        }
+    </style>
+</asp:Content>

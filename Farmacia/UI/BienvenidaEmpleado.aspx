@@ -23,7 +23,7 @@
         <tr>
             <td>&nbsp;</td>
             <td>
-                <asp:Button ID="btnTest" runat="server" Text="TEST" />
+                <asp:Label ID="lblEmpleado" runat="server" Text="Bienvenidos, empleados!"></asp:Label>
             </td>
             <td>&nbsp;</td>
         </tr>
