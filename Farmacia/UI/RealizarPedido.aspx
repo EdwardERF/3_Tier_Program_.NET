@@ -1,21 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="RealizarPedido.aspx.cs" Inherits="RealizarPedido" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="RealizarPedido.aspx.cs" Inherits="RealizarPedido" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-    <style type="text/css">
-        .auto-style1 {
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-    <form id="form1" runat="server">
         <div>
-            <div class="auto-style1">
+            <div class="auto-style4">
                 Realizar Pedido<br />
             </div>
             <table style="width:100%;">
@@ -82,6 +70,12 @@
                 </tr>
             </table>
         </div>
-    </form>
-</body>
-</html>
+
+</asp:Content>
+<asp:Content ID="Content2" runat="server" contentplaceholderid="head">
+    <style type="text/css">
+        .auto-style4 {
+            text-align: center;
+        }
+    </style>
+</asp:Content>
