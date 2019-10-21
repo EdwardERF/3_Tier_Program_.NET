@@ -27,8 +27,8 @@
 </asp:Content>
 <asp:Content ID="Content2" runat="server" contentplaceholderid="head">
     <style type="text/css">
-        .auto-style4 {
-            text-align: center;
-        }
-    </style>
+    .auto-style4 {
+        text-align: center;
+    }
+</style>
 </asp:Content>

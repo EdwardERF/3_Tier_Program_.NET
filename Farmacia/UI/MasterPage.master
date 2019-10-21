@@ -54,6 +54,7 @@
 
 
         <asp:Image ID="Image1" ImageAlign="Middle" runat="server" ImageUrl="~/Img/Logo a 5%.png" />
+                        <br />
                     </td>
                     <td>&nbsp;</td>
                 </tr>
