@@ -66,7 +66,7 @@
             <DynamicMenuStyle BackColor="#E3EAEB" />
             <DynamicSelectedStyle BackColor="#1C5E55" />
             <Items>
-                <asp:MenuItem Text="Inicio" Value="Inicio"></asp:MenuItem>
+                <asp:MenuItem Text="Inicio" Value="Inicio" NavigateUrl="~/BienvenidaEmpleado.aspx"></asp:MenuItem>
                 <asp:MenuItem Text="Mantenimiento" Value="Mantenimiento">
                     <asp:MenuItem NavigateUrl="~/ABMEmpleado.aspx" Text="Mantenimiento Empleado" Value="Mantenimiento Empleado"></asp:MenuItem>
                     <asp:MenuItem NavigateUrl="~/ABMFarmaceutica.aspx" Text="Mantenimiento Farmaceutica" Value="Mantenimiento Farmaceutica"></asp:MenuItem>
@@ -88,7 +88,7 @@
             <DynamicMenuStyle BackColor="#E3EAEB" />
             <DynamicSelectedStyle BackColor="#1C5E55" />
             <Items>
-                <asp:MenuItem Text="Inicio" Value="Inicio"></asp:MenuItem>
+                <asp:MenuItem Text="Inicio" Value="Inicio" NavigateUrl="~/BienvenidaCliente.aspx"></asp:MenuItem>
                 <asp:MenuItem Text="Registro Cliente" Value="Registro Cliente" NavigateUrl="~/RegistroCliente.aspx">
                 </asp:MenuItem>
                 <asp:MenuItem Text="Realizar un Pedido" Value="Realizar un Pedido" NavigateUrl="~/RealizarPedido.aspx">

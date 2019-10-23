@@ -16,7 +16,7 @@
         <p class="auto-style4">
             <asp:Label ID="lblError" runat="server"></asp:Label>
         </p>
-        <p class="auto-style4">
+<p class="auto-style4">
             <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="~/BienvenidaEmpleado.aspx">Volver</asp:LinkButton>
         </p>
    

@@ -37,7 +37,7 @@ public partial class _Default : System.Web.UI.Page
                 else
                 {
                     Session["Cliente"] = oUsu;
-                    Response.Redirect("RealizarPedido.aspx");
+                    Response.Redirect("BienvenidaCliente.aspx");
                 }
             }
             else
