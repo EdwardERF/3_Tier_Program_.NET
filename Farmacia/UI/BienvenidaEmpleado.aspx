@@ -3,11 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
     <style type="text/css">
-        .auto-style5 {
-            display: block;
-            font-size: x-large;
+        .auto-style4 {
             text-align: center;
-            font-family: Verdana;
         }
     </style>
 
@@ -16,21 +13,21 @@
     <td>
     <table style="width:100%;">
         <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td class="auto-style4">&nbsp;</td>
+            <td class="auto-style4">&nbsp;</td>
+            <td class="auto-style4">&nbsp;</td>
         </tr>
         <tr>
-            <td>&nbsp;</td>
-            <td>
+            <td class="auto-style4">&nbsp;</td>
+            <td class="auto-style4">
                 <asp:Label ID="lblEmpleado" runat="server" Text="Bienvenidos, empleados!"></asp:Label>
             </td>
-            <td>&nbsp;</td>
+            <td class="auto-style4">&nbsp;</td>
         </tr>
         <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td class="auto-style4">&nbsp;</td>
+            <td class="auto-style4">&nbsp;</td>
+            <td class="auto-style4">&nbsp;</td>
         </tr>
     </table>
 </td>

@@ -45,7 +45,7 @@
                         <br />
             <asp:Label ID="lblTipoUsuario" runat="server"></asp:Label>
                         <br />
-            <asp:LinkButton ID="lbDeslogueo" runat="server">Desloguearse</asp:LinkButton>
+            <asp:LinkButton ID="lbDeslogueo" runat="server" OnClick="lbDeslogueo_Click">Desloguearse</asp:LinkButton>
                     </td>
                 </tr>
                 <tr>
@@ -54,16 +54,13 @@
 
 
         <asp:Image ID="Image1" ImageAlign="Middle" runat="server" ImageUrl="~/Img/Logo a 5%.png" />
-<<<<<<< HEAD
-=======
                         <br />
->>>>>>> trabajo
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style2">
-        <asp:Menu ID="Menu1" runat="server">
+        <asp:Menu ID="MenuEmpleado" runat="server">
             <Items>
                 <asp:MenuItem Text="Inicio" Value="Inicio"></asp:MenuItem>
                 <asp:MenuItem Text="Mantenimiento" Value="Mantenimiento">

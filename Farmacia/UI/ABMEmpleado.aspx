@@ -73,6 +73,13 @@
                     </td>
                     <td>&nbsp;</td>
                 </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="~/BienvenidaEmpleado.aspx">Volver</asp:LinkButton>
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
             </table>
         </p>
 

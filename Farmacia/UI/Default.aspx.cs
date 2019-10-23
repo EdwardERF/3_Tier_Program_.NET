@@ -32,7 +32,7 @@ public partial class _Default : System.Web.UI.Page
                 if(oUsu is Empleado)
                 {
                     Session["Empleado"] = oUsu;
-                    Response.Redirect("ABMEmpleado.aspx");
+                    Response.Redirect("BienvenidaEmpleado.aspx");
                 }
                 else
                 {

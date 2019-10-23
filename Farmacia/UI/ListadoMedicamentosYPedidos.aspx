@@ -19,13 +19,13 @@
                 <asp:GridView ID="gvListadoMedicamento" runat="server">
                 </asp:GridView>
             </div>
-            <div class="auto-style1">
+            <div class="auto-style4">
             <br />
             <br />
             <asp:Label ID="lblError" runat="server"></asp:Label>
                 <br />
                 <br />
-                <asp:LinkButton ID="lbVolver" runat="server">Volver</asp:LinkButton>
+                <asp:LinkButton ID="lbVolver" runat="server" PostBackUrl="~/BienvenidaEmpleado.aspx">Volver</asp:LinkButton>
             </div>
         </div>
 

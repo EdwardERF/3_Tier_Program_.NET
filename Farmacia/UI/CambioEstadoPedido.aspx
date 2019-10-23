@@ -4,17 +4,20 @@
 
         <p class="auto-style4">
             Cambio de Estado de Pedido</p>
-        <p>
+        <p class="auto-style4">
             <asp:GridView ID="gvEstadoPedido" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="gvEstadoPedido_SelectedIndexChanged">
             </asp:GridView>
         </p>
-        <p>
+        <p class="auto-style4">
             <asp:Button ID="btnCambiarEstado" runat="server" Text="Cambiar Estado" OnClick="btnCambiarEstado_Click" />
         </p>
         <p>
             &nbsp;</p>
-        <p>
+        <p class="auto-style4">
             <asp:Label ID="lblError" runat="server"></asp:Label>
+        </p>
+        <p class="auto-style4">
+            <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="~/BienvenidaEmpleado.aspx">Volver</asp:LinkButton>
         </p>
    
 </asp:Content>
