@@ -23,10 +23,12 @@ public partial class MasterPage : System.Web.UI.MasterPage
         {
             lblTipoUsuario.Text = "Tipo: Empleado";
             MenuEmpleado.Visible = true;
+            MenuCliente.Visible = false;
         }
         else if (oUsu is Cliente)
         {
             lblTipoUsuario.Text = "Tipo: Cliente";
+            MenuCliente.Visible = true;
             MenuEmpleado.Visible = false;
         }
         else
@@ -42,4 +44,5 @@ public partial class MasterPage : System.Web.UI.MasterPage
         Session["Cliente"] = null;
         Response.Redirect("Default.aspx");
     }
+
 }
