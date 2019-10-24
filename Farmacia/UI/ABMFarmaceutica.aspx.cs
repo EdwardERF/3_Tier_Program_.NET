@@ -28,6 +28,12 @@ public partial class ABMFarmaceutica : System.Web.UI.Page
 
         txtRuc.Enabled = true;
 
+        txtNomFar.Enabled = false;
+        txtCorreo.Enabled = false;
+        txtCalle.Enabled = false;
+        txtNumero.Enabled = false;
+        txtApto.Enabled = false;
+
         txtRuc.Text = "";
         txtApto.Text = "";
         txtCalle.Text = "";
@@ -133,8 +139,8 @@ public partial class ABMFarmaceutica : System.Web.UI.Page
             oFar.nombre = txtNomFar.Text.Trim();
             oFar.correo = txtCorreo.Text.Trim();
             oFar.calle = txtCalle.Text.Trim();
-            oFar.numero = Convert.ToInt32(txtNumero);
-            oFar.apto = Convert.ToInt32(txtApto);
+            oFar.numero = Convert.ToInt32(txtNumero.Text.Trim());
+            oFar.apto = Convert.ToInt32(txtApto.Text.Trim());
 
             Logica.LogicaFarmaceutica.Modificar(oFar);
             this.LimpioFormulario();
@@ -162,5 +168,10 @@ public partial class ABMFarmaceutica : System.Web.UI.Page
         {
             lblError.Text = ex.Message;
         }
+    }
+
+    protected void btnLimpiar_Click(object sender, EventArgs e)
+    {
+        this.LimpioFormulario();
     }
 }
