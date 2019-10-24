@@ -53,7 +53,7 @@ namespace Persistencia
         public static void Modificar(Empleado oEmp)
         {
             SqlConnection oConexion = new SqlConnection(Conexion.STR);
-            SqlCommand oComando = new SqlCommand("AltaEmpleado", oConexion);
+            SqlCommand oComando = new SqlCommand("ModificarEmpleado", oConexion);
             oComando.CommandType = CommandType.StoredProcedure;
 
             oComando.Parameters.AddWithValue("@nomUsu", oEmp.nomUsu);
