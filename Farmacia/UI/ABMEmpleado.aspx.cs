@@ -87,16 +87,14 @@ public partial class ABMEmpleado : System.Web.UI.Page
             {
                 this.ActivoBotonesBM();
 
-                txtNomUsu.Text = oEmp.nomUsu;
-                txtPass.Text = oEmp.pass;
-                txtNombre.Text = oEmp.nombre;
-                txtApellido.Text = oEmp.apellido;
-                txtHoraInicio.Text = oEmp.horaInicio;
-                txtHoraFinal.Text = oEmp.horaFinal;
+                txtNomUsu.Text = Convert.ToString(oEmp.nomUsu);
+                txtPass.Text = Convert.ToString(oEmp.pass);
+                txtNombre.Text = Convert.ToString(oEmp.nombre);
+                txtApellido.Text = Convert.ToString(oEmp.apellido);
+                txtHoraInicio.Text = Convert.ToString(oEmp.horaInicio);
+                txtHoraFinal.Text = Convert.ToString(oEmp.horaFinal);
 
                 Session["EmpleadoABM"] = oEmp;
-
-                lblError.Text = "";
             }
             else
             {
@@ -131,6 +129,7 @@ public partial class ABMEmpleado : System.Web.UI.Page
         try
         {
             Empleado oEmp = (Empleado)Session["EmpleadoABM"];
+            //Empleado oEmp = null;
 
             oEmp.pass = txtPass.Text.Trim();
             oEmp.nombre = txtNombre.Text.Trim();

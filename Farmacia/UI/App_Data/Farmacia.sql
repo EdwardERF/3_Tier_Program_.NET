@@ -331,7 +331,7 @@ BEGIN
 		RETURN -1 --No existe empleado
 	ELSE
 		BEGIN
-			SELECT * FROM Empleado WHERE nomUsu = @nomUsu
+			SELECT pass, nombre, apellido, horaInicio, horaFinal FROM Usuario, Empleado E WHERE E.nomUsu = @nomUsu
 		END
 END
 GO
