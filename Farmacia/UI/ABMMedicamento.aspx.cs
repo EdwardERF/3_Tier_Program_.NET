@@ -30,7 +30,7 @@ public partial class ABMMedicamento : System.Web.UI.Page
             txtCodMedicamento.Enabled = false;
 
             txtNombreMed.Enabled = true;
-            txtDescripcion.EnableTheming = true;
+            txtDescripcion.Enabled = true;
             txtPrecio.Enabled = true;
         }
 
@@ -57,11 +57,17 @@ public partial class ABMMedicamento : System.Web.UI.Page
         txtRucMedicamento.Enabled = true;
         txtCodMedicamento.Enabled = true;
 
+        txtNombreMed.Enabled = false;
+        txtDescripcion.Enabled = false;
+        txtPrecio.Enabled = false;
+
         txtRucMedicamento.Text = "";
         txtCodMedicamento.Text = "";
         txtNombreMed.Text = "";
         txtDescripcion.Text = "";
         txtPrecio.Text = "";
+
+        lblError.Text = "";
     }
 
     protected void btnBuscar_Click(object sender, EventArgs e)
@@ -77,8 +83,8 @@ public partial class ABMMedicamento : System.Web.UI.Page
             {
                 this.ActivoBotonesBM();
 
-                txtRucMedicamento.Text = Convert.ToString(oMed.Far.ruc);
-                txtCodMedicamento.Text = Convert.ToString(oMed.Codigo);
+                txtRucMedicamento.Text = Convert.ToString(oRUC);
+                txtCodMedicamento.Text = Convert.ToString(oCodigo);
                 txtNombreMed.Text = Convert.ToString(oMed.Nombre);
                 txtDescripcion.Text = Convert.ToString(oMed.Descripcion);
                 txtPrecio.Text = Convert.ToString(oMed.Precio);
@@ -154,5 +160,10 @@ public partial class ABMMedicamento : System.Web.UI.Page
         {
             lblError.Text = ex.Message;
         }
+    }
+
+    protected void btnLimpiar_Click(object sender, EventArgs e)
+    {
+        this.LimpioFormulario();
     }
 }
