@@ -71,8 +71,9 @@ public partial class ABMEmpleado : System.Web.UI.Page
         txtNombre.Text = ""; 
         txtApellido.Text = ""; 
         txtHoraInicio.Text = ""; 
-        txtHoraFinal.Text = ""; 
+        txtHoraFinal.Text = "";
 
+        lblError.Text = "";
     }
 
     protected void btnBuscar_Click(object sender, EventArgs e)
@@ -163,5 +164,10 @@ public partial class ABMEmpleado : System.Web.UI.Page
         {
             lblError.Text = ex.Message;
         }
+    }
+
+    protected void btnLimpiar_Click(object sender, EventArgs e)
+    {
+        this.LimpioFormulario();
     }
 }

@@ -58,13 +58,15 @@
                         <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" />
                     </td>
                     <td>
+                        <asp:Button ID="btnLimpiar" runat="server" OnClick="btnLimpiar_Click" Text="Limpiar" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" OnClick="btnEliminar_Click" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style2"></td>
-                    <td class="auto-style2"></td>
-                    <td class="auto-style2"></td>
+                    <td class="auto-style5"></td>
+                    <td class="auto-style5"></td>
+                    <td class="auto-style5"></td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
@@ -88,6 +90,10 @@
     <style type="text/css">
         .auto-style4 {
             text-align: center;
+        }
+        .auto-style5 {
+            width: 168px;
+            height: 31px;
         }
     </style>
 </asp:Content>
