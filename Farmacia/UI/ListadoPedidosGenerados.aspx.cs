@@ -17,9 +17,7 @@ public partial class ListadoPedidosGenerados : System.Web.UI.Page
             try
             {
                 Cliente oCli = (Cliente)Session["Cliente"];
-                //SE DEJA COMENTADA LA LINEA QUE TOMA LOS DATOS POR SESION. CAMBIAR
-                //Session["ListaCompleta"] = LogicaPedido.ListarGenerados(oCli.nomUsu);
-                Session["ListaCompleta"] = LogicaPedido.ListarGenerados("Ramon");
+                Session["ListaCompleta"] = LogicaPedido.ListarGenerados();
                 Session["Seleccion"] = new List<Pedido>();
 
                 gvListadoPedidos.DataSource = (List<Pedido>)Session["ListaCompleta"];

@@ -36,21 +36,21 @@ namespace Logica
             return PersistenciaPedido.ListarTodo(oCliente);
         }
 
-        public static List<Pedido> ListarGenerados(string oCliente)
+        public static List<Pedido> ListarGenerados()
         {
-            return PersistenciaPedido.ListarGenerados(oCliente);
+            return PersistenciaPedido.ListarGenerados();
         }
 
-        public static List<Pedido> ListarEnviados(string oCliente)
+        public static List<Pedido> ListarEnviados()
         {
-            return PersistenciaPedido.ListarEnviados(oCliente);
+            return PersistenciaPedido.ListarEnviados();
         }
 
-        public static List<Pedido> ListarGeneradosYEnviados(string oCliente)
+        public static List<Pedido> ListarGeneradosYEnviados()
         {
             List<Pedido> oLista = new List<Pedido>();
-            oLista.AddRange(ListarGenerados(oCliente));
-            oLista.AddRange(ListarEnviados(oCliente));
+            oLista.AddRange(ListarGenerados());
+            oLista.AddRange(ListarEnviados());
 
             return oLista;
         }

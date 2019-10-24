@@ -663,18 +663,16 @@ END
 GO
 
 CREATE PROCEDURE ListarGenerados
-@cliente VARCHAR(20)
 AS
 BEGIN
-	SELECT * FROM Pedido WHERE estado = 0 AND cliente = @cliente
+	SELECT * FROM Pedido WHERE estado = 0
 END
 GO
 
 CREATE PROCEDURE ListarEnviados
-@cliente VARCHAR(20)
 AS
 BEGIN
-	SELECT * FROM Pedido WHERE estado = 1 AND cliente = @cliente
+	SELECT * FROM Pedido WHERE estado = 1
 END
 GO
 

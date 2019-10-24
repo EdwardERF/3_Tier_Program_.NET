@@ -16,13 +16,7 @@ public partial class CambioEstadoPedido : System.Web.UI.Page
         {
             try
             {
-                Usuario oUsu = (Cliente)Session["Cliente"];
-                /* Session["ListaCompleta"] = LogicaPedido.ListarGeneradosYEnviados(oUsu.nomUsu); 
-                Me va a generar el error: 'Referencia a objeto no establecida como instancia de un objeto' hasta que deje
-                funcionando todas las sesiones; si se coloca un usuario manualmente en vez del usuario de sesion, la GV
-                funciona. */
-
-                Session["ListaCompleta"] = LogicaPedido.ListarGeneradosYEnviados("Ramon");
+                Session["ListaCompleta"] = LogicaPedido.ListarGeneradosYEnviados();
 
                 gvEstadoPedido.DataSource = (List<Pedido>)Session["ListaCompleta"];
                 gvEstadoPedido.DataBind();

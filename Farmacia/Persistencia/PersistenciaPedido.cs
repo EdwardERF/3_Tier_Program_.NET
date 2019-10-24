@@ -204,7 +204,7 @@ namespace Persistencia
             return oLista;
         }
 
-        public static List<Pedido> ListarGenerados(string oCliente)
+        public static List<Pedido> ListarGenerados()
         {
             Pedido oPed;
             List<Pedido> oLista = new List<Pedido>();
@@ -213,8 +213,6 @@ namespace Persistencia
             SqlConnection oConexion = new SqlConnection(Conexion.STR);
             SqlCommand oComando = new SqlCommand("ListarGenerados", oConexion);
             oComando.CommandType = CommandType.StoredProcedure;
-
-            oComando.Parameters.AddWithValue("cliente", oCliente);
 
             try
             {
@@ -226,6 +224,7 @@ namespace Persistencia
                     while (oReader.Read())
                     {
                         int oNum = (int)oReader["numero"];
+                        string oCliente = (string)oReader["cliente"];
 
                         oPed = PersistenciaPedido.Buscar(oCliente, oNum);
 
@@ -247,7 +246,7 @@ namespace Persistencia
             return oLista;
         }
 
-        public static List<Pedido> ListarEnviados(string oCliente)
+        public static List<Pedido> ListarEnviados()
         {
             Pedido oPed;
             List<Pedido> oLista = new List<Pedido>();
@@ -256,8 +255,6 @@ namespace Persistencia
             SqlConnection oConexion = new SqlConnection(Conexion.STR);
             SqlCommand oComando = new SqlCommand("ListarEnviados", oConexion);
             oComando.CommandType = CommandType.StoredProcedure;
-
-            oComando.Parameters.AddWithValue("cliente", oCliente);
 
             try
             {
@@ -269,6 +266,7 @@ namespace Persistencia
                     while (oReader.Read())
                     {
                         int oNum = (int)oReader["numero"];
+                        string oCliente = (string)oReader["cliente"];
 
                         oPed = PersistenciaPedido.Buscar(oCliente, oNum);
 
