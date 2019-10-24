@@ -58,7 +58,7 @@ namespace Persistencia
             SqlCommand oComando = new SqlCommand("ModificarMedicamento", oConexion);
             oComando.CommandType = CommandType.StoredProcedure;
 
-            oComando.Parameters.AddWithValue("@far", oMed.Far.ruc);
+            oComando.Parameters.AddWithValue("@far", oMed.Ruc);
             oComando.Parameters.AddWithValue("@codigo", oMed.Codigo);
             oComando.Parameters.AddWithValue("@nombre", oMed.Nombre);
             oComando.Parameters.AddWithValue("@descripcion", oMed.Descripcion);

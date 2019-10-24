@@ -128,14 +128,17 @@ public partial class ABMMedicamento : System.Web.UI.Page
     {
         try
         {
-            Medicamento oMed = (Medicamento)Session["MedicamentoABM"];
+            Medicamento oMed = null;
+            oMed = (Medicamento)Session["MedicamentoABM"];
 
-            txtNombreMed.Text = oMed.Nombre;
-            txtDescripcion.Text = oMed.Descripcion;
-            txtPrecio.Text = Convert.ToString(oMed.Precio);
+            oMed.Nombre = txtNombreMed.Text.Trim();
+            oMed.Descripcion = txtDescripcion.Text.Trim();
+            oMed.Precio = Convert.ToInt32(txtPrecio.Text.Trim());
 
-            LogicaMedicamento.Modificar(oMed);
+            Logica.LogicaMedicamento.Modificar(oMed);
+
             this.LimpioFormulario();
+
             lblError.Text = "Modificacion exitosa";
         }
         catch(Exception ex)
