@@ -44,6 +44,10 @@ public partial class ABMMedicamento : System.Web.UI.Page
 
         txtRucMedicamento.Enabled = false;
         txtCodMedicamento.Enabled = false;
+
+        txtNombreMed.Enabled = true;
+        txtDescripcion.Enabled = true;
+        txtPrecio.Enabled = true;
     }
 
     protected void LimpioFormulario()
@@ -153,7 +157,7 @@ public partial class ABMMedicamento : System.Web.UI.Page
         {
             Medicamento oMed = (Medicamento)Session["MedicamentoABM"];
 
-            LogicaMedicamento.Eliminar(oMed.Far.ruc, oMed.Codigo);
+            LogicaMedicamento.Eliminar(oMed.Ruc, oMed.Codigo);
 
             this.LimpioFormulario();
 
