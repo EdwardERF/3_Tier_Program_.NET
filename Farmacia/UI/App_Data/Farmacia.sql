@@ -622,14 +622,37 @@ GO
 
 CREATE PROCEDURE ListarPedidosXMedicamento
 @rucMedicamento BIGINT,
-@codMedicamento int,
-@cliente varchar(20)
+@codMedicamento int
 AS
 BEGIN
-	IF NOT EXISTS (SELECT * FROM Pedido WHERE rucMedicamento = @rucMedicamento AND codMedicamento = @codMedicamento AND cliente = @cliente)
+	IF NOT EXISTS (SELECT * FROM Pedido WHERE rucMedicamento = @rucMedicamento AND codMedicamento = @codMedicamento)
 		RETURN -1
 	ELSE
-		SELECT * FROM Pedido WHERE rucMedicamento = @rucMedicamento AND codMedicamento = @codMedicamento AND cliente = @cliente
+		SELECT * FROM Pedido WHERE rucMedicamento = @rucMedicamento AND codMedicamento = @codMedicamento
+END
+GO
+
+CREATE PROCEDURE ListarPedidosGeneradosXMedicamento
+@rucMedicamento BIGINT,
+@codMedicamento int
+AS
+BEGIN
+	IF NOT EXISTS (SELECT * FROM Pedido WHERE rucMedicamento = @rucMedicamento AND codMedicamento = @codMedicamento AND estado = 0)
+		RETURN -1
+	ELSE
+		SELECT * FROM Pedido WHERE rucMedicamento = @rucMedicamento AND codMedicamento = @codMedicamento AND estado = 0
+END
+GO
+
+CREATE PROCEDURE ListarPedidosEnviadosXMedicamento
+@rucMedicamento BIGINT,
+@codMedicamento int
+AS
+BEGIN
+	IF NOT EXISTS (SELECT * FROM Pedido WHERE rucMedicamento = @rucMedicamento AND codMedicamento = @codMedicamento AND estado = 1)
+		RETURN -1
+	ELSE
+		SELECT * FROM Pedido WHERE rucMedicamento = @rucMedicamento AND codMedicamento = @codMedicamento AND estado = 1
 END
 GO
 
@@ -694,6 +717,20 @@ BEGIN
 	ELSE
 		BEGIN
 			SELECT * FROM Pedido WHERE numero = @numero AND cliente = @cliente
+			RETURN 1
+		END
+END
+GO
+
+CREATE PROCEDURE BuscarPedidoXNumero
+@numero INT
+AS
+BEGIN
+	IF NOT EXISTS (SELECT * FROM Pedido WHERE numero = @numero)
+		RETURN -1 --Esto es, no existe tal pedido
+	ELSE
+		BEGIN
+			SELECT * FROM Pedido WHERE numero = @numero
 			RETURN 1
 		END
 END

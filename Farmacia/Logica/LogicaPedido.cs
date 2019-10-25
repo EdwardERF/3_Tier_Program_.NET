@@ -60,9 +60,19 @@ namespace Logica
             return PersistenciaPedido.ListarEntregados(oCliente);
         }
 
-        public static List<Pedido> ListarPedidosXMedicamento(Int64 oRUC, int oCodigo, string oCliente)
+        public static List<Pedido> ListarPedidosXMedicamento(Int64 oRUC, int oCodigo)
         {
-            return PersistenciaPedido.ListarPedidosXMedicamento(oRUC, oCodigo, oCliente);
+            return PersistenciaPedido.ListarPedidosXMedicamento(oRUC, oCodigo);
+        }
+
+        public static List<Pedido> ListarPedidosGeneradosXMedicamento(Int64 oRUC, int oCodigo)
+        {
+            return PersistenciaPedido.ListarPedidosGeneradosXMedicamento(oRUC, oCodigo);
+        }
+
+        public static List<Pedido> ListarPedidosEnviadosXMedicamento(Int64 oRUC, int oCodigo)
+        {
+            return PersistenciaPedido.ListarPedidosEnviadosXMedicamento(oRUC, oCodigo);
         }
     }
 }

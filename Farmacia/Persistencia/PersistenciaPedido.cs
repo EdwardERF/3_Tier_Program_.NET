@@ -127,6 +127,51 @@ namespace Persistencia
             return oPed;
         }
 
+        public static Pedido BuscarPorNumero(int oNum)
+        {
+            Int64 rucMedicamento;
+            int codMedicamento, cantidad, estado;
+            string oCliente;
+
+            Pedido oPed = null;
+            SqlDataReader oReader;
+
+            SqlConnection oConexion = new SqlConnection(Conexion.STR);
+            SqlCommand oComando = new SqlCommand("BuscarPedidoXNumero", oConexion);
+            oComando.CommandType = CommandType.StoredProcedure;
+
+            oComando.Parameters.AddWithValue("@numero", oNum);
+
+            try
+            {
+                oConexion.Open();
+                oReader = oComando.ExecuteReader();
+
+                if (oReader.Read())
+                {
+                    oCliente = (string)oReader["cliente"];
+                    rucMedicamento = (Int64)oReader["rucMedicamento"];
+                    codMedicamento = (int)oReader["codMedicamento"];
+                    cantidad = (int)oReader["cantidad"];
+                    estado = (int)oReader["estado"];
+
+                    oPed = new Pedido(oNum, oCliente, rucMedicamento, codMedicamento, cantidad, estado);
+                }
+
+                oReader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oConexion.Close();
+            }
+
+            return oPed;
+        }
+
         public static void CambioEstadoPedido(int oNum)
         {
             SqlConnection oConexion = new SqlConnection(Conexion.STR);
@@ -331,7 +376,7 @@ namespace Persistencia
             return oLista;
         }
 
-        public static List<Pedido> ListarPedidosXMedicamento(Int64 oRUC, int oCodigo, string oCliente)
+        public static List<Pedido> ListarPedidosXMedicamento(Int64 oRUC, int oCodigo)
         {
             Pedido oPed;
             List<Pedido> oLista = new List<Pedido>();
@@ -343,7 +388,6 @@ namespace Persistencia
 
             oComando.Parameters.AddWithValue("rucMedicamento", oRUC);
             oComando.Parameters.AddWithValue("codMedicamento", oCodigo);
-            oComando.Parameters.AddWithValue("cliente", oCliente);
 
             try
             {
@@ -356,7 +400,7 @@ namespace Persistencia
                     {
                         int oNum = (int)oReader["numero"];
 
-                        oPed = PersistenciaPedido.Buscar(oCliente, oNum);
+                        oPed = PersistenciaPedido.BuscarPorNumero(oNum);
 
                         oLista.Add(oPed);
                     }
@@ -374,6 +418,94 @@ namespace Persistencia
             }
 
             return oLista;
-        }  
+        }
+
+        public static List<Pedido> ListarPedidosGeneradosXMedicamento(Int64 oRUC, int oCodigo)
+        {
+            Pedido oPed;
+            List<Pedido> oLista = new List<Pedido>();
+            SqlDataReader oReader;
+
+            SqlConnection oConexion = new SqlConnection(Conexion.STR);
+            SqlCommand oComando = new SqlCommand("ListarPedidosGeneradosXMedicamento", oConexion);
+            oComando.CommandType = CommandType.StoredProcedure;
+
+            oComando.Parameters.AddWithValue("rucMedicamento", oRUC);
+            oComando.Parameters.AddWithValue("codMedicamento", oCodigo);
+
+            try
+            {
+                oConexion.Open();
+                oReader = oComando.ExecuteReader();
+
+                if (oReader.HasRows)
+                {
+                    while (oReader.Read())
+                    {
+                        int oNum = (int)oReader["numero"];
+
+                        oPed = PersistenciaPedido.BuscarPorNumero(oNum);
+
+                        oLista.Add(oPed);
+                    }
+
+                    oReader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oConexion.Close();
+            }
+
+            return oLista;
+        }
+
+        public static List<Pedido> ListarPedidosEnviadosXMedicamento(Int64 oRUC, int oCodigo)
+        {
+            Pedido oPed;
+            List<Pedido> oLista = new List<Pedido>();
+            SqlDataReader oReader;
+
+            SqlConnection oConexion = new SqlConnection(Conexion.STR);
+            SqlCommand oComando = new SqlCommand("ListarPedidosEnviadosXMedicamento", oConexion);
+            oComando.CommandType = CommandType.StoredProcedure;
+
+            oComando.Parameters.AddWithValue("rucMedicamento", oRUC);
+            oComando.Parameters.AddWithValue("codMedicamento", oCodigo);
+
+            try
+            {
+                oConexion.Open();
+                oReader = oComando.ExecuteReader();
+
+                if (oReader.HasRows)
+                {
+                    while (oReader.Read())
+                    {
+                        int oNum = (int)oReader["numero"];
+
+                        oPed = PersistenciaPedido.BuscarPorNumero(oNum);
+
+                        oLista.Add(oPed);
+                    }
+
+                    oReader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oConexion.Close();
+            }
+
+            return oLista;
+        }
     }
 }

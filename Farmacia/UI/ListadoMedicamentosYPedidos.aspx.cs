@@ -73,7 +73,8 @@ public partial class ListadoMedicamentosYPedidos : System.Web.UI.Page
             ddlEstadoPedido.Visible = true;
             btnMostrarPedidos.Visible = true;
 
-
+            gvListadoPedidos.DataSource = null;
+            gvListadoPedidos.DataBind();
         }
         catch(Exception ex)
         {
@@ -87,18 +88,36 @@ public partial class ListadoMedicamentosYPedidos : System.Web.UI.Page
         {
             if((Convert.ToInt32(ddlEstadoPedido.SelectedValue)) == 0)
             {
-                //codigo para mostrar TODOS los pedidos
-                //tengo que mostrar TODOS los pedidos del medicamento SELECCIONADO
+                Int64 oRUC = Convert.ToInt64(gvListadoMedicamento.SelectedRow.Cells[1].Text.Trim());
+                int oCodigo = Convert.ToInt32(gvListadoMedicamento.SelectedRow.Cells[2].Text.Trim());
+
+                List<Pedido> oLista = new List<Pedido>();
+                oLista = LogicaPedido.ListarPedidosXMedicamento(oRUC, oCodigo);
+
+                gvListadoPedidos.DataSource = oLista;
+                gvListadoPedidos.DataBind();
             }
             else if ((Convert.ToInt32(ddlEstadoPedido.SelectedValue)) == 1)
             {
-                //codigo para mostrar los pedidos GENERADOS
-                //tengo que mostrar los pedidos GENERADOS del medicamento SELECCIONADO
+                Int64 oRUC = Convert.ToInt64(gvListadoMedicamento.SelectedRow.Cells[1].Text.Trim());
+                int oCodigo = Convert.ToInt32(gvListadoMedicamento.SelectedRow.Cells[2].Text.Trim());
+
+                List<Pedido> oLista = new List<Pedido>();
+                oLista = LogicaPedido.ListarPedidosGeneradosXMedicamento(oRUC, oCodigo);
+
+                gvListadoPedidos.DataSource = oLista;
+                gvListadoPedidos.DataBind();
             }
             else
             {
-                //codigo para mostrar los pedidos ENVIADOS
-                //tengo que mostrar los pedidos ENVIADOS del medicamento SELECCIONADO
+                Int64 oRUC = Convert.ToInt64(gvListadoMedicamento.SelectedRow.Cells[1].Text.Trim());
+                int oCodigo = Convert.ToInt32(gvListadoMedicamento.SelectedRow.Cells[2].Text.Trim());
+
+                List<Pedido> oLista = new List<Pedido>();
+                oLista = LogicaPedido.ListarPedidosEnviadosXMedicamento(oRUC, oCodigo);
+
+                gvListadoPedidos.DataSource = oLista;
+                gvListadoPedidos.DataBind();
             }
         }
         catch(Exception ex)
