@@ -10,13 +10,25 @@
                 </asp:DropDownList>
                 <br />
                 <br />
-                <asp:Button ID="btnTodos" runat="server" Text="Todos" OnClick="btnTodos_Click" />
-                <asp:Button ID="btnGenerados" runat="server" Text="Generados" />
-                <asp:Button ID="btnEntregados" runat="server" Text="Entregados" />
+                <asp:Button ID="btnListar" runat="server" Text="Listar" OnClick="btnListar_Click" />
                 <br />
             </div>
             <div class="auto-style1" id="GV">
-                <asp:GridView ID="gvListadoMedicamento" runat="server">
+                <asp:GridView ID="gvListadoMedicamento" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="gvListadoMedicamento_SelectedIndexChanged">
+                </asp:GridView>
+                <br />
+                <asp:Label ID="lblSeleccionEstado" runat="server" Text="Seleccione Estado: "></asp:Label>
+                <asp:DropDownList ID="ddlEstadoPedido" runat="server">
+                    <asp:ListItem Value="0">Todos</asp:ListItem>
+                    <asp:ListItem Value="1">Generados</asp:ListItem>
+                    <asp:ListItem Value="2">Enviados</asp:ListItem>
+                </asp:DropDownList>
+                <br />
+                <br />
+                <asp:Button ID="btnMostrarPedidos" runat="server" OnClick="btnMostrarPedidos_Click" Text="Mostrar Pedidos" />
+                <br />
+                <br />
+                <asp:GridView ID="gvListadoPedidos" runat="server">
                 </asp:GridView>
             </div>
             <div class="auto-style4">
