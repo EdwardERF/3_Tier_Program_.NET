@@ -92,10 +92,21 @@ public partial class ListadoMedicamentosYPedidos : System.Web.UI.Page
                 int oCodigo = Convert.ToInt32(gvListadoMedicamento.SelectedRow.Cells[2].Text.Trim());
 
                 List<Pedido> oLista = new List<Pedido>();
+                oLista = null;
                 oLista = LogicaPedido.ListarPedidosXMedicamento(oRUC, oCodigo);
 
                 gvListadoPedidos.DataSource = oLista;
                 gvListadoPedidos.DataBind();
+
+                if(oLista.Count == 0)
+                {
+                    lblError.Text = "Este medicamento (" + (Convert.ToString(gvListadoMedicamento.SelectedRow.Cells[3].Text.Trim())) 
+                        + ", Codigo " + (Convert.ToString(gvListadoMedicamento.SelectedRow.Cells[2].Text.Trim())) + ") no tiene pedidos asociados";
+                }
+                else
+                {
+                    lblError.Text = "";
+                }
             }
             else if ((Convert.ToInt32(ddlEstadoPedido.SelectedValue)) == 1)
             {
@@ -103,10 +114,21 @@ public partial class ListadoMedicamentosYPedidos : System.Web.UI.Page
                 int oCodigo = Convert.ToInt32(gvListadoMedicamento.SelectedRow.Cells[2].Text.Trim());
 
                 List<Pedido> oLista = new List<Pedido>();
+                oLista = null;
                 oLista = LogicaPedido.ListarPedidosGeneradosXMedicamento(oRUC, oCodigo);
 
                 gvListadoPedidos.DataSource = oLista;
                 gvListadoPedidos.DataBind();
+
+                if (oLista.Count == 0)
+                {
+                    lblError.Text = "Este medicamento (" + (Convert.ToString(gvListadoMedicamento.SelectedRow.Cells[3].Text.Trim()))
+                        + ", Codigo " + (Convert.ToString(gvListadoMedicamento.SelectedRow.Cells[2].Text.Trim())) + ") no tiene pedidos asociados en estado Generado";
+                }
+                else
+                {
+                    lblError.Text = "";
+                }
             }
             else
             {
@@ -114,10 +136,21 @@ public partial class ListadoMedicamentosYPedidos : System.Web.UI.Page
                 int oCodigo = Convert.ToInt32(gvListadoMedicamento.SelectedRow.Cells[2].Text.Trim());
 
                 List<Pedido> oLista = new List<Pedido>();
+                oLista = null;
                 oLista = LogicaPedido.ListarPedidosEnviadosXMedicamento(oRUC, oCodigo);
 
                 gvListadoPedidos.DataSource = oLista;
                 gvListadoPedidos.DataBind();
+
+                if (oLista.Count == 0)
+                {
+                    lblError.Text = "Este medicamento (" + (Convert.ToString(gvListadoMedicamento.SelectedRow.Cells[3].Text.Trim()))
+                        + ", Codigo " + (Convert.ToString(gvListadoMedicamento.SelectedRow.Cells[2].Text.Trim())) + ") no tiene pedidos asociados en estado Enviado";
+                }
+                else
+                {
+                    lblError.Text = "";
+                }
             }
         }
         catch(Exception ex)
