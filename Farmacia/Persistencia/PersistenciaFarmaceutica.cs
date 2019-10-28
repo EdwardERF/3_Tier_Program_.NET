@@ -196,7 +196,15 @@ namespace Persistencia
                     correo = (string)oReader["correo"];
                     calle = (string)oReader["calle"];
                     numero = (int)oReader["numero"];
-                    apto = (int)oReader["apto"];
+
+                    if(oReader["apto"] != DBNull.Value)
+                    {
+                        apto = (int)oReader["apto"];
+                    }
+                    else
+                    {
+                        apto = 1;
+                    }
 
                     oFar = new Farmaceutica(ruc, Nombre, correo, calle, numero, apto);
                 }
