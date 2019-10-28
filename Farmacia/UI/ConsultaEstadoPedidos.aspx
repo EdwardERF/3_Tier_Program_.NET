@@ -21,7 +21,7 @@
             <asp:Label ID="lblError" runat="server"></asp:Label>
             <br />
             <br />
-            <asp:LinkButton ID="lbVolver" runat="server">Volver</asp:LinkButton>
+            <asp:LinkButton ID="lbVolver" runat="server" PostBackUrl="~/BienvenidaCliente.aspx">Volver</asp:LinkButton>
         </div>
 
 </asp:Content>

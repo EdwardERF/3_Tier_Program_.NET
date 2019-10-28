@@ -22,21 +22,20 @@ public partial class ConsultaEstadoPedidos : System.Web.UI.Page
     {
         try
         {
-            //Cliente oCli = (Cliente)Session["Cliente"];
-
             Usuario oUsu = (Usuario)Session["Cliente"];
-
-            lblError.Text = oUsu.ToString();
 
             int oNum = Convert.ToInt32(txtNumPedido.Text.Trim());
 
-            //Por el momento, el cliente de session no va a funcionar, por tanto, coloco un nomUsu manualmente
             Pedido oPed = LogicaPedido.Buscar(oUsu.nomUsu, oNum);
 
-            //TEMPORAL
-            //Pedido oPed = LogicaPedido.Buscar("Ramon", oNum);
-
-            //lblError.Text = oPed.ToString();
+            if(oPed != null)
+            {
+                lblError.Text = oPed.ToString();
+            }
+            else
+            {
+                lblError.Text = "El pedido que busca no existe o no esta asociado a usted";
+            }
         }
         catch(Exception ex)
         {
