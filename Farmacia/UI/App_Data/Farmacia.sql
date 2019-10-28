@@ -692,6 +692,14 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE ListarGeneradosXCliente
+@cliente VARCHAR(20)
+AS
+BEGIN
+	SELECT * FROM Pedido WHERE estado = 0 AND cliente = @cliente
+END
+GO
+
 CREATE PROCEDURE ListarEnviados
 AS
 BEGIN
@@ -717,6 +725,20 @@ BEGIN
 	ELSE
 		BEGIN
 			SELECT * FROM Pedido WHERE numero = @numero AND cliente = @cliente
+			RETURN 1
+		END
+END
+GO
+
+CREATE PROCEDURE BuscarPedidoXCliente
+@cliente VARCHAR(20)
+AS
+BEGIN
+	IF NOT EXISTS (SELECT * FROM Pedido WHERE cliente = @cliente)
+		RETURN -1 --Esto es, no existe tal pedido
+	ELSE
+		BEGIN
+			SELECT * FROM Pedido WHERE cliente = @cliente
 			RETURN 1
 		END
 END
@@ -1018,7 +1040,7 @@ GO
 -------------------------------------------------------------------------------------------BUSCAR PEDIDO
 --COMANDO EXITOSO
 DECLARE @RET INT
-EXEC @RET = BuscarPedido 2
+EXEC @RET = BuscarPedido 'Ramon', 2
 PRINT @RET
 GO
 

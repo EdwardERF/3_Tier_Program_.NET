@@ -17,13 +17,16 @@ public partial class ListadoPedidosGenerados : System.Web.UI.Page
             try
             {
                 Cliente oCli = (Cliente)Session["Cliente"];
-                Session["ListaCompleta"] = LogicaPedido.ListarGenerados();
+                Session["ListaCompleta"] = LogicaPedido.ListarGeneradosXCliente(oCli.nomUsu);
                 Session["Seleccion"] = new List<Pedido>();
 
                 gvListadoPedidos.DataSource = (List<Pedido>)Session["ListaCompleta"];
                 gvListadoPedidos.DataBind();
                 gvSeleccion.DataSource = (List<Pedido>)Session["Seleccion"];
                 gvSeleccion.DataBind();
+
+                btnEliminar.Enabled = false;
+                btnActualizar.Visible = false;
             }
             catch(Exception ex)
             {
@@ -37,20 +40,23 @@ public partial class ListadoPedidosGenerados : System.Web.UI.Page
         GridViewRow R = gvListadoPedidos.SelectedRow;
         R.BackColor = System.Drawing.Color.Aqua;
 
+        btnEliminar.Visible = true;
+        btnEliminar.Enabled = true;
+
         try
         {
-            //COMENTADO LA INSTANCIA POR SESION
-            //Cliente oCli = (Cliente)Session["Cliente"];
+            Usuario oCli = (Usuario)Session["Cliente"];
             int oNum = Convert.ToInt32(gvListadoPedidos.SelectedRow.Cells[1].Text.Trim());
-            string oCli = "Ramon";
 
             List<Pedido> oLista = new List<Pedido>();
-            oLista.Add(LogicaPedido.Buscar(oCli, oNum));
+            oLista.Add(LogicaPedido.Buscar(oCli.nomUsu, oNum));
 
             gvSeleccion.DataSource = oLista;
             gvSeleccion.DataBind();
 
-            lblCliente.Text = (LogicaPedido.Buscar(oCli, oNum)).ToString();
+            lblCliente.Text = (LogicaPedido.Buscar(oCli.nomUsu, oNum)).ToString();
+
+            btnEliminar.Enabled = true;
         }
         catch(Exception ex)
         {
@@ -77,11 +83,47 @@ public partial class ListadoPedidosGenerados : System.Web.UI.Page
                 LogicaPedido.Eliminar(oNum);
 
                 lblError.Text = "Eliminacion exitosa";
+
+                AlternarBotones();
             }
             catch(Exception ex)
             {
                 lblError.Text = ex.Message;
             }
+        }
+    }
+
+    protected void AlternarBotones()
+    {
+        btnActualizar.Visible = true;
+        btnActualizar.Enabled = true;
+        btnEliminar.Visible = false;
+    }
+
+    protected void btnActualizar_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            Cliente oCli = (Cliente)Session["Cliente"];
+            Session["ListaCompleta"] = LogicaPedido.ListarGeneradosXCliente(oCli.nomUsu);
+            Session["Seleccion"] = new List<Pedido>();
+
+            gvListadoPedidos.DataSource = (List<Pedido>)Session["ListaCompleta"];
+            gvListadoPedidos.DataBind();
+            gvSeleccion.DataSource = (List<Pedido>)Session["Seleccion"];
+            gvSeleccion.DataBind();
+
+            btnEliminar.Visible = true;
+            btnEliminar.Enabled = false;
+            btnActualizar.Visible = false;
+
+            lblError.Text = "";
+            lblCliente.Text = "";
+            lblPedidoSeleccionado.Text = "";
+        }
+        catch (Exception ex)
+        {
+            lblError.Text = ex.Message;
         }
     }
 }

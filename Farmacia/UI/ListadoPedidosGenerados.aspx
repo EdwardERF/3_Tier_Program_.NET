@@ -27,6 +27,7 @@
                         </asp:GridView>
                         <br />
                         <asp:Button ID="btnEliminar" runat="server" Text="Eliminar Pedido" OnClick="btnEliminar_Click" />
+                        <asp:Button ID="btnActualizar" runat="server" OnClick="btnActualizar_Click" Text="Actualizar" />
                         <br />
                         <br />
                     </td>

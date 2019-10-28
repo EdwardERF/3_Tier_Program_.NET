@@ -67,9 +67,9 @@ namespace Persistencia
 
                 int valReturn = (int)oComando.Parameters["@Retorno"].Value;
 
-                if (valReturn == 1)
-                    throw new Exception("Eliminacion exitosa");
-                else if (valReturn == -1)
+                //if (valReturn == 1)
+                //    throw new Exception("Eliminacion exitosa");
+                if (valReturn == -1)
                     throw new Exception("Error - No existe tal Pedido");
                 else if (valReturn == -2)
                     throw new Exception("Error SQL");
@@ -112,6 +112,50 @@ namespace Persistencia
                     estado = (int)oReader["estado"];
 
                     oPed = new Pedido(oNum, oCliente, rucMedicamento, codMedicamento, cantidad, estado);                }
+
+                oReader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oConexion.Close();
+            }
+
+            return oPed;
+        }
+
+        public static Pedido BuscarXCliente(string oCliente)
+        {
+            Int64 rucMedicamento;
+            int codMedicamento, cantidad, estado, oNum;
+
+            Pedido oPed = null;
+            SqlDataReader oReader;
+
+            SqlConnection oConexion = new SqlConnection(Conexion.STR);
+            SqlCommand oComando = new SqlCommand("BuscarPedidoXCliente", oConexion);
+            oComando.CommandType = CommandType.StoredProcedure;
+
+            oComando.Parameters.AddWithValue("@cliente", oCliente);
+
+            try
+            {
+                oConexion.Open();
+                oReader = oComando.ExecuteReader();
+
+                if (oReader.Read())
+                {
+                    rucMedicamento = (Int64)oReader["rucMedicamento"];
+                    codMedicamento = (int)oReader["codMedicamento"];
+                    cantidad = (int)oReader["cantidad"];
+                    estado = (int)oReader["estado"];
+                    oNum = (int)oReader["numero"];
+
+                    oPed = new Pedido(oNum, oCliente, rucMedicamento, codMedicamento, cantidad, estado);
+                }
 
                 oReader.Close();
             }
@@ -270,6 +314,49 @@ namespace Persistencia
                     {
                         int oNum = (int)oReader["numero"];
                         string oCliente = (string)oReader["cliente"];
+
+                        oPed = PersistenciaPedido.Buscar(oCliente, oNum);
+
+                        oLista.Add(oPed);
+                    }
+
+                    oReader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oConexion.Close();
+            }
+
+            return oLista;
+        }
+
+        public static List<Pedido> ListarGeneradosXCliente(string oCliente)
+        {
+            Pedido oPed;
+            List<Pedido> oLista = new List<Pedido>();
+            SqlDataReader oReader;
+
+            SqlConnection oConexion = new SqlConnection(Conexion.STR);
+            SqlCommand oComando = new SqlCommand("ListarGeneradosXCliente", oConexion);
+            oComando.CommandType = CommandType.StoredProcedure;
+
+            oComando.Parameters.AddWithValue("@cliente", oCliente);
+
+            try
+            {
+                oConexion.Open();
+                oReader = oComando.ExecuteReader();
+
+                if (oReader.HasRows)
+                {
+                    while (oReader.Read())
+                    {
+                        int oNum = (int)oReader["numero"];
 
                         oPed = PersistenciaPedido.Buscar(oCliente, oNum);
 
