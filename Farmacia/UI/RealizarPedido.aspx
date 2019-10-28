@@ -40,7 +40,9 @@
                     <td class="auto-style1">
                         <asp:Button ID="btnConfirmar" runat="server" Text="CONFIRMAR PEDIDO" OnClick="btnConfirmar_Click" />
                     </td>
-                    <td>&nbsp;</td>
+                    <td>
+                        <asp:Button ID="btnLimpiar" runat="server" OnClick="btnLimpiar_Click" Text="Limpiar" />
+                    </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>

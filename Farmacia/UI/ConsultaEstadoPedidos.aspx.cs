@@ -20,15 +20,27 @@ public partial class ConsultaEstadoPedidos : System.Web.UI.Page
 
     protected void btnBuscar_Click(object sender, EventArgs e)
     {
-        Cliente oCli = (Cliente)Session["Cliente"];
-        int oNum = Convert.ToInt32(txtNumPedido.Text.Trim());
+        try
+        {
+            //Cliente oCli = (Cliente)Session["Cliente"];
 
-        //Por el momento, el cliente de session no va a funcionar, por tanto, coloco un nomUsu manualmente
-        //LogicaPedido.Buscar(oCli.nomUsu, oNum);
+            Usuario oUsu = (Usuario)Session["Cliente"];
 
-        //TEMPORAL
-        Pedido oPed = LogicaPedido.Buscar("Ramon", oNum);
+            lblError.Text = oUsu.ToString();
 
-        lblError.Text = oPed.ToString();
+            int oNum = Convert.ToInt32(txtNumPedido.Text.Trim());
+
+            //Por el momento, el cliente de session no va a funcionar, por tanto, coloco un nomUsu manualmente
+            Pedido oPed = LogicaPedido.Buscar(oUsu.nomUsu, oNum);
+
+            //TEMPORAL
+            //Pedido oPed = LogicaPedido.Buscar("Ramon", oNum);
+
+            //lblError.Text = oPed.ToString();
+        }
+        catch(Exception ex)
+        {
+            lblError.Text = ex.Message;
+        }
     }
 }

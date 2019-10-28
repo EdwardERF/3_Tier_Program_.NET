@@ -371,7 +371,7 @@ BEGIN
 		RETURN -1 --No existe cliente
 	ELSE
 		BEGIN
-			SELECT * FROM Cliente WHERE nomUsu = @nomUsu
+			SELECT pass, nombre, apellido, dirEntrega, telefono FROM Cliente C, Usuario U WHERE C.nomUsu = @nomUsu AND U.nomUsu = @nomUsu
 			RETURN 1
 		END
 END

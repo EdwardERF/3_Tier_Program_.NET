@@ -47,7 +47,9 @@
                     <td>
                         <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
                     </td>
-                    <td>&nbsp;</td>
+                    <td>
+                        <asp:Button ID="btnLimpiar" runat="server" OnClick="btnLimpiar_Click" Text="Limpiar" />
+                    </td>
                 </tr>
                 <tr>
                     <td>Apellido</td>
@@ -100,7 +102,7 @@
                 <tr>
                     <td>&nbsp;</td>
                     <td>
-                        <asp:LinkButton ID="lbVolver" runat="server">Volver</asp:LinkButton>
+                        <asp:LinkButton ID="lbVolver" runat="server" PostBackUrl="~/BienvenidaCliente.aspx">Volver</asp:LinkButton>
                     </td>
                     <td>&nbsp;</td>
                 </tr>

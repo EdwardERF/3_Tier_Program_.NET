@@ -48,6 +48,15 @@ public partial class RealizarPedido : System.Web.UI.Page
             gvSeleccion.DataBind();
 
             ActivarCalcularCosto();
+
+            if(txtCantidad.Text != null)
+            {
+                btnConfirmar.Enabled = true;
+            }
+            else
+            {
+                btnConfirmar.Enabled = false;
+            }
         }
         catch(Exception ex)
         {
@@ -72,10 +81,19 @@ public partial class RealizarPedido : System.Web.UI.Page
     {
         try
         {
-            int precio = Convert.ToInt32(gvMedicamentos.SelectedRow.Cells[5].Text.Trim());
-            int costoFinal = Convert.ToInt32(txtCantidad.Text.Trim()) * precio;
+            if(Convert.ToInt32(txtCantidad.Text.Trim()) > 0)
+            {
+                int cantMedicamentos = Convert.ToInt32(txtCantidad.Text.Trim());
+                int precio = Convert.ToInt32(gvMedicamentos.SelectedRow.Cells[5].Text.Trim());
+                int costoFinal = cantMedicamentos * precio;
 
-            lblCostoTotal.Text = "Costo del Pedido: $" + costoFinal;
+                lblCostoTotal.Text = "Costo del Pedido: $" + costoFinal;
+            }
+            else
+            {
+                lblCostoTotal.Text = "Debe ingresar un valor valido";
+            }
+
         }
         catch(Exception ex)
         {
@@ -103,6 +121,34 @@ public partial class RealizarPedido : System.Web.UI.Page
             Pedido oPed = new Pedido(oUsu.nomUsu, ruc, codigo, cantidad, 0);
 
             LogicaPedido.Alta(oPed);
+        }
+        catch(Exception ex)
+        {
+            lblError.Text = ex.Message;
+        }
+    }
+
+    protected void btnLimpiar_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            gvSeleccion.DataSource = null;
+            gvSeleccion.DataBind();
+
+            txtCantidad.Text = "";
+            lblCostoTotal.Text = "";
+            lblError.Text = "";
+
+            txtCantidad.Enabled = false;
+
+            btnCalcularCosto.Enabled = false;
+            btnConfirmar.Enabled = false;
+
+            Session["ListaCompleta"] = LogicaMedicamento.Listar();
+            Session["Seleccion"] = new List<Medicamento>();
+
+            gvMedicamentos.DataSource = (List<Medicamento>)Session["ListaCompleta"];
+            gvMedicamentos.DataBind();
         }
         catch(Exception ex)
         {

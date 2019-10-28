@@ -23,12 +23,16 @@ public partial class RegistroCliente : System.Web.UI.Page
         btnBuscar.Enabled = true;
         txtNomUsu.Enabled = true;
 
+        btnAlta.Enabled = false;
+
         txtNomUsu.Text = "";
         txtPass.Text = "";
         txtNombre.Text = "";
         txtApellido.Text = "";
         txtDireccion.Text = "";
         txtTelefono.Text = "";
+
+        lblError.Text = "";
     }
 
     protected void ActivoBotonesA()
@@ -68,7 +72,7 @@ public partial class RegistroCliente : System.Web.UI.Page
             txtNombre.Text = oCli.nombre;
             txtApellido.Text = oCli.apellido;
             txtDireccion.Text = oCli.dirEntrega;
-            txtDireccion.Text = Convert.ToString(oCli.Telefono);
+            txtTelefono.Text = Convert.ToString(oCli.Telefono);
 
             lblError.Text = "El Cliente ya existe";
         }
@@ -92,5 +96,10 @@ public partial class RegistroCliente : System.Web.UI.Page
         {
             lblError.Text = ex.Message;
         }
+    }
+
+    protected void btnLimpiar_Click(object sender, EventArgs e)
+    {
+        this.LimpioFormulario();
     }
 }
