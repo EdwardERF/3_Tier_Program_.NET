@@ -73,17 +73,6 @@ namespace EntidadesCompartidas
             Precio = pprecio;
         }
 
-        //Constructor creado debido a que, de otra manera, en ListarMedicamentos, se asignaría el objeto Farmaceutica para listar en una sola columna
-        //lo cual genera un error de conversión. No pude lograr otra manera de corregirlo. 
-        /*public Medicamento(Int64 pRUC, int pcodigo, string pnombre, string pdescripcion, int pprecio)
-        {
-            Ruc = pRUC;
-            Codigo = pcodigo;
-            Nombre = pnombre;
-            Descripcion = pdescripcion;
-            Precio = pprecio;
-        }*/
-
         public override string ToString()
         {
             return ("Farmaceutica: " + Far.ruc + "\n Codigo: " + Codigo + "\n Nombre: " + Nombre + "\n Descripcion: " + Descripcion + "\n Precio: " + Precio);
