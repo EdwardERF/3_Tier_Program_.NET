@@ -11,6 +11,13 @@
     <style type="text/css">
         .auto-style1 {
             text-align: left;
+            display: block;
+            width: 75%;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 30px;
+            background-color: aliceblue;
+
         }
         #Image1{
             display: block;
@@ -23,11 +30,33 @@
         }
 
         .auto-style2 {
-            width: 168px;
+            width: 170px;
         }
         .auto-style3 {
-            width: 963px;
+            width: 500px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
+
+        .auto-style4 {
+            width: 100%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .auto-style5 {
+            width: 170px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
 
     </style>
 </head>
@@ -36,11 +65,11 @@
     <div class="auto-style1">
 
         <div id="CartelLogueo">
-            <table style="width:100%;">
+            <table class="auto-style4">
                 <tr>
                     <td class="auto-style2">&nbsp;</td>
                     <td class="auto-style3">&nbsp;</td>
-                    <td>
+                    <td class="auto-style5">
             <asp:Label ID="lblUsuario" runat="server"></asp:Label>
                         <br />
             <asp:Label ID="lblTipoUsuario" runat="server"></asp:Label>
@@ -50,13 +79,10 @@
                 </tr>
                 <tr>
                     <td class="auto-style2">&nbsp;</td>
-                    <td class="auto-style3">
-
-
-        <asp:Image ID="Image1" ImageAlign="Middle" runat="server" ImageUrl="~/Img/Logo a 5%.png" />
-                        <br />
+                    <td class="auto-style6">
+                            <asp:Image ID="Image1" ImageAlign="Middle" runat="server" ImageUrl="~/Img/Logo a 5%.png" />
                     </td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style5">&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style2">
@@ -102,7 +128,7 @@
         </asp:Menu>
 
                     </td>
-                    <td style="width:90%;">
+                    <td class="auto-style3">
                 <asp:ContentPlaceHolder id="ContentPlaceHolder2" runat="server">
         
                 </asp:ContentPlaceHolder>
