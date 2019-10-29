@@ -13,6 +13,6 @@ Temas tratados || Skills used:
 - ADO.NET (C#)
 - ASP.NET (C#)
 
-This project applies knowledge about of C# (ASP.NET, ADO.NET) and SQL.
+This project applies knowledge about C# (ASP.NET, ADO.NET) and SQL.
 A 3-layer arquitecture is used.
 In the PDF ProyectoFinalPrimero2018b you can consult the letter and all its requirements.
