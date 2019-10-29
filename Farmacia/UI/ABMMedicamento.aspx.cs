@@ -114,9 +114,14 @@ public partial class ABMMedicamento : System.Web.UI.Page
         try
         {
             Int64 oRUC = Convert.ToInt64(txtRucMedicamento.Text.Trim());
-            Farmaceutica oFar = LogicaFarmaceutica.Buscar(oRUC);
 
-            Medicamento oMed = new Medicamento(oFar, Convert.ToInt32(txtCodMedicamento.Text.Trim()), txtNombreMed.Text.Trim(), txtDescripcion.Text.Trim(), Convert.ToInt32(txtPrecio.Text.Trim()));
+            Farmaceutica oFar = LogicaFarmaceutica.Buscar(oRUC);
+            int oCodigo = Convert.ToInt32(txtCodMedicamento.Text.Trim());
+            string oNombre = txtNombreMed.Text.Trim();
+            string oDescripcion = txtDescripcion.Text.Trim();
+            int oPrecio = Convert.ToInt32(txtPrecio.Text.Trim());
+
+            Medicamento oMed = new Medicamento(oFar, oCodigo, oNombre, oDescripcion, oPrecio);
 
             LogicaMedicamento.Alta(oMed);
 

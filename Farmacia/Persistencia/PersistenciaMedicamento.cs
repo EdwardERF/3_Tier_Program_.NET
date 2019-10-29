@@ -17,7 +17,7 @@ namespace Persistencia
             SqlCommand oComando = new SqlCommand("AltaMedicamento", oConexion);
             oComando.CommandType = CommandType.StoredProcedure;
 
-            oComando.Parameters.AddWithValue("@far", oMed.Far.ruc);
+            oComando.Parameters.AddWithValue("@far", oMed.Ruc);
             oComando.Parameters.AddWithValue("@codigo", oMed.Codigo);
             oComando.Parameters.AddWithValue("@nombre", oMed.Nombre);
             oComando.Parameters.AddWithValue("@descripcion", oMed.Descripcion);
@@ -159,7 +159,9 @@ namespace Persistencia
                     nombre = (string)oReader["nombre"];
                     descripcion = (string)oReader["descripcion"];
 
-                    oMed = new Medicamento(ruc, codigo, nombre, descripcion, precio);
+                    Farmaceutica oFar = PersistenciaFarmaceutica.Buscar(ruc);
+
+                    oMed = new Medicamento(oFar, codigo, nombre, descripcion, precio);
                 }
 
                 oReader.Close();
@@ -195,15 +197,15 @@ namespace Persistencia
                 {
                     while (oReader.Read())
                     {
-                        //ruc = (Int64)oReader["ruc"];
+                        Int64 ruc = (Int64)oReader["ruc"];
 
                         //ruc = 111111111111; CON ESTA LINEA, SE VA EL PROBLEMA
 
                         //ruc = Convert.ToInt64(oReader["ruc"]);
 
-                        //Farmaceutica oFar = PersistenciaFarmaceutica.Buscar(ruc);
+                        Farmaceutica oFar = PersistenciaFarmaceutica.Buscar(ruc);
 
-                        oMed = new Medicamento(Convert.ToInt64(oReader["ruc"]), (int)oReader["codigo"], (string)oReader["nombre"], (string)oReader["descripcion"],
+                        oMed = new Medicamento(oFar, (int)oReader["codigo"], (string)oReader["nombre"], (string)oReader["descripcion"],
                             (int)oReader["precio"]);
 
                         oLista.Add(oMed);
@@ -252,7 +254,9 @@ namespace Persistencia
                     string descripcion = (string)oReader["descripcion"];
                     int precio = (int)oReader["precio"];
 
-                    oMed = new Medicamento(ruc, codigo, nombre, descripcion, precio);
+                    Farmaceutica oFar = PersistenciaFarmaceutica.Buscar(ruc);
+
+                    oMed = new Medicamento(oFar, codigo, nombre, descripcion, precio);
 
                     oLista.Add(oMed);
                 }

@@ -66,7 +66,7 @@ namespace EntidadesCompartidas
 
         public Medicamento(Farmaceutica pFar, int pcodigo, string pnombre, string pdescripcion, int pprecio)
         {
-            Far = pFar;
+            Ruc = pFar.ruc;
             Codigo = pcodigo;
             Nombre = pnombre;
             Descripcion = pdescripcion;
@@ -75,14 +75,14 @@ namespace EntidadesCompartidas
 
         //Constructor creado debido a que, de otra manera, en ListarMedicamentos, se asignaría el objeto Farmaceutica para listar en una sola columna
         //lo cual genera un error de conversión. No pude lograr otra manera de corregirlo. 
-        public Medicamento(Int64 pRUC, int pcodigo, string pnombre, string pdescripcion, int pprecio)
+        /*public Medicamento(Int64 pRUC, int pcodigo, string pnombre, string pdescripcion, int pprecio)
         {
             Ruc = pRUC;
             Codigo = pcodigo;
             Nombre = pnombre;
             Descripcion = pdescripcion;
             Precio = pprecio;
-        }
+        }*/
 
         public override string ToString()
         {
