@@ -34,6 +34,7 @@
                     <tr>
                         <td class="auto-style1" style="width: 347px; height: 21px;"><span style="color: #ff0066">
                             <asp:Button ID="btnLogueo" runat="server" Text="Login" OnClick="btnLogueo_Click" />
+                            <asp:Button ID="btnRegistroCliente" runat="server" OnClick="btnRegistroCliente_Click" Text="Registrarse" />
                             </span></td>
                     </tr>
                     <tr>

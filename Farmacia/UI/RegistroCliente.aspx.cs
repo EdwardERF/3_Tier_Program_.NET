@@ -102,4 +102,20 @@ public partial class RegistroCliente : System.Web.UI.Page
     {
         this.LimpioFormulario();
     }
+
+    protected void lbVolver_Click(object sender, EventArgs e)
+    {
+        Usuario oUsu = null;
+
+        oUsu = (Usuario)Session["Cliente"];
+
+        if(oUsu == null)
+        {
+            Response.Redirect("Default.aspx");
+        }
+        else
+        {
+            Response.Redirect("BienvenidaCliente.aspx");
+        }
+    }
 }

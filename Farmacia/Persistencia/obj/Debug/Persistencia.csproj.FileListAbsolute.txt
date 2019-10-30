@@ -7,3 +7,12 @@ C:\Users\Edward\Desktop\Web_Net - Proyecto Final\Farmacia\Persistencia\obj\Debug
 C:\Users\Edward\Desktop\Web_Net - Proyecto Final\Farmacia\Persistencia\bin\Debug\EntidadesCompartidas.dll
 C:\Users\Edward\Desktop\Web_Net - Proyecto Final\Farmacia\Persistencia\bin\Debug\EntidadesCompartidas.pdb
 C:\Users\Edward\Desktop\Web_Net - Proyecto Final\Farmacia\Persistencia\obj\Debug\Persistencia.csproj.CopyComplete
+C:\Users\edwar\Desktop\Web_Net - Proyecto Final\Farmacia\Persistencia\bin\Debug\Persistencia.dll
+C:\Users\edwar\Desktop\Web_Net - Proyecto Final\Farmacia\Persistencia\bin\Debug\Persistencia.pdb
+C:\Users\edwar\Desktop\Web_Net - Proyecto Final\Farmacia\Persistencia\bin\Debug\EntidadesCompartidas.dll
+C:\Users\edwar\Desktop\Web_Net - Proyecto Final\Farmacia\Persistencia\bin\Debug\EntidadesCompartidas.pdb
+C:\Users\edwar\Desktop\Web_Net - Proyecto Final\Farmacia\Persistencia\obj\Debug\Persistencia.csprojAssemblyReference.cache
+C:\Users\edwar\Desktop\Web_Net - Proyecto Final\Farmacia\Persistencia\obj\Debug\Persistencia.csproj.CoreCompileInputs.cache
+C:\Users\edwar\Desktop\Web_Net - Proyecto Final\Farmacia\Persistencia\obj\Debug\Persistencia.csproj.CopyComplete
+C:\Users\edwar\Desktop\Web_Net - Proyecto Final\Farmacia\Persistencia\obj\Debug\Persistencia.dll
+C:\Users\edwar\Desktop\Web_Net - Proyecto Final\Farmacia\Persistencia\obj\Debug\Persistencia.pdb

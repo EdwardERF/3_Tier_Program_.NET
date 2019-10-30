@@ -50,4 +50,9 @@ public partial class _Default : System.Web.UI.Page
             lblError.Text = ex.Message;
         }
     }
+
+    protected void btnRegistroCliente_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("RegistroCliente.aspx");
+    }
 }

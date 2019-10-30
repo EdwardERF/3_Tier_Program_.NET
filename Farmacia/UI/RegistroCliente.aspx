@@ -102,7 +102,7 @@
                 <tr>
                     <td>&nbsp;</td>
                     <td>
-                        <asp:LinkButton ID="lbVolver" runat="server" PostBackUrl="~/BienvenidaCliente.aspx">Volver</asp:LinkButton>
+                        <asp:LinkButton ID="lbVolver" runat="server" OnClick="lbVolver_Click">Volver</asp:LinkButton>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
