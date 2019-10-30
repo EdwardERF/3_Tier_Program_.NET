@@ -199,10 +199,6 @@ namespace Persistencia
                     {
                         Int64 ruc = (Int64)oReader["ruc"];
 
-                        //ruc = 111111111111; CON ESTA LINEA, SE VA EL PROBLEMA
-
-                        //ruc = Convert.ToInt64(oReader["ruc"]);
-
                         Farmaceutica oFar = PersistenciaFarmaceutica.Buscar(ruc);
 
                         oMed = new Medicamento(oFar, (int)oReader["codigo"], (string)oReader["nombre"], (string)oReader["descripcion"],
