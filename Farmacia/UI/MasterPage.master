@@ -9,47 +9,29 @@
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
     <style type="text/css">
-        .auto-style1 {
-            text-align: left;
-            display: block;
-            width: 75%;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 30px;
+        body{
+            display: flex;
+            justify-content: center;
             background-color: aliceblue;
-
         }
         #Image1{
             display: block;
             margin-left: auto;
             margin-right: auto;
         }
-        #CartelLogueo{
-            display: block;
-            text-align: right;
-        }
-
-        .auto-style2 {
+        .TablaMenu {
             width: 170px;
         }
-        .auto-style3 {
-            width: 500px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .auto-style4 {
+        .ContentPlacerHolder {
             width: 100%;
             display: block;
             margin-left: auto;
             margin-right: auto;
         }
-        .auto-style5 {
+        .InfoLogueo {
             width: 170px;
             display: block;
-            margin-left: auto;
-            margin-right: auto;
+            text-align: right;
         }
         .logo {
             display: block;
@@ -62,93 +44,77 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class="auto-style1">
-
-        <div id="CartelLogueo">
-            <table class="auto-style4">
+        <div>
+            <table class="TablaGeneral">
                 <tr>
-                    <td class="auto-style2">&nbsp;</td>
-                    <td class="auto-style3">&nbsp;</td>
-                    <td class="auto-style5">
-            <asp:Label ID="lblUsuario" runat="server"></asp:Label>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td class="InfoLogueo">
+                        <asp:Label ID="lblUsuario" runat="server"></asp:Label>
                         <br />
-            <asp:Label ID="lblTipoUsuario" runat="server"></asp:Label>
+                        <asp:Label ID="lblTipoUsuario" runat="server"></asp:Label>
                         <br />
-            <asp:LinkButton ID="lbDeslogueo" runat="server" OnClick="lbDeslogueo_Click">Desloguearse</asp:LinkButton>
+                        <asp:LinkButton ID="lbDeslogueo" runat="server" OnClick="lbDeslogueo_Click">Desloguearse</asp:LinkButton>
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style2">&nbsp;</td>
-                    <td class="auto-style6">
-                            <asp:Image ID="Image1" ImageAlign="Middle" runat="server" ImageUrl="~/Img/Logo a 5%.png" />
+                    <td>&nbsp;</td>
+                    <td>
+                        <asp:Image ID="Image1" ImageAlign="Middle" runat="server" ImageUrl="~/Img/Logo a 5%.png" />
                     </td>
-                    <td class="auto-style5">&nbsp;</td>
+                    <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style2">
-        <asp:Menu ID="MenuEmpleado" runat="server" BackColor="#E3EAEB" DynamicHorizontalOffset="2" Font-Names="Verdana" Font-Size="0.8em" ForeColor="#666666" StaticSubMenuIndent="10px">
-            <DynamicHoverStyle BackColor="#666666" ForeColor="White" />
-            <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
-            <DynamicMenuStyle BackColor="#E3EAEB" />
-            <DynamicSelectedStyle BackColor="#1C5E55" />
-            <Items>
-                <asp:MenuItem Text="Inicio" Value="Inicio" NavigateUrl="~/BienvenidaEmpleado.aspx"></asp:MenuItem>
-                <asp:MenuItem Text="Mantenimiento" Value="Mantenimiento">
-                    <asp:MenuItem NavigateUrl="~/ABMEmpleado.aspx" Text="Mantenimiento Empleado" Value="Mantenimiento Empleado"></asp:MenuItem>
-                    <asp:MenuItem NavigateUrl="~/ABMFarmaceutica.aspx" Text="Mantenimiento Farmaceutica" Value="Mantenimiento Farmaceutica"></asp:MenuItem>
-                    <asp:MenuItem NavigateUrl="~/ABMMedicamento.aspx" Text="Mantenimiento Medicamento" Value="Mantenimiento Medicamento"></asp:MenuItem>
-                    <asp:MenuItem NavigateUrl="~/CambioEstadoPedido.aspx" Text="Cambio de Estado Pedido" Value="Cambio de Estado Pedido"></asp:MenuItem>
-                </asp:MenuItem>
-                <asp:MenuItem Text="Listados" Value="Listados">
-                    <asp:MenuItem NavigateUrl="~/ListadoMedicamentosYPedidos.aspx" Text="Medicamentos y Pedidos" Value="Medicamentos y Pedidos"></asp:MenuItem>
-                </asp:MenuItem>
-            </Items>
-            <StaticHoverStyle BackColor="#666666" ForeColor="White" />
-            <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
-            <StaticSelectedStyle BackColor="#1C5E55" />
-        </asp:Menu>
+                    <td class="TablaMenu">
+                        <asp:Menu ID="MenuEmpleado" runat="server" BackColor="#E3EAEB" DynamicHorizontalOffset="2" Font-Names="Verdana" Font-Size="0.8em" ForeColor="#666666" StaticSubMenuIndent="10px">
+                            <DynamicHoverStyle BackColor="#666666" ForeColor="White" />
+                            <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                            <DynamicMenuStyle BackColor="#E3EAEB" />
+                            <DynamicSelectedStyle BackColor="#1C5E55" />
+                            <Items>
+                                <asp:MenuItem Text="Inicio" Value="Inicio" NavigateUrl="~/BienvenidaEmpleado.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="Mantenimiento" Value="Mantenimiento">
+                                    <asp:MenuItem NavigateUrl="~/ABMEmpleado.aspx" Text="Mantenimiento Empleado" Value="Mantenimiento Empleado"></asp:MenuItem>
+                                    <asp:MenuItem NavigateUrl="~/ABMFarmaceutica.aspx" Text="Mantenimiento Farmaceutica" Value="Mantenimiento Farmaceutica"></asp:MenuItem>
+                                    <asp:MenuItem NavigateUrl="~/ABMMedicamento.aspx" Text="Mantenimiento Medicamento" Value="Mantenimiento Medicamento"></asp:MenuItem>
+                                    <asp:MenuItem NavigateUrl="~/CambioEstadoPedido.aspx" Text="Cambio de Estado Pedido" Value="Cambio de Estado Pedido"></asp:MenuItem>
+                                </asp:MenuItem>
+                                <asp:MenuItem Text="Listados" Value="Listados">
+                                    <asp:MenuItem NavigateUrl="~/ListadoMedicamentosYPedidos.aspx" Text="Medicamentos y Pedidos" Value="Medicamentos y Pedidos"></asp:MenuItem>
+                                </asp:MenuItem>
+                            </Items>
+                            <StaticHoverStyle BackColor="#666666" ForeColor="White" />
+                            <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                            <StaticSelectedStyle BackColor="#1C5E55" />
+                        </asp:Menu>
 
-        <asp:Menu ID="MenuCliente" runat="server" BackColor="#E3EAEB" DynamicHorizontalOffset="2" Font-Names="Verdana" Font-Size="0.8em" ForeColor="#666666" StaticSubMenuIndent="10px">
-            <DynamicHoverStyle BackColor="#666666" ForeColor="White" />
-            <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
-            <DynamicMenuStyle BackColor="#E3EAEB" />
-            <DynamicSelectedStyle BackColor="#1C5E55" />
-            <Items>
-                <asp:MenuItem Text="Inicio" Value="Inicio" NavigateUrl="~/BienvenidaCliente.aspx"></asp:MenuItem>
-                <asp:MenuItem Text="Registro Cliente" Value="Registro Cliente" NavigateUrl="~/RegistroCliente.aspx">
-                </asp:MenuItem>
-                <asp:MenuItem Text="Realizar un Pedido" Value="Realizar un Pedido" NavigateUrl="~/RealizarPedido.aspx">
-                </asp:MenuItem>
-                <asp:MenuItem NavigateUrl="~/ListadoPedidosGenerados.aspx" Text="Listado de Pedidos Generados" Value="Listado de Pedidos Generados"></asp:MenuItem>
-                <asp:MenuItem NavigateUrl="~/ConsultaEstadoPedidos.aspx" Text="Consulta Estado de Pedido" Value="Consulta Estado de Pedido"></asp:MenuItem>
-            </Items>
-            <StaticHoverStyle BackColor="#666666" ForeColor="White" />
-            <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
-            <StaticSelectedStyle BackColor="#1C5E55" />
-        </asp:Menu>
-
+                        <asp:Menu ID="MenuCliente" runat="server" BackColor="#E3EAEB" DynamicHorizontalOffset="2" Font-Names="Verdana" Font-Size="0.8em" ForeColor="#666666" StaticSubMenuIndent="10px">
+                            <DynamicHoverStyle BackColor="#666666" ForeColor="White" />
+                            <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                            <DynamicMenuStyle BackColor="#E3EAEB" />
+                            <DynamicSelectedStyle BackColor="#1C5E55" />
+                            <Items>
+                                <asp:MenuItem Text="Inicio" Value="Inicio" NavigateUrl="~/BienvenidaCliente.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="Registro Cliente" Value="Registro Cliente" NavigateUrl="~/RegistroCliente.aspx">
+                                </asp:MenuItem>
+                                <asp:MenuItem Text="Realizar un Pedido" Value="Realizar un Pedido" NavigateUrl="~/RealizarPedido.aspx">
+                                </asp:MenuItem>
+                                <asp:MenuItem NavigateUrl="~/ListadoPedidosGenerados.aspx" Text="Listado de Pedidos Generados" Value="Listado de Pedidos Generados"></asp:MenuItem>
+                                <asp:MenuItem NavigateUrl="~/ConsultaEstadoPedidos.aspx" Text="Consulta Estado de Pedido" Value="Consulta Estado de Pedido"></asp:MenuItem>
+                            </Items>
+                            <StaticHoverStyle BackColor="#666666" ForeColor="White" />
+                            <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                            <StaticSelectedStyle BackColor="#1C5E55" />
+                        </asp:Menu>
                     </td>
-                    <td class="auto-style3">
-                <asp:ContentPlaceHolder id="ContentPlaceHolder2" runat="server">
+                    <td class="ContentPlacerHolder">
+                        <asp:ContentPlaceHolder id="ContentPlaceHolder2" runat="server">
         
-                </asp:ContentPlaceHolder>
+                        </asp:ContentPlaceHolder>
                     </td>
                 </tr>
             </table>
-            <br />
-            <br />
-            <br />
         </div>
-
-
-        <br />
-
-
-        <br />
-        <br />
-
-
-    </div>
     </form>
 </body>
 </html>
