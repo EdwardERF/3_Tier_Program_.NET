@@ -4,43 +4,11 @@
 
 <html>
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="StyleSheet.css" rel="stylesheet" type="text/css"/>
     <title></title>
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
-    <style type="text/css">
-        body{
-            display: flex;
-            justify-content: center;
-            background-color: aliceblue;
-        }
-        #Image1{
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .TablaMenu {
-            width: 170px;
-        }
-        .ContentPlacerHolder {
-            width: 100%;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .InfoLogueo {
-            width: 170px;
-            display: block;
-            text-align: right;
-        }
-        .logo {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-
-    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -57,9 +25,9 @@
                         <asp:LinkButton ID="lbDeslogueo" runat="server" OnClick="lbDeslogueo_Click">Desloguearse</asp:LinkButton>
                     </td>
                 </tr>
-                <tr>
+                <tr style="display: block; margin-left: auto; margin-right:auto;">
                     <td>&nbsp;</td>
-                    <td>
+                    <td class="TablaImagen">
                         <asp:Image ID="Image1" ImageAlign="Middle" runat="server" ImageUrl="~/Img/Logo a 5%.png" />
                     </td>
                     <td>&nbsp;</td>
@@ -95,8 +63,6 @@
                             <DynamicSelectedStyle BackColor="#1C5E55" />
                             <Items>
                                 <asp:MenuItem Text="Inicio" Value="Inicio" NavigateUrl="~/BienvenidaCliente.aspx"></asp:MenuItem>
-                                <asp:MenuItem Text="Registro Cliente" Value="Registro Cliente" NavigateUrl="~/RegistroCliente.aspx">
-                                </asp:MenuItem>
                                 <asp:MenuItem Text="Realizar un Pedido" Value="Realizar un Pedido" NavigateUrl="~/RealizarPedido.aspx">
                                 </asp:MenuItem>
                                 <asp:MenuItem NavigateUrl="~/ListadoPedidosGenerados.aspx" Text="Listado de Pedidos Generados" Value="Listado de Pedidos Generados"></asp:MenuItem>

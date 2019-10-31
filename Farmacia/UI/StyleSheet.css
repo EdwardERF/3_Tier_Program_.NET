@@ -1,0 +1,55 @@
+﻿body {
+    display: block;
+    margin-left: 200px;
+    margin-right: 200px;
+    display: flex;
+    justify-content: center;
+    background-color: aliceblue;
+}
+
+.TablaGeneral {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.TablaImagen {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#Image1 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.TablaMenu {
+    margin-left: 10px;
+    position: fixed;
+    left: 0;
+    width: 170px;
+}
+
+.ContentPlacerHolder {
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.InfoLogueo {
+    margin-right: 10px;
+    position: fixed;
+    right: 0;
+    width: 170px;
+    display: block;
+    text-align: right;
+}
+
+.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
