@@ -14,9 +14,11 @@
     <form id="form1" runat="server">
         <div>
             <table class="TablaGeneral">
-                <tr>
+                <tr style="display: flex; justify-content: center; margin-left: auto; margin-right: auto;">
                     <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td id="TablaImagen">
+                        <asp:Image ID="Image1" ImageAlign="Middle" runat="server" ImageUrl="~/Img/Logo a 5%.png" />
+                    </td>
                     <td class="InfoLogueo">
                         <asp:Label ID="lblUsuario" runat="server"></asp:Label>
                         <br />
@@ -25,11 +27,9 @@
                         <asp:LinkButton ID="lbDeslogueo" runat="server" OnClick="lbDeslogueo_Click">Desloguearse</asp:LinkButton>
                     </td>
                 </tr>
-                <tr style="display: block; margin-left: auto; margin-right:auto;">
+                <tr>
                     <td>&nbsp;</td>
-                    <td class="TablaImagen">
-                        <asp:Image ID="Image1" ImageAlign="Middle" runat="server" ImageUrl="~/Img/Logo a 5%.png" />
-                    </td>
+                    <td>&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
