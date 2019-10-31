@@ -33,11 +33,13 @@
 }
 
 .ContentPlacerHolder {
+    display: block;
+    justify-content: center;
     width: 100%;
     display: block;
     margin-left: auto;
     margin-right: auto;
-}
+    }
 
 .InfoLogueo {
     margin-right: 10px;
