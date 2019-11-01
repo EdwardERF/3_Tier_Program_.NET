@@ -8,9 +8,9 @@
             </div>
             <table class="auto-style1">
                 <tr>
-                    <td>Totalidad de Pedidos</td>
+                    <td>&nbsp;</td>
                     <td>
-                        <asp:GridView ID="gvListadoPedidos" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="gvListadoPedidos_SelectedIndexChanged">
+                        <asp:GridView style="margin-left:auto; margin-right:auto" ID="gvListadoPedidos" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="gvListadoPedidos_SelectedIndexChanged" OnPageIndexChanging="gvListadoPedidos_PageIndexChanging" AllowPaging="True" PageSize="6">
                         </asp:GridView>
                         <br />
                         <asp:Label ID="lblCliente" runat="server"></asp:Label>
@@ -20,10 +20,9 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:Label ID="lblPedidoSeleccionado" runat="server"></asp:Label>
-                    </td>
+                        &nbsp;</td>
                     <td>
-                        <asp:GridView ID="gvSeleccion" runat="server">
+                        <asp:GridView style="margin-left:auto; margin-right:auto" ID="gvSeleccion" runat="server" AllowPaging="True" PageSize="6">
                         </asp:GridView>
                         <br />
                         <asp:Button ID="btnEliminar" runat="server" Text="Eliminar Pedido" OnClick="btnEliminar_Click" />
@@ -45,7 +44,7 @@
                 <tr>
                     <td>&nbsp;</td>
                     <td>
-                        <asp:LinkButton ID="lkVolver" runat="server">Volver</asp:LinkButton>
+                        <asp:LinkButton ID="lkVolver" runat="server" PostBackUrl="~/BienvenidaCliente.aspx">Volver</asp:LinkButton>
                     </td>
                 </tr>
             </table>

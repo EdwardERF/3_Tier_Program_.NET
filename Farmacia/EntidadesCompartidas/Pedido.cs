@@ -92,8 +92,8 @@ namespace EntidadesCompartidas
             else
                 estadoTraducido = "Entregado";
 
-            return ("Nro Pedido: " + numero + " - Cliente: " + cliente + " - RUC Medicamento: " + rucMedicamento +
-                " - Codigo Medicamento: " + codMedicamento + " - Cantidad: " + cantidad + " - Estado: " + estadoTraducido);
+            return (string.Format("Nro Pedido: {1}{0}Cliente: {2}{0}RUC Medicamento: {3}{0}Codigo Medicamento: {4}{0}Cantidad: {5}{0}Estado: {6}", 
+                Environment.NewLine, numero, cliente, rucMedicamento, codMedicamento, cantidad, estadoTraducido));
         }
     }
 }

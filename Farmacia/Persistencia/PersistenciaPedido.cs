@@ -111,8 +111,8 @@ namespace Persistencia
                     cantidad = (int)oReader["cantidad"];
                     estado = (int)oReader["estado"];
 
-                    oPed = new Pedido(oNum, oCliente, rucMedicamento, codMedicamento, cantidad, estado);                }
-
+                    oPed = new Pedido(oNum, oCliente, rucMedicamento, codMedicamento, cantidad, estado);
+                }
                 oReader.Close();
             }
             catch (Exception ex)

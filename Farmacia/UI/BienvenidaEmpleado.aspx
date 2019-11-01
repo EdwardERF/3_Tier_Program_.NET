@@ -10,7 +10,6 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
-    <td>
     <table style="width:100%;">
         <tr>
             <td class="auto-style4">&nbsp;</td>
@@ -30,6 +29,5 @@
             <td class="auto-style4">&nbsp;</td>
         </tr>
     </table>
-</td>
 </asp:Content>
 

@@ -54,14 +54,19 @@ public partial class ListadoPedidosGenerados : System.Web.UI.Page
             gvSeleccion.DataSource = oLista;
             gvSeleccion.DataBind();
 
-            lblCliente.Text = (LogicaPedido.Buscar(oCli.nomUsu, oNum)).ToString();
-
             btnEliminar.Enabled = true;
         }
         catch(Exception ex)
         {
             lblError.Text = ex.Message;
         }
+    }
+
+    protected void gvListadoPedidos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvListadoPedidos.PageIndex = e.NewPageIndex;
+        gvListadoPedidos.DataSource = (List<Pedido>)Session["ListaCompleta"];
+        gvListadoPedidos.DataBind();
     }
 
     protected void btnEliminar_Click(object sender, EventArgs e)
@@ -119,7 +124,6 @@ public partial class ListadoPedidosGenerados : System.Web.UI.Page
 
             lblError.Text = "";
             lblCliente.Text = "";
-            lblPedidoSeleccionado.Text = "";
         }
         catch (Exception ex)
         {
