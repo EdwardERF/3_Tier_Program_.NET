@@ -8,9 +8,8 @@
                 Seleccione:
                 <asp:DropDownList ID="ddlListadoMedicamento" runat="server">
                 </asp:DropDownList>
-                <br />
-                <br />
                 <asp:Button ID="btnListar" runat="server" Text="Listar" OnClick="btnListar_Click" />
+                <br />
                 <br />
             </div>
             <div class="auto-style1" id="GV">
@@ -23,8 +22,6 @@
                     <asp:ListItem Value="1">Generados</asp:ListItem>
                     <asp:ListItem Value="2">Enviados</asp:ListItem>
                 </asp:DropDownList>
-                <br />
-                <br />
                 <asp:Button ID="btnMostrarPedidos" runat="server" OnClick="btnMostrarPedidos_Click" Text="Mostrar Pedidos" />
                 <br />
                 <br />

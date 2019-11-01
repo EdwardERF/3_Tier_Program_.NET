@@ -4,7 +4,7 @@
 
         <p class="auto-style4">
             Mantenimiento de Empleados</p>
-        <p>
+        <p></p>
             <table style="width:100%;">
                 <tr>
                     <td>Nombre de Usuario</td>
@@ -83,7 +83,6 @@
                     <td>&nbsp;</td>
                 </tr>
             </table>
-        </p>
 
 </asp:Content>
 <asp:Content ID="Content2" runat="server" contentplaceholderid="head">

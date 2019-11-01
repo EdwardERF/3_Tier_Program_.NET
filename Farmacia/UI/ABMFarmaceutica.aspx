@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 
-        <div>
+        <div class="Contenedor">
             <div class="auto-style4">
                 Mantenimiento de Farmaceuticas<br />
             </div>
@@ -90,7 +90,13 @@
 <asp:Content ID="Content2" runat="server" contentplaceholderid="head">
     <style type="text/css">
         .auto-style4 {
-            width: 963px;
+            text-align: center;
+        }
+        .Contenedor {
+            display: block;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
             text-align: center;
         }
     </style>
