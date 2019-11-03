@@ -16,6 +16,7 @@ public partial class ListadoMedicamentosYPedidos : System.Web.UI.Page
             try
             {
                 List<string> oLista = LogicaFarmaceutica.ListarFarmaceuticas();
+                Session["ListaCompleta"] = oLista;
 
                 ddlListadoMedicamento.DataSource = oLista;
                 ddlListadoMedicamento.DataBind();
@@ -82,6 +83,20 @@ public partial class ListadoMedicamentosYPedidos : System.Web.UI.Page
         }
     }
 
+    protected void gvListadoMedicamento_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvListadoMedicamento.PageIndex = e.NewPageIndex;
+        gvListadoMedicamento.DataSource = (List<Medicamento>)Session["ListaCompleta"];
+        gvListadoMedicamento.DataBind();
+    }
+
+    protected void gvListadoPedidos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvListadoPedidos.PageIndex = e.NewPageIndex;
+        gvListadoPedidos.DataSource = (List<Pedido>)Session["ListaPedidos"];
+        gvListadoPedidos.DataBind();
+    }
+
     protected void btnMostrarPedidos_Click(object sender, EventArgs e)
     {
         try
@@ -97,6 +112,8 @@ public partial class ListadoMedicamentosYPedidos : System.Web.UI.Page
 
                 gvListadoPedidos.DataSource = oLista;
                 gvListadoPedidos.DataBind();
+
+                Session["ListaPedidos"] = oLista;
 
                 if(oLista.Count == 0)
                 {
@@ -120,6 +137,8 @@ public partial class ListadoMedicamentosYPedidos : System.Web.UI.Page
                 gvListadoPedidos.DataSource = oLista;
                 gvListadoPedidos.DataBind();
 
+                Session["ListaPedidos"] = oLista;
+
                 if (oLista.Count == 0)
                 {
                     lblError.Text = "Este medicamento (" + (Convert.ToString(gvListadoMedicamento.SelectedRow.Cells[3].Text.Trim()))
@@ -141,6 +160,8 @@ public partial class ListadoMedicamentosYPedidos : System.Web.UI.Page
 
                 gvListadoPedidos.DataSource = oLista;
                 gvListadoPedidos.DataBind();
+
+                Session["ListaPedidos"] = oLista;
 
                 if (oLista.Count == 0)
                 {

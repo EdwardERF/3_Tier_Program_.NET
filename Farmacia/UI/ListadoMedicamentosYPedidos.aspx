@@ -13,19 +13,20 @@
                 <br />
             </div>
             <div class="auto-style1" id="GV">
-                <asp:GridView ID="gvListadoMedicamento" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="gvListadoMedicamento_SelectedIndexChanged">
+                <asp:GridView style="margin-left:auto; margin-right:auto" ID="gvListadoMedicamento" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="gvListadoMedicamento_SelectedIndexChanged" AllowPaging="True" OnPageIndexChanging="gvListadoMedicamento_PageIndexChanging" PageSize="6">
                 </asp:GridView>
                 <br />
-                <asp:Label ID="lblSeleccionEstado" runat="server" Text="Seleccione Estado: "></asp:Label>
-                <asp:DropDownList ID="ddlEstadoPedido" runat="server">
-                    <asp:ListItem Value="0">Todos</asp:ListItem>
-                    <asp:ListItem Value="1">Generados</asp:ListItem>
-                    <asp:ListItem Value="2">Enviados</asp:ListItem>
-                </asp:DropDownList>
-                <asp:Button ID="btnMostrarPedidos" runat="server" OnClick="btnMostrarPedidos_Click" Text="Mostrar Pedidos" />
+                    <div style="display: flex; justify-content:center; margin-left:auto; margin-right:auto" id="SeccionMostrarPedido">
+                        <asp:Label ID="lblSeleccionEstado" runat="server" Text="Seleccione Estado: "></asp:Label>
+                        <asp:DropDownList ID="ddlEstadoPedido" runat="server">
+                            <asp:ListItem Value="0">Todos</asp:ListItem>
+                            <asp:ListItem Value="1">Generados</asp:ListItem>
+                            <asp:ListItem Value="2">Enviados</asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:Button ID="btnMostrarPedidos" runat="server" OnClick="btnMostrarPedidos_Click" Text="Mostrar Pedidos" />
+                    </div>
                 <br />
-                <br />
-                <asp:GridView ID="gvListadoPedidos" runat="server">
+                <asp:GridView style="margin-left:auto; margin-right:auto" ID="gvListadoPedidos" runat="server" AllowPaging="True" OnPageIndexChanging="gvListadoPedidos_PageIndexChanging" PageSize="6">
                 </asp:GridView>
             </div>
             <div class="auto-style4">
