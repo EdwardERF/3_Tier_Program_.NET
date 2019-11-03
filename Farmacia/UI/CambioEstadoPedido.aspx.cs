@@ -21,7 +21,10 @@ public partial class CambioEstadoPedido : System.Web.UI.Page
                 gvEstadoPedido.DataSource = (List<Pedido>)Session["ListaCompleta"];
                 gvEstadoPedido.DataBind();
 
+                btnCambiarEstado.Visible = true;
                 btnCambiarEstado.Enabled = false;
+                btnActualizar.Visible = false;
+                btnActualizar.Enabled = false;
             }
             catch(Exception ex)
             {
@@ -46,17 +49,55 @@ public partial class CambioEstadoPedido : System.Web.UI.Page
         btnCambiarEstado.Enabled = true;
     }
 
+    protected void gvEstadoPedido_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvEstadoPedido.PageIndex = e.NewPageIndex;
+        gvEstadoPedido.DataSource = (List<Pedido>)Session["ListaCompleta"];
+        gvEstadoPedido.DataBind();
+    }
+
     protected void btnCambiarEstado_Click(object sender, EventArgs e)
     {
         int numero = Convert.ToInt32(gvEstadoPedido.SelectedRow.Cells[1].Text.Trim());
 
         try
         {
+            AlternarBotones();
+
             LogicaPedido.CambioEstadoPedido(numero);
 
             lblError.Text = "Cambio de Estado realizado";
         }
         catch(Exception ex)
+        {
+            lblError.Text = ex.Message;
+        }
+    }
+
+    protected void AlternarBotones()
+    {
+        btnCambiarEstado.Visible = false;
+        btnActualizar.Visible = true;
+        btnActualizar.Enabled = true;
+    }
+
+    protected void btnActualizar_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            Session["ListaCompleta"] = LogicaPedido.ListarGeneradosYEnviados();
+
+            gvEstadoPedido.DataSource = (List<Pedido>)Session["ListaCompleta"];
+            gvEstadoPedido.DataBind();
+
+            btnCambiarEstado.Visible = true;
+            btnCambiarEstado.Enabled = false;
+            btnActualizar.Visible = false;
+            btnActualizar.Enabled = false;
+
+            lblError.Text = "";
+        }
+        catch (Exception ex)
         {
             lblError.Text = ex.Message;
         }
