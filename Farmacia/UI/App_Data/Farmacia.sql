@@ -600,6 +600,7 @@ CREATE PROCEDURE ListarMedicamento
 AS
 BEGIN
 	SELECT * FROM Medicamento
+	ORDER BY nombre
 END
 GO
 
