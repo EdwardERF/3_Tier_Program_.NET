@@ -12,7 +12,7 @@
             <asp:Button ID="btnCambiarEstado" runat="server" Text="Cambiar Estado" OnClick="btnCambiarEstado_Click" />
             <asp:Button ID="btnActualizar" runat="server" OnClick="btnActualizar_Click" Text="Actualizar" />
         </p>
-        <p>
+        <p style="display: flex; margin-left:auto; margin-right:auto; text-align: left; justify-content: center">
             <asp:Label ID="lblError" runat="server"></asp:Label>
         </p>
         <p>
