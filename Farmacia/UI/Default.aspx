@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="CSS/Default.css" rel="stylesheet" type="text/css" />
     <title></title>
     <style type="text/css">
         .auto-style1 {
@@ -17,11 +18,10 @@
         <div>
             <div style="text-align: center">
                 <strong>
-                <br />
-                Farmacia UnaFarm<br />
-                <br />
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/Img/Logo 2.png" />
+                <p></p>
                 </strong>
-                <table align="center" style="width: 271px">
+                <table id="Datos" align="center" style="width: 271px">
                     <tr>
                         <td style="width: 347px">Nombre: &nbsp;&nbsp; <asp:TextBox ID="txtNomUsu" runat="server"></asp:TextBox>
                         </td>
@@ -32,10 +32,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="auto-style1" style="width: 347px; height: 21px;"><span style="color: #ff0066">
-                            <asp:Button ID="btnLogueo" runat="server" Text="Login" OnClick="btnLogueo_Click" />
-                            <asp:Button ID="btnRegistroCliente" runat="server" OnClick="btnRegistroCliente_Click" Text="Registrarse" />
-                            </span></td>
+                        <td style="width: 347px; height: 21px;">
+                            <div id="Botones">
+                                <asp:LinkButton ID="lbRegistro" runat="server" PostBackUrl="~/RegistroCliente.aspx">Registrarse</asp:LinkButton>
+                                <span style="color: #ff0066">
+                                <asp:Button ID="btnLogueo" runat="server" Text="Login" OnClick="btnLogueo_Click" />
+                                </span></td>
+                            </div>
                     </tr>
                     <tr>
                         <td style="width: 347px; height: 21px; text-align: center">

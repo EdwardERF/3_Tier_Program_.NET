@@ -1,0 +1,10 @@
+﻿body {
+    background-color: aliceblue;
+}
+
+#Botones {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 40px;
+    margin-left: 40px;
+}
