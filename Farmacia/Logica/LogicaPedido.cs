@@ -52,6 +52,11 @@ namespace Logica
             return PersistenciaPedido.ListarGeneradosXCliente(oCliente);
         }
 
+        public static List<string> ListarNumeroXCliente(string oCliente)
+        {
+            return PersistenciaPedido.ListarNumeroXCliente(oCliente);
+        }
+
         public static List<Pedido> ListarEnviados()
         {
             return PersistenciaPedido.ListarEnviados();

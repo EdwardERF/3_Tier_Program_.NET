@@ -378,6 +378,49 @@ namespace Persistencia
             return oLista;
         }
 
+        public static List<string> ListarNumeroXCliente(string oCliente)
+        {
+            string Numero;
+            List<string> oLista = new List<string>();
+            SqlDataReader oReader;
+
+            SqlConnection oConexion = new SqlConnection(Conexion.STR);
+            SqlCommand oComando = new SqlCommand("BuscarNumeroPedidoXCliente", oConexion);
+            oComando.CommandType = CommandType.StoredProcedure;
+
+            oComando.Parameters.AddWithValue("@cliente", oCliente);
+
+            try
+            {
+                oConexion.Open();
+                oReader = oComando.ExecuteReader();
+
+                if (oReader.HasRows)
+                {
+                    while (oReader.Read())
+                    {
+                        int oNum = (int)oReader["numero"];
+
+                        Numero = Convert.ToString(oNum);
+
+                        oLista.Add(Numero);
+                    }
+
+                    oReader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oConexion.Close();
+            }
+
+            return oLista;
+        }
+
         public static List<Pedido> ListarEnviados()
         {
             Pedido oPed;

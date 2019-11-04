@@ -15,6 +15,9 @@ public partial class ConsultaEstadoPedidos : System.Web.UI.Page
         if(!IsPostBack)
         {
             Cliente oCli = (Cliente)Session["Cliente"];
+
+            ddlPedidos.DataSource = LogicaPedido.ListarNumeroXCliente(oCli.nomUsu);
+            ddlPedidos.DataBind();
         }
     }
 
@@ -24,7 +27,7 @@ public partial class ConsultaEstadoPedidos : System.Web.UI.Page
         {
             Usuario oUsu = (Usuario)Session["Cliente"];
 
-            int oNum = Convert.ToInt32(txtNumPedido.Text.Trim());
+            int oNum = Convert.ToInt32(ddlPedidos.SelectedValue);
 
             Pedido oPed = LogicaPedido.Buscar(oUsu.nomUsu, oNum);
 

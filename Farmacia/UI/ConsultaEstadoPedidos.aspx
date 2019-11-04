@@ -4,13 +4,15 @@
 
         <div class="auto-style1">
             <div class="auto-style4">
-            Consulta de Estado de Pedido<br />
+            <p>Consulta de Estado de Pedido<br /></p>
+            <p></p>
             </div>
             <table style="width:100%;">
                 <tr>
-                    <td>Número de Pedido</td>
+                    <td>Sus pedidos</td>
                     <td>
-                        <asp:TextBox ID="txtNumPedido" runat="server"></asp:TextBox>
+                        <asp:DropDownList ID="ddlPedidos" runat="server">
+                        </asp:DropDownList>
                     </td>
                     <td>
                         <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />

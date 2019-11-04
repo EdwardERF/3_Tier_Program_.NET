@@ -781,6 +781,20 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE BuscarNumeroPedidoXCliente
+@cliente VARCHAR(20)
+AS
+BEGIN
+	IF NOT EXISTS (SELECT * FROM Pedido WHERE cliente = @cliente)
+		RETURN -1 --Esto es, no existe tal pedido
+	ELSE
+		BEGIN
+			SELECT numero FROM Pedido WHERE cliente = @cliente
+			RETURN 1
+		END
+END
+GO
+
 CREATE PROCEDURE BuscarPedidoXNumero
 @numero INT
 AS
