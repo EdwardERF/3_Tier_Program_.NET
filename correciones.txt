@@ -15,7 +15,7 @@ listado medicamentos y pedidos: PAGING DE A 6 // HECHO
 GENERAL:
 logo: cambiarlo por uno mas chato, sirve para mejor funcionamento de los formularios. //HECHO
 default: AGREGAR MEJOR DISEÑO // HECHO
-RegistroCliente: AGREGAR MEJOR DISEÑO
+RegistroCliente: AGREGAR MEJOR DISEÑO // HECHO
 Pasar UML y MER a Programa (lleva tiempo)
 Chequear letra para ultimar detalles no tenidos en cuenta
 Consulta estado pedido: CAMBIO EN RAMA TRABAJO: Colocar DDL con pedidos ligados al cliente de Session // HECHO
