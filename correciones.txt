@@ -9,7 +9,8 @@ cambio estado pedido: PAGING DE A 6 || BOTON ACTUALIZAR || ENABLED Y VISIBLE DE 
 Pedido.ToString() con salto de pagina //HECHO
 
 listado medicamentos y pedidos: PAGING DE A 6 // HECHO 
-|| SQL con más pedidos || Mensaje de error si no hay pedidos
+|| Mensaje de error si no hay pedidos //HECHO
+|| SQL con más pedidos // HECHO
 
 GENERAL:
 logo: cambiarlo por uno mas chato, sirve para mejor funcionamento de los formularios.
