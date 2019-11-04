@@ -4,7 +4,8 @@
 
         <div class="auto-style4">
             <div class="auto-style4">
-            Listado de Pedidos Generados - Eliminar Pedido<br />
+            <p>Listado de Pedidos Generados - Eliminar Pedido<br /></p>
+            <p></p>
             </div>
             <table class="auto-style1">
                 <tr>

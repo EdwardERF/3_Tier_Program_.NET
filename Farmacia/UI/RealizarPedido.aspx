@@ -2,11 +2,12 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 
-        <div style="display:block; margin-left: auto; margin-right: auto">
+        <div class="Contenedor">
             <div class="auto-style4">
-                Realizar Pedido<br />
+                <p>Realizar Pedido<br /></p>
+                <p></p>
             </div>
-            <table style="width:100%;">
+            <table class="auto-style1">
                 <tr>
                     <td class="auto-style1">
                         <asp:GridView style="margin-left:auto; margin-right:auto" ID="gvMedicamentos" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="gvMedicamentos_SelectedIndexChanged" AllowPaging="True" OnPageIndexChanging="gvMedicamentos_PageIndexChanging" PageSize="6">
@@ -23,7 +24,7 @@
                         <div class="auto-style4">
                         <br />
                         Cantidad: <asp:TextBox ID="txtCantidad" runat="server"></asp:TextBox>
-&nbsp;<asp:Button ID="btnCalcularCosto" runat="server" Text="Calcular Costo" OnClick="btnCalcularCosto_Click" />
+                        &nbsp;<asp:Button ID="btnCalcularCosto" runat="server" Text="Calcular Costo" OnClick="btnCalcularCosto_Click" />
                         <br />
                         <br />
                         <asp:Label ID="lblCostoTotal" runat="server"></asp:Label>
@@ -78,6 +79,13 @@
 <asp:Content ID="Content2" runat="server" contentplaceholderid="head">
     <style type="text/css">
         .auto-style4 {
+            text-align: center;
+        }
+        .Contenedor {
+            display: block;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
             text-align: center;
         }
     </style>

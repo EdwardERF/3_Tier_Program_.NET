@@ -4,7 +4,8 @@
 
         <div class="auto-style1">
             <div class="auto-style4">
-                Listado de Medicamentos y Pedidos<br />
+                <p>Listado de Medicamentos y Pedidos<br /></p>
+                <p></p>
                 Seleccione:
                 <asp:DropDownList ID="ddlListadoMedicamento" runat="server">
                 </asp:DropDownList>
