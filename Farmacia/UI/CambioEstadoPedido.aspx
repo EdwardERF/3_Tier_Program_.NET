@@ -9,7 +9,7 @@
             </asp:GridView>
         </p>
         <p>
-            <asp:Button ID="btnCambiarEstado" runat="server" Text="Cambiar Estado" OnClick="btnCambiarEstado_Click" />
+            <asp:Button ID="btnCambiarEstado" runat="server" Text="Cambiar Estado" OnClick="btnCambiarEstado_Click" OnClientClick="return confirm('¿Cambiar Estado?');" />
             <asp:Button ID="btnActualizar" runat="server" OnClick="btnActualizar_Click" Text="Actualizar" />
         </p>
         <p style="display: flex; margin-left:auto; margin-right:auto; text-align: left; justify-content: center">

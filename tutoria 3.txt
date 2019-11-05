@@ -1,6 +1,6 @@
 default nomas el CEP // HECHO
 
-alertas pop up confirmación en cambio estado pedido
+alertas pop up confirmación en cambio estado pedido // HECHO
 
 control de validacion
 
