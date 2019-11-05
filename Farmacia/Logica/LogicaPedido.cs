@@ -32,6 +32,11 @@ namespace Logica
             return oPed;
         }
 
+        public static Pedido BuscarPorNumero(int oNumero)
+        {
+            return PersistenciaPedido.BuscarPorNumero(oNumero);
+        }
+
         public static void CambioEstadoPedido(int oNum)
         {
             PersistenciaPedido.CambioEstadoPedido(oNum);

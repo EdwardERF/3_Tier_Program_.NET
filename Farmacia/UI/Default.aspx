@@ -42,6 +42,8 @@
                     </tr>
                     <tr>
                         <td style="width: 347px; height: 21px; text-align: center">
+                                <br />
+                                <asp:LinkButton ID="lbConsultaEP" runat="server" PostBackUrl="~/ConsultaEstadoPedidos.aspx">Consultar Estado de Pedido</asp:LinkButton>
                             <asp:Label ID="lblError" runat="server" Width="320px"></asp:Label>
                         </td>
                     </tr>

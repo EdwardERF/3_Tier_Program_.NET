@@ -5,6 +5,13 @@
 #Botones {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-right: 40px;
     margin-left: 40px;
+}
+
+#lbConsultaEP {
+    display: block;
+    justify-content: center;
+    margin: 5px;
 }

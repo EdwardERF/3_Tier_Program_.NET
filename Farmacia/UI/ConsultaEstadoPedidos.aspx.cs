@@ -15,9 +15,6 @@ public partial class ConsultaEstadoPedidos : System.Web.UI.Page
         if(!IsPostBack)
         {
             Cliente oCli = (Cliente)Session["Cliente"];
-
-            ddlPedidos.DataSource = LogicaPedido.ListarNumeroXCliente(oCli.nomUsu);
-            ddlPedidos.DataBind();
         }
     }
 
@@ -25,11 +22,9 @@ public partial class ConsultaEstadoPedidos : System.Web.UI.Page
     {
         try
         {
-            Usuario oUsu = (Usuario)Session["Cliente"];
+            int oNum = Convert.ToInt32(txtNumPedido.Text.Trim());
 
-            int oNum = Convert.ToInt32(ddlPedidos.SelectedValue);
-
-            Pedido oPed = LogicaPedido.Buscar(oUsu.nomUsu, oNum);
+            Pedido oPed = LogicaPedido.BuscarPorNumero(oNum);
 
             if(oPed != null)
             {
@@ -37,12 +32,28 @@ public partial class ConsultaEstadoPedidos : System.Web.UI.Page
             }
             else
             {
-                lblError.Text = "El pedido que busca no existe o no esta asociado a usted";
+                lblError.Text = "El pedido que busca no existe";
             }
         }
         catch(Exception ex)
         {
             lblError.Text = ex.Message;
+        }
+    }
+
+    protected void lbVolver_Click(object sender, EventArgs e)
+    {
+        Usuario oUsu = null;
+
+        oUsu = (Usuario)Session["Cliente"];
+
+        if (oUsu == null)
+        {
+            Response.Redirect("Default.aspx");
+        }
+        else
+        {
+            Response.Redirect("BienvenidaCliente.aspx");
         }
     }
 }

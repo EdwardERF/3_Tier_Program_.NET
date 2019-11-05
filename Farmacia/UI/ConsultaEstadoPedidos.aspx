@@ -1,18 +1,32 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ConsultaEstadoPedidos.aspx.cs" Inherits="ConsultaEstadoPedidos" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ConsultaEstadoPedidos.aspx.cs" Inherits="ConsultaEstadoPedidos" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+<!DOCTYPE html>
 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="CSS/ConsultaEstadoPedidos.css" rel="stylesheet" type="text/css" />
+    <title></title>
+    <style type="text/css">
+        .auto-style1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
         <div class="auto-style1">
-            <div class="auto-style4">
-            <p>Consulta de Estado de Pedido<br /></p>
-            <p></p>
+            <div>
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/Img/Logo 2.png" />
             </div>
-            <table style="width:100%;">
+            <div class="Titulo">
+            <p>Consulta de Estado de Pedido<br /></p>
+            </div>
+            <table id="Tabla" style="width:100%;">
                 <tr>
                     <td>Sus pedidos</td>
                     <td>
-                        <asp:DropDownList ID="ddlPedidos" runat="server">
-                        </asp:DropDownList>
+                        <asp:TextBox ID="txtNumPedido" runat="server"></asp:TextBox>
                     </td>
                     <td>
                         <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
@@ -20,17 +34,13 @@
                 </tr>
             </table>
             <br />
-            <asp:Label ID="lblError" runat="server"></asp:Label>
+                <div style="display: flex; justify-content: center" id="ContenedorMSG">
+                    <asp:Label ID="lblError" runat="server"></asp:Label>
+                </div>
             <br />
             <br />
-            <asp:LinkButton ID="lbVolver" runat="server" PostBackUrl="~/BienvenidaCliente.aspx">Volver</asp:LinkButton>
+            <asp:LinkButton ID="lbVolver" runat="server" OnClick="lbVolver_Click">Volver</asp:LinkButton>
         </div>
-
-</asp:Content>
-<asp:Content ID="Content2" runat="server" contentplaceholderid="head">
-    <style type="text/css">
-    .auto-style4 {
-        text-align: center;
-    }
-</style>
-</asp:Content>
+    </form>
+</body>
+</html>
