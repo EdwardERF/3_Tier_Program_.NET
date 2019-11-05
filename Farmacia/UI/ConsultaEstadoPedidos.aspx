@@ -33,6 +33,9 @@
                     </td>
                 </tr>
             </table>
+                <asp:RequiredFieldValidator ID="ValidatorTxtNumPedido" runat="server" ControlToValidate="txtNumPedido" ErrorMessage="RequiredFieldValidator" ForeColor="#CC0000">Debe ingresar un numero</asp:RequiredFieldValidator>
+                <br />
+                <asp:RegularExpressionValidator ID="RegExpTxtNumPedido" runat="server" ControlToValidate="txtNumPedido" ErrorMessage="RegularExpressionValidator" ForeColor="#CC0000" ValidationExpression="^\d+$">Solo se permiten numeros</asp:RegularExpressionValidator>
             <br />
                 <div style="display: flex; justify-content: center" id="ContenedorMSG">
                     <asp:Label ID="lblError" runat="server"></asp:Label>

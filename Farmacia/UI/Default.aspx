@@ -23,12 +23,14 @@
                 </strong>
                 <table id="Datos" align="center" style="width: 271px">
                     <tr>
-                        <td style="width: 347px">Nombre: &nbsp;&nbsp; <asp:TextBox ID="txtNomUsu" runat="server"></asp:TextBox>
+                        <td style="width: 347px">Nombre: &nbsp;&nbsp; <asp:TextBox ID="txtNomUsu" runat="server"></asp:TextBox><br />
+                            <asp:RequiredFieldValidator ID="ValidatorTxtNomUsu" runat="server" ControlToValidate="txtNomUsu" ErrorMessage="RequiredFieldValidator" ForeColor="#CC0000">Debe ingresar el nombre de usuario</asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 347px">Password:&nbsp;
-                            <asp:TextBox ID="txtPass" runat="server" TextMode="Password"></asp:TextBox>
+                            <asp:TextBox ID="txtPass" runat="server" TextMode="Password"></asp:TextBox><br />
+                            <asp:RequiredFieldValidator ID="ValidatorTxtPass" runat="server" ControlToValidate="txtPass" ErrorMessage="RequiredFieldValidator" ForeColor="#CC0000">Debe ingresar la clave</asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
@@ -37,8 +39,9 @@
                                 <asp:LinkButton ID="lbRegistro" runat="server" PostBackUrl="~/RegistroCliente.aspx">Registrarse</asp:LinkButton>
                                 <span style="color: #ff0066">
                                 <asp:Button ID="btnLogueo" runat="server" Text="Login" OnClick="btnLogueo_Click" />
-                                </span></td>
+                                </span>
                             </div>
+                        </td>
                     </tr>
                     <tr>
                         <td style="width: 347px; height: 21px; text-align: center">

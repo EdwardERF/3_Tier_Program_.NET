@@ -8,56 +8,56 @@
             <table style="width:100%;">
                 <tr>
                     <td>Nombre de Usuario</td>
-                    <td>
+                    <td class="TablaMedio">
                         <asp:TextBox ID="txtNomUsu" runat="server"></asp:TextBox>
                     </td>
-                    <td>
+                    <td class="auto-style6">
                         <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
                     </td>
                 </tr>
                 <tr>
                     <td>Contraseña</td>
-                    <td>
+                    <td class="TablaMedio">
                         <asp:TextBox ID="txtPass" runat="server"></asp:TextBox>
                     </td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style6">&nbsp;</td>
                 </tr>
                 <tr>
                     <td>Nombre</td>
-                    <td>
+                    <td class="TablaMedio">
                         <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
                     </td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style6">&nbsp;</td>
                 </tr>
                 <tr>
                     <td>Apellido</td>
-                    <td>
+                    <td class="TablaMedio">
                         <asp:TextBox ID="txtApellido" runat="server"></asp:TextBox>
                     </td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style6">&nbsp;</td>
                 </tr>
                 <tr>
                     <td>Hora Inicio Jornada</td>
-                    <td>
+                    <td class="TablaMedio">
                         <asp:TextBox ID="txtHoraInicio" runat="server"></asp:TextBox>
                     </td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style6">&nbsp;</td>
                 </tr>
                 <tr>
                     <td>Hora Final Jornada</td>
-                    <td>
+                    <td class="TablaMedio">
                         <asp:TextBox ID="txtHoraFinal" runat="server"></asp:TextBox>
                     </td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style6">&nbsp;</td>
                 </tr>
                 <tr>
                     <td>
                         <asp:Button ID="btnAlta" runat="server" Text="Alta" OnClick="btnAlta_Click" />
                     </td>
-                    <td>
+                    <td class="TablaMedio">
                         <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" />
                     </td>
-                    <td>
+                    <td class="auto-style6">
                         <asp:Button ID="btnLimpiar" runat="server" OnClick="btnLimpiar_Click" Text="Limpiar" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" OnClick="btnEliminar_Click" />
@@ -65,7 +65,9 @@
                 </tr>
                 <tr>
                     <td class="auto-style5"></td>
-                    <td class="auto-style5"></td>
+                    <td class="TablaMedio">
+                        <asp:RequiredFieldValidator ID="ValidatorTxtNomUsu" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="#CC0000" ControlToValidate="txtNomUsu">Debe ingresar un nombre de usuario</asp:RequiredFieldValidator>
+                    </td>
                     <td class="auto-style5"></td>
                 </tr>
                 <tr>
@@ -73,14 +75,14 @@
                     <td>
                         <asp:Label ID="lblError" runat="server"></asp:Label>
                     </td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style6">&nbsp;</td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
                     <td>
                         <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="~/BienvenidaEmpleado.aspx">Volver</asp:LinkButton>
                     </td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style6">&nbsp;</td>
                 </tr>
             </table>
 
@@ -94,6 +96,14 @@
             width: 168px;
             height: 31px;
         }
+        .TablaMedio {
+            width: 300px;
+        }
+        
+        .auto-style6 {
+            width: 168px;
+        }
+        
     </style>
 </asp:Content>
 
