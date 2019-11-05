@@ -1,0 +1,12 @@
+default nomas el CEP
+
+alertas pop up confirmación en cambio estado pedido
+
+control de validacion
+
+chequear constructor de medicamento
+
+la defensa es chequear el sistema nomas, que no reviente por ningun lado y este todo controlado
+
+string Conexion con DataSource con .
+
