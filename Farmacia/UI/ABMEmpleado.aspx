@@ -60,7 +60,7 @@
                     <td class="auto-style6">
                         <asp:Button ID="btnLimpiar" runat="server" OnClick="btnLimpiar_Click" Text="Limpiar" CausesValidation="False" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" OnClick="btnEliminar_Click" />
+                        <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" OnClick="btnEliminar_Click" CausesValidation="False" />
                     </td>
                 </tr>
                 <tr>
@@ -76,7 +76,9 @@
                         <br />
                         <asp:RequiredFieldValidator ID="valtxtHoraInicio" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="#CC0000" ControlToValidate="txtHoraInicio">Debe ingresar el inicio de jornada</asp:RequiredFieldValidator>
                         <br />
-                        <asp:RequiredFieldValidator ID="valtxtHoraFinal" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="#CC0000" ControlToValidate="txtHoraFinal">Debe ingresar el final de jornada</asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="RegExpTxtHoraInicio" runat="server" ControlToValidate="txtHoraInicio" ErrorMessage="RegularExpressionValidator" ForeColor="#CC0000" ValidationExpression="^([0-1][0-9]|[2][0-3]):([0-5][0-9])$">Hora no valida</asp:RegularExpressionValidator><br />
+                        <asp:RequiredFieldValidator ID="valtxtHoraFinal" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="#CC0000" ControlToValidate="txtHoraFinal">Debe ingresar el final de jornada</asp:RequiredFieldValidator><br />
+                        <asp:RegularExpressionValidator ID="RegExpTxtHoraFinal" runat="server" ControlToValidate="txtHoraFinal" ErrorMessage="RegularExpressionValidator" ForeColor="#CC0000" ValidationExpression="^([0-1][0-9]|[2][0-3]):([0-5][0-9])$">Hora no valida</asp:RegularExpressionValidator><br />
                     </td>
                     <td class="auto-style5"></td>
                 </tr>

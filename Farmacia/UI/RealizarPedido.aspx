@@ -27,6 +27,10 @@
                         &nbsp;<asp:Button ID="btnCalcularCosto" runat="server" Text="Calcular Costo" OnClick="btnCalcularCosto_Click" />
                         <br />
                         <br />
+                            <asp:RequiredFieldValidator ID="ValidatorTxtCantidad" runat="server" ControlToValidate="txtCantidad" ErrorMessage="RequiredFieldValidator" ForeColor="#CC0000">Debe ingresar un numero</asp:RequiredFieldValidator><br />
+                            <asp:RegularExpressionValidator ID="RegExpTxtCantidad" runat="server" ControlToValidate="txtCantidad" ErrorMessage="RegularExpressionValidator" ForeColor="#CC0000" ValidationExpression="^\d+$">Solo se permiten numeros</asp:RegularExpressionValidator>
+                        <br />
+                        <br />
                         <asp:Label ID="lblCostoTotal" runat="server"></asp:Label>
                         </div>
                     </td>
@@ -43,7 +47,7 @@
                         <asp:Button ID="btnConfirmar" runat="server" Text="CONFIRMAR PEDIDO" OnClick="btnConfirmar_Click" />
                     </td>
                     <td class="auto-style4">
-                        <asp:Button ID="btnLimpiar" runat="server" OnClick="btnLimpiar_Click" Text="Limpiar" />
+                        <asp:Button ID="btnLimpiar" runat="server" OnClick="btnLimpiar_Click" Text="Limpiar" CausesValidation="False" />
                     </td>
                     <td>&nbsp;</td>
                 </tr>
@@ -67,7 +71,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style4">
-                        <asp:LinkButton ID="lbVolver" runat="server">Volver</asp:LinkButton>
+                        <asp:LinkButton ID="lbVolver" runat="server" PostBackUrl="~/BienvenidaCliente.aspx" CausesValidation="False">Volver</asp:LinkButton>
                     </td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
