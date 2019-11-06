@@ -24,7 +24,7 @@
                         <br />
                         <asp:Label ID="lblTipoUsuario" runat="server"></asp:Label>
                         <br />
-                        <asp:LinkButton ID="lbDeslogueo" runat="server" OnClick="lbDeslogueo_Click">Desloguearse</asp:LinkButton>
+                        <asp:LinkButton ID="lbDeslogueo" runat="server" OnClick="lbDeslogueo_Click" CausesValidation="False">Desloguearse</asp:LinkButton>
                     </td>
                 </tr>
                 <tr>

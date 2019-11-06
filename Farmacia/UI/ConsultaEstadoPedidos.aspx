@@ -42,7 +42,7 @@
                 </div>
             <br />
             <br />
-            <asp:LinkButton ID="lbVolver" runat="server" OnClick="lbVolver_Click">Volver</asp:LinkButton>
+            <asp:LinkButton ID="lbVolver" runat="server" OnClick="lbVolver_Click" CausesValidation="False">Volver</asp:LinkButton>
         </div>
     </form>
 </body>

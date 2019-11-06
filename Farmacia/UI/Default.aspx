@@ -36,7 +36,7 @@
                     <tr>
                         <td style="width: 347px; height: 21px;">
                             <div id="Botones">
-                                <asp:LinkButton ID="lbRegistro" runat="server" PostBackUrl="~/RegistroCliente.aspx">Registrarse</asp:LinkButton>
+                                <asp:LinkButton ID="lbRegistro" runat="server" PostBackUrl="~/RegistroCliente.aspx" CausesValidation="False">Registrarse</asp:LinkButton>
                                 <span style="color: #ff0066">
                                 <asp:Button ID="btnLogueo" runat="server" Text="Login" OnClick="btnLogueo_Click" />
                                 </span>

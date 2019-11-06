@@ -2,9 +2,10 @@ default nomas el CEP // HECHO
 
 alertas pop up confirmación en cambio estado pedido // HECHO
 
-control de validacion (CHEQUEAR QUE ME PROHIBEN HASTA DESLOGUEARME)
+control de validacion (QUITAR CAUSES VALIDATION Y PONERLO EN FALSE PARA QUE BOTONES ANDEN)
 - CEPedido // HECHO
 - Default // HECHO
+- ABMEmpleado // HECHO
 
 
 chequear constructor de medicamento

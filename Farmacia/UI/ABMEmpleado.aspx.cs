@@ -15,6 +15,14 @@ public partial class ABMEmpleado : System.Web.UI.Page
         if(!IsPostBack)
         {
             this.LimpioFormulario();
+            //valtxtnomusu.Enabled = true;
+            this.DesactivoValidadores();
+
+            /*valtxtpass.Enabled = false;
+            valtxtnombre.Enabled = false;
+            valtxtapellido.Enabled = false;
+            valtxtHoraInicio.Enabled = false;
+            valtxtHoraFinal.Enabled = false;*/
         }
     }
 
@@ -48,6 +56,25 @@ public partial class ABMEmpleado : System.Web.UI.Page
         txtApellido.Enabled = true;
         txtHoraInicio.Enabled = true;
         txtHoraFinal.Enabled = true;
+    }
+
+    protected void DesactivoValidadores()
+    {
+        valtxtnomusu.Enabled = true;
+        valtxtpass.Enabled = false;
+        valtxtnombre.Enabled = false;
+        valtxtapellido.Enabled = false;
+        valtxtHoraInicio.Enabled = false;
+        valtxtHoraFinal.Enabled = false;
+    }
+
+    protected void ActivoValidadores()
+    {
+        valtxtpass.Enabled = true;
+        valtxtnombre.Enabled = true;
+        valtxtapellido.Enabled = true;
+        valtxtHoraInicio.Enabled = true;
+        valtxtHoraFinal.Enabled = true;
     }
 
     protected void LimpioFormulario()
@@ -100,6 +127,7 @@ public partial class ABMEmpleado : System.Web.UI.Page
             else
             {
                 this.ActivoBotonesA();
+                this.ActivoValidadores();
                 Session["EmpleadoABM"] = null;
             }
         }
@@ -169,5 +197,6 @@ public partial class ABMEmpleado : System.Web.UI.Page
     protected void btnLimpiar_Click(object sender, EventArgs e)
     {
         this.LimpioFormulario();
+        this.DesactivoValidadores();
     }
 }

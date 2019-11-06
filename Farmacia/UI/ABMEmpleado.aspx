@@ -58,15 +58,25 @@
                         <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" />
                     </td>
                     <td class="auto-style6">
-                        <asp:Button ID="btnLimpiar" runat="server" OnClick="btnLimpiar_Click" Text="Limpiar" />
+                        <asp:Button ID="btnLimpiar" runat="server" OnClick="btnLimpiar_Click" Text="Limpiar" CausesValidation="False" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" OnClick="btnEliminar_Click" />
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style5"></td>
-                    <td class="TablaMedio">
-                        <asp:RequiredFieldValidator ID="ValidatorTxtNomUsu" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="#CC0000" ControlToValidate="txtNomUsu">Debe ingresar un nombre de usuario</asp:RequiredFieldValidator>
+                    <td class="Validadores">
+                        <asp:RequiredFieldValidator ID="valtxtnomusu" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="#CC0000" ControlToValidate="txtNomUsu">Debe ingresar un nombre de usuario</asp:RequiredFieldValidator>
+                        <br />
+                        <asp:RequiredFieldValidator ID="valtxtpass" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="#CC0000" ControlToValidate="txtPass">Debe ingresar una clave</asp:RequiredFieldValidator>
+                        <br />
+                        <asp:RequiredFieldValidator ID="valtxtnombre" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="#CC0000" ControlToValidate="txtNombre">Debe ingresar un nombre</asp:RequiredFieldValidator>
+                        <br />
+                        <asp:RequiredFieldValidator ID="valtxtapellido" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="#CC0000" ControlToValidate="txtApellido">Debe ingresar un apellido</asp:RequiredFieldValidator>
+                        <br />
+                        <asp:RequiredFieldValidator ID="valtxtHoraInicio" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="#CC0000" ControlToValidate="txtHoraInicio">Debe ingresar el inicio de jornada</asp:RequiredFieldValidator>
+                        <br />
+                        <asp:RequiredFieldValidator ID="valtxtHoraFinal" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="#CC0000" ControlToValidate="txtHoraFinal">Debe ingresar el final de jornada</asp:RequiredFieldValidator>
                     </td>
                     <td class="auto-style5"></td>
                 </tr>
@@ -80,7 +90,7 @@
                 <tr>
                     <td>&nbsp;</td>
                     <td>
-                        <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="~/BienvenidaEmpleado.aspx">Volver</asp:LinkButton>
+                        <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="~/BienvenidaEmpleado.aspx" CausesValidation="False">Volver</asp:LinkButton>
                     </td>
                     <td class="auto-style6">&nbsp;</td>
                 </tr>
@@ -100,6 +110,10 @@
             width: 300px;
         }
         
+        .Validadores {
+            display: block;
+        }
+
         .auto-style6 {
             width: 168px;
         }
