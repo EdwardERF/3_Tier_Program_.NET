@@ -114,6 +114,7 @@ public partial class ABMEmpleado : System.Web.UI.Page
             if (oEmp != null)
             {
                 this.ActivoBotonesBM();
+                this.ActivoValidadores();
 
                 txtNomUsu.Text = Convert.ToString(oEmp.nomUsu);
                 txtPass.Text = Convert.ToString(oEmp.pass);
