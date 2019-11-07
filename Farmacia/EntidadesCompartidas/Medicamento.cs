@@ -27,7 +27,7 @@ namespace EntidadesCompartidas
             get { return _ruc; }
             set { _ruc = value; }
         }
-
+        
         public int Codigo
         {
             get { return _codigo; }
@@ -67,10 +67,6 @@ namespace EntidadesCompartidas
         public Medicamento(Farmaceutica pFar, int pcodigo, string pnombre, string pdescripcion, int pprecio)
         {
             Ruc = pFar.ruc;
-            //atributo de clase
-            //atributo gv para solamente mostrar el dato (o con una operacion)
-            //armo una propiedad con solamente el get que me devuelva la informacion de la far.ruc
-            //otra es operacion que devuelva int con la info del rut, cualquier de las opciones
             Codigo = pcodigo;
             Nombre = pnombre;
             Descripcion = pdescripcion;
