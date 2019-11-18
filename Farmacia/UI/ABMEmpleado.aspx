@@ -18,7 +18,7 @@
                 <tr>
                     <td>Contraseña</td>
                     <td class="TablaMedio">
-                        <asp:TextBox ID="txtPass" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtPass" runat="server" TextMode="Password"></asp:TextBox>
                     </td>
                     <td class="auto-style6">&nbsp;</td>
                 </tr>

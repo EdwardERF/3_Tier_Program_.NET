@@ -40,8 +40,17 @@ public partial class ListadoMedicamentosYPedidos : System.Web.UI.Page
 
             Farmaceutica oFar = LogicaFarmaceutica.BuscarXNombre(Seleccion);
 
-            gvListadoMedicamento.DataSource = LogicaMedicamento.ListarMedicamentosXFarmaceutica(oFar.ruc);
-            gvListadoMedicamento.DataBind();
+            List<Medicamento> oLista = LogicaMedicamento.ListarMedicamentosXFarmaceutica(oFar.ruc);
+
+            if(oLista != null)
+            {
+                gvListadoMedicamento.DataSource = oLista;
+                gvListadoMedicamento.DataBind();
+            }
+            else
+            {
+                lblError.Text = oFar.nombre + " aun no tiene medicamentos asociados.";
+            }
         }
         catch(Exception ex)
         {

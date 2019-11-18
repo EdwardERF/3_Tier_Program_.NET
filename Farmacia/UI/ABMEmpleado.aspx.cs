@@ -144,6 +144,9 @@ public partial class ABMEmpleado : System.Web.UI.Page
         {
             Empleado oEmp = new Empleado(txtNomUsu.Text.Trim(), txtPass.Text.Trim(), txtNombre.Text.Trim(), txtApellido.Text.Trim(), txtHoraInicio.Text.Trim(), txtHoraFinal.Text.Trim());
 
+            btnAlta.Enabled = false;
+            btnBuscar.Enabled = false;
+
             LogicaUsuario.AltaEmpleado(oEmp);
 
             lblError.Text = "Alta exitosa";

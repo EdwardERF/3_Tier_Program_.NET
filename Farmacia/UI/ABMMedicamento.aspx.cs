@@ -143,6 +143,9 @@ public partial class ABMMedicamento : System.Web.UI.Page
 
             Medicamento oMed = new Medicamento(oFar, oCodigo, oNombre, oDescripcion, oPrecio);
 
+            btnAlta.Enabled = false;
+            btnBuscar.Enabled = false;
+
             LogicaMedicamento.Alta(oMed);
 
             lblError.Text = "Alta exitosa";

@@ -140,6 +140,9 @@ public partial class ABMFarmaceutica : System.Web.UI.Page
         {
             Farmaceutica oFar = new Farmaceutica(Convert.ToInt64(txtRuc.Text), txtNomFar.Text.Trim(), txtCorreo.Text.Trim(), txtCalle.Text.Trim(), Convert.ToInt32(txtNumero.Text), Convert.ToInt32(txtApto.Text));
 
+            btnAlta.Enabled = false;
+            btnBuscar.Enabled = false;
+
             Logica.LogicaFarmaceutica.Alta(oFar);
 
             lblError.Text = "Alta exitosa";

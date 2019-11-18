@@ -42,7 +42,7 @@
                     <tr>
                         <td>Contraseña</td>
                         <td>
-                            <asp:TextBox ID="txtPass" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtPass" runat="server" TextMode="Password"></asp:TextBox>
                         </td>
                         <td>&nbsp;</td>
                     </tr>
@@ -80,6 +80,7 @@
                             &nbsp;</td>
                         <td>
                             <asp:Button ID="btnAlta" runat="server" Text="Alta" OnClick="btnAlta_Click" />
+                            <asp:Button ID="btnActualizar" runat="server" OnClick="btnActualizar_Click" Text="Ingresar otro cliente" />
                         </td>
                         <td>
                             <asp:Button ID="btnLimpiar" runat="server" OnClick="btnLimpiar_Click" Text="Limpiar" />

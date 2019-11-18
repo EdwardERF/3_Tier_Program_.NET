@@ -25,6 +25,12 @@ public partial class RegistroCliente : System.Web.UI.Page
 
         btnAlta.Enabled = false;
 
+        txtPass.Enabled = false;
+        txtNombre.Enabled = false;
+        txtApellido.Enabled = false;
+        txtDireccion.Enabled = false;
+        txtTelefono.Enabled = false;
+
         txtNomUsu.Text = "";
         txtPass.Text = "";
         txtNombre.Text = "";
@@ -33,6 +39,9 @@ public partial class RegistroCliente : System.Web.UI.Page
         txtTelefono.Text = "";
 
         lblError.Text = "";
+
+        btnAlta.Visible = true;
+        btnActualizar.Visible = false;
     }
 
     protected void ActivoBotonesA()
@@ -41,6 +50,12 @@ public partial class RegistroCliente : System.Web.UI.Page
         btnBuscar.Enabled = false;
 
         txtNomUsu.Enabled = false;
+
+        txtPass.Enabled = true;
+        txtNombre.Enabled = true;
+        txtApellido.Enabled = true;
+        txtDireccion.Enabled = true;
+        txtTelefono.Enabled = true;
 
         txtPass.Text = "";
         txtNombre.Text = "";
@@ -63,6 +78,8 @@ public partial class RegistroCliente : System.Web.UI.Page
 
         Cliente oCli = LogicaUsuario.BuscarCliente(nomUsu);
 
+        Usuario oUsu = LogicaUsuario.BuscarEmpleado(nomUsu);
+
         if(oCli != null)
         {
             this.ActivoBotonesBM();
@@ -76,6 +93,10 @@ public partial class RegistroCliente : System.Web.UI.Page
 
             lblError.Text = "El Cliente ya existe";
         }
+        else if(oUsu != null)
+        {
+            lblError.Text = "Nombre en uso. Use otro.";
+        }
         else
         {
             this.ActivoBotonesA();
@@ -88,9 +109,13 @@ public partial class RegistroCliente : System.Web.UI.Page
         {
             Cliente oCli = new Cliente(txtNomUsu.Text.Trim(), txtPass.Text.Trim(), txtNombre.Text.Trim(), txtApellido.Text.Trim(), txtDireccion.Text.Trim(), Convert.ToInt32(txtTelefono.Text.Trim()));
 
+            btnAlta.Visible = false;
+            btnActualizar.Visible = true;
+
             LogicaUsuario.AltaCliente(oCli);
 
             lblError.Text = "Alta exitosa";
+
         }
         catch(Exception ex)
         {
@@ -117,5 +142,10 @@ public partial class RegistroCliente : System.Web.UI.Page
         {
             Response.Redirect("BienvenidaCliente.aspx");
         }
+    }
+
+    protected void btnActualizar_Click(object sender, EventArgs e)
+    {
+        this.LimpioFormulario();
     }
 }
