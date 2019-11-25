@@ -1,0 +1,15 @@
+﻿body {
+    background-color: aliceblue;
+}
+
+#Tabla {
+    display: flex;
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#Image1 {
+    margin: 10px;
+    margin-top: 0;
+}

@@ -15,6 +15,7 @@ public partial class ABMFarmaceutica : System.Web.UI.Page
         if(!IsPostBack)
         {
             this.LimpioFormulario();
+            this.DesactivoValidadores();
         }
     }
 
@@ -78,6 +79,24 @@ public partial class ABMFarmaceutica : System.Web.UI.Page
         txtNumero.Enabled = true;
     }
 
+    protected void ActivoValidadores()
+    {
+        valtxtruc.Enabled = true;
+
+        valtxtnombre.Enabled = true;
+        valtxtcorreo.Enabled = true;
+        valtxtcalle.Enabled = true;
+        valtxtnumero.Enabled = true;
+    }
+
+    protected void DesactivoValidadores()
+    {
+        valtxtnombre.Enabled = false;
+        valtxtcorreo.Enabled = false;
+        valtxtcalle.Enabled = false;
+        valtxtnumero.Enabled = false;
+    }
+
     protected void btnBuscar_Click(object sender, EventArgs e)
     {
         try
@@ -89,6 +108,7 @@ public partial class ABMFarmaceutica : System.Web.UI.Page
             if (oFar != null)
             {
                 this.ActivoBotonesBM();
+                this.ActivoValidadores();
 
                 txtRuc.Text = Convert.ToString(oFar.ruc);
                 txtNomFar.Text = Convert.ToString(oFar.nombre);
@@ -104,6 +124,7 @@ public partial class ABMFarmaceutica : System.Web.UI.Page
             else
             {
                 this.ActivoBotonesA();
+                this.ActivoValidadores();
                 Session["FarmaceuticaABM"] = null;
             }
         }
@@ -119,13 +140,15 @@ public partial class ABMFarmaceutica : System.Web.UI.Page
         {
             Farmaceutica oFar = new Farmaceutica(Convert.ToInt64(txtRuc.Text), txtNomFar.Text.Trim(), txtCorreo.Text.Trim(), txtCalle.Text.Trim(), Convert.ToInt32(txtNumero.Text), Convert.ToInt32(txtApto.Text));
 
+            btnAlta.Enabled = false;
+            btnBuscar.Enabled = false;
+
             Logica.LogicaFarmaceutica.Alta(oFar);
 
             lblError.Text = "Alta exitosa";
         }
         catch(Exception ex)
         {
-            this.LimpioFormulario();
             lblError.Text = ex.Message;
         }
     }
@@ -173,5 +196,6 @@ public partial class ABMFarmaceutica : System.Web.UI.Page
     protected void btnLimpiar_Click(object sender, EventArgs e)
     {
         this.LimpioFormulario();
+        this.DesactivoValidadores();
     }
 }

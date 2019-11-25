@@ -24,10 +24,9 @@ namespace EntidadesCompartidas
 
         public Int64 Ruc
         {
-            get { return _ruc; }
-            set { _ruc = value; }
+            get { return Far.ruc; }
         }
-
+        
         public int Codigo
         {
             get { return _codigo; }
@@ -66,7 +65,7 @@ namespace EntidadesCompartidas
 
         public Medicamento(Farmaceutica pFar, int pcodigo, string pnombre, string pdescripcion, int pprecio)
         {
-            Ruc = pFar.ruc;
+            Far = pFar;
             Codigo = pcodigo;
             Nombre = pnombre;
             Descripcion = pdescripcion;

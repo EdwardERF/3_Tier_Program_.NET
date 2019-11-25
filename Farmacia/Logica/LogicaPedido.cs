@@ -32,6 +32,11 @@ namespace Logica
             return oPed;
         }
 
+        public static Pedido BuscarPorNumero(int oNumero)
+        {
+            return PersistenciaPedido.BuscarPorNumero(oNumero);
+        }
+
         public static void CambioEstadoPedido(int oNum)
         {
             PersistenciaPedido.CambioEstadoPedido(oNum);
@@ -50,6 +55,11 @@ namespace Logica
         public static List<Pedido> ListarGeneradosXCliente(string oCliente)
         {
             return PersistenciaPedido.ListarGeneradosXCliente(oCliente);
+        }
+
+        public static List<string> ListarNumeroXCliente(string oCliente)
+        {
+            return PersistenciaPedido.ListarNumeroXCliente(oCliente);
         }
 
         public static List<Pedido> ListarEnviados()

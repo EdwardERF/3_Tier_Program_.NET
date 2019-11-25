@@ -4,7 +4,8 @@
 
         <div class="Contenedor">
             <div class="auto-style4">
-                Mantenimiento de Farmaceuticas<br />
+                <p>Mantenimiento de Farmaceuticas<br /></p>
+                <p></p>
             </div>
             <table style="width:100%;">
                 <tr>
@@ -52,21 +53,30 @@
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td>
+                    <td class="auto-style5">
                         <asp:Button ID="btnAlta" runat="server" Text="Alta" OnClick="btnAlta_Click" />
                     </td>
-                    <td>
+                    <td class="auto-style5">
                         <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" />
                     </td>
-                    <td>
-                        <asp:Button ID="btnLimpiar" runat="server" OnClick="btnLimpiar_Click" Text="Limpiar" />
+                    <td class="auto-style5">
+                        <asp:Button ID="btnLimpiar" runat="server" OnClick="btnLimpiar_Click" Text="Limpiar" CausesValidation="False" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" OnClick="btnEliminar_Click" />
+                        <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" OnClick="btnEliminar_Click" CausesValidation="False" />
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style2"></td>
-                    <td class="auto-style2"></td>
+                    <td class="Validadores">
+                        <asp:RequiredFieldValidator ID="valtxtruc" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="#CC0000" ControlToValidate="txtRuc">Debe ingresar un RUC</asp:RequiredFieldValidator><br />
+                        <asp:RegularExpressionValidator ID="RegExpTxtRuc" runat="server" ControlToValidate="txtRuc" ErrorMessage="RegularExpressionValidator" ForeColor="#CC0000" ValidationExpression="^\d+$">RUC: solo se permiten numeros</asp:RegularExpressionValidator><br />
+                        <asp:RequiredFieldValidator ID="valtxtnombre" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="#CC0000" ControlToValidate="txtNomFar">Debe ingresar un nombre</asp:RequiredFieldValidator><br />
+                        <asp:RequiredFieldValidator ID="valtxtcorreo" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="#CC0000" ControlToValidate="txtCorreo">Debe ingresar un correo</asp:RequiredFieldValidator><br />
+                        <asp:RegularExpressionValidator ID="RegExpTxtCorreo" runat="server" ControlToValidate="txtCorreo" ErrorMessage="RegularExpressionValidator" ForeColor="#CC0000" ValidationExpression="^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$">Email no valido</asp:RegularExpressionValidator><br />
+                        <asp:RequiredFieldValidator ID="valtxtcalle" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="#CC0000" ControlToValidate="txtCalle">Debe ingresar una calle</asp:RequiredFieldValidator><br />
+                        <asp:RequiredFieldValidator ID="valtxtnumero" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="#CC0000" ControlToValidate="txtNumero">Debe ingresar un numero</asp:RequiredFieldValidator><br />
+                        <asp:RegularExpressionValidator ID="RegExpTxtNumero" runat="server" ControlToValidate="txtNumero" ErrorMessage="RegularExpressionValidator" ForeColor="#CC0000" ValidationExpression="^\d+$">Precio: solo se permiten numeros</asp:RegularExpressionValidator><br />
+                    </td>
                     <td class="auto-style2"></td>
                 </tr>
                 <tr>
@@ -79,7 +89,7 @@
                 <tr>
                     <td>&nbsp;</td>
                     <td>
-                        <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="~/BienvenidaEmpleado.aspx">Volver</asp:LinkButton>
+                        <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="~/BienvenidaEmpleado.aspx" CausesValidation="False">Volver</asp:LinkButton>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
@@ -98,6 +108,12 @@
             margin-left: auto;
             margin-right: auto;
             text-align: center;
+        }
+        .auto-style5 {
+            height: 101px;
+        }
+        .Validadores {
+            display: block;
         }
     </style>
 </asp:Content>

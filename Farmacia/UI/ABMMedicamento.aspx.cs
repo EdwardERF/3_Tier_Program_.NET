@@ -15,6 +15,7 @@ public partial class ABMMedicamento : System.Web.UI.Page
         if(!IsPostBack)
         {
             this.LimpioFormulario();
+            this.DesactivoValidadores();
         }
     }
 
@@ -48,6 +49,23 @@ public partial class ABMMedicamento : System.Web.UI.Page
         txtNombreMed.Enabled = true;
         txtDescripcion.Enabled = true;
         txtPrecio.Enabled = true;
+    }
+
+    protected void ActivoValidadores()
+    {
+        valtxtRucMedicamento.Enabled = true;
+
+        valtxtCodMedicamento.Enabled = true;
+        valtxtnombremed.Enabled = true;
+        valtxtdescripcion.Enabled = true;
+        valtxtprecio.Enabled = true;
+    }
+
+    protected void DesactivoValidadores()
+    {
+        valtxtnombremed.Enabled = false;
+        valtxtdescripcion.Enabled = false;
+        valtxtprecio.Enabled = false;
     }
 
     protected void LimpioFormulario()
@@ -86,6 +104,7 @@ public partial class ABMMedicamento : System.Web.UI.Page
             if(oMed != null)
             {
                 this.ActivoBotonesBM();
+                this.ActivoValidadores();
 
                 txtRucMedicamento.Text = Convert.ToString(oRUC);
                 txtCodMedicamento.Text = Convert.ToString(oCodigo);
@@ -100,6 +119,7 @@ public partial class ABMMedicamento : System.Web.UI.Page
             else
             {
                 this.ActivoBotonesA();
+                this.ActivoValidadores();
                 Session["MedicamentoABM"] = null;
             }
         }
@@ -122,6 +142,9 @@ public partial class ABMMedicamento : System.Web.UI.Page
             int oPrecio = Convert.ToInt32(txtPrecio.Text.Trim());
 
             Medicamento oMed = new Medicamento(oFar, oCodigo, oNombre, oDescripcion, oPrecio);
+
+            btnAlta.Enabled = false;
+            btnBuscar.Enabled = false;
 
             LogicaMedicamento.Alta(oMed);
 
@@ -177,5 +200,6 @@ public partial class ABMMedicamento : System.Web.UI.Page
     protected void btnLimpiar_Click(object sender, EventArgs e)
     {
         this.LimpioFormulario();
+        this.DesactivoValidadores();
     }
 }

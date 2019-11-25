@@ -4,7 +4,8 @@
 
         <div class="auto-style4">
             <div class="auto-style4">
-            Listado de Pedidos Generados - Eliminar Pedido<br />
+            <p>Listado de Pedidos Generados - Eliminar Pedido<br /></p>
+            <p></p>
             </div>
             <table class="auto-style1">
                 <tr>
@@ -25,7 +26,7 @@
                         <asp:GridView style="margin-left:auto; margin-right:auto" ID="gvSeleccion" runat="server" AllowPaging="True" PageSize="6">
                         </asp:GridView>
                         <br />
-                        <asp:Button ID="btnEliminar" runat="server" Text="Eliminar Pedido" OnClick="btnEliminar_Click" />
+                        <asp:Button ID="btnEliminar" runat="server" Text="Eliminar Pedido" OnClick="btnEliminar_Click" OnClientClick="return confirm('¿Confirma Eliminar Pedido?');" />
                         <asp:Button ID="btnActualizar" runat="server" OnClick="btnActualizar_Click" Text="Actualizar" />
                         <br />
                         <br />
