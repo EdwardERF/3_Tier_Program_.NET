@@ -11,6 +11,7 @@ if exists(select * from SysDataBases where name = 'Farmacia')
 go
 
 create database Farmacia
+
 go
 
 use Farmacia
@@ -156,6 +157,8 @@ INSERT Usuario VALUES('Edward', 'pass', 'Edward', 'Rodriguez')
 INSERT Usuario VALUES('Jose', 'pass', 'Jose', 'Perez')
 INSERT Usuario VALUES('Juan', 'pass', 'Juan', 'Serrat')
 INSERT Usuario VALUES('Pepe', 'pass', 'Pepe', 'Garcia')
+INSERT Usuario VALUES('Pedro', 'pass', 'Pedro', 'Diaz')
+INSERT Usuario VALUES('Oscar', 'pass', 'Oscar', 'Centena')
 
 INSERT Empleado VALUES('admin', '20190912 08:00', '16:00:00')
 INSERT Empleado VALUES('Edward', '20190912 08:00', '16:00:00')
@@ -169,18 +172,52 @@ INSERT Usuario VALUES('Felipe', 'pass', 'Felipe', 'Fernandez')
 
 INSERT Cliente VALUES('Ramon', '18 de Julio 2030', 24009000)
 INSERT Cliente VALUES('Felipe', 'Gonzalo Ramirez 1204', 098303353)
+INSERT Cliente VALUES('Pepe', 'Colonia 3304', 099989997)
+INSERT Cliente VALUES('Pedro', 'Bv. Artigas 1467', 094789053)
+INSERT Cliente VALUES('Oscar', 'Mercedes 1230', 091302040)
 
+--Pedidos
 INSERT Pedido VALUES('Ramon', 123456789123, 0000, 8, 0)
 INSERT Pedido VALUES('Ramon', 123456789123, 0001, 10, 0)
 INSERT Pedido VALUES('Ramon', 123456789123, 0002, 5, 0)
 INSERT Pedido VALUES('Ramon', 123456789123, 0003, 3, 0)
 INSERT Pedido VALUES('Ramon', 123456789123, 0004, 1, 0)
 
-INSERT Pedido VALUES('Felipe', 111111111111, 0005, 15, 0)
-INSERT Pedido VALUES('Felipe', 111111111111, 0006, 5, 0)
-INSERT Pedido VALUES('Felipe', 111111111111, 0007, 5, 0)
-INSERT Pedido VALUES('Felipe', 111111111111, 0008, 1, 0)
-INSERT Pedido VALUES('Felipe', 111111111111, 0009, 1, 0)
+INSERT Pedido VALUES('Felipe', 111111111111, 0005, 2, 0)
+INSERT Pedido VALUES('Felipe', 111111111111, 0006, 3, 0)
+INSERT Pedido VALUES('Felipe', 111111111111, 0007, 1, 0)
+INSERT Pedido VALUES('Felipe', 111111111111, 0008, 2, 0)
+INSERT Pedido VALUES('Felipe', 111111111111, 0009, 3, 0)
+
+INSERT Pedido VALUES('Felipe', 111111111111, 0005, 5, 0)
+INSERT Pedido VALUES('Felipe', 111111111111, 0005, 7, 0)
+INSERT Pedido VALUES('Felipe', 111111111111, 0005, 1, 0)
+INSERT Pedido VALUES('Felipe', 111111111111, 0005, 5, 0)
+INSERT Pedido VALUES('Felipe', 111111111111, 0005, 1, 0)
+
+INSERT Pedido VALUES('Felipe', 111111111111, 0005, 12, 0)
+INSERT Pedido VALUES('Felipe', 111111111111, 0005, 4, 0)
+INSERT Pedido VALUES('Felipe', 111111111111, 0005, 1, 0)
+INSERT Pedido VALUES('Felipe', 111111111111, 0005, 1, 0)
+INSERT Pedido VALUES('Felipe', 111111111111, 0005, 10, 0)
+
+INSERT Pedido VALUES('Pepe', 222222222222, 0010, 2, 1)
+INSERT Pedido VALUES('Pepe', 222222222222, 0011, 3, 0)
+INSERT Pedido VALUES('Pedro', 222222222222, 0012, 2, 1)
+INSERT Pedido VALUES('Oscar', 222222222222, 0013, 12, 1)
+INSERT Pedido VALUES('Oscar', 222222222222, 0014, 3, 0)
+
+INSERT Pedido VALUES('Ramon', 333333333333, 0015, 2, 1)
+INSERT Pedido VALUES('Oscar', 333333333333, 0016, 3, 0)
+INSERT Pedido VALUES('Pepe', 333333333333, 0017, 2, 1)
+INSERT Pedido VALUES('Pedro', 333333333333, 0018, 12, 1)
+INSERT Pedido VALUES('Pepe', 333333333333, 0019, 3, 0)
+
+INSERT Pedido VALUES('Ramon', 444444444444, 0020, 2, 1)
+INSERT Pedido VALUES('Pedro', 444444444444, 0021, 3, 1)
+INSERT Pedido VALUES('Pepe', 444444444444, 0022, 2, 0)
+INSERT Pedido VALUES('Pepe', 444444444444, 0023, 12, 1)
+INSERT Pedido VALUES('Pedro', 444444444444, 0024, 3, 0)
 GO
 
 --------------------------------------------------------------------------------------------------------
@@ -563,6 +600,7 @@ CREATE PROCEDURE ListarMedicamento
 AS
 BEGIN
 	SELECT * FROM Medicamento
+	ORDER BY nombre
 END
 GO
 
@@ -739,6 +777,20 @@ BEGIN
 	ELSE
 		BEGIN
 			SELECT * FROM Pedido WHERE cliente = @cliente
+			RETURN 1
+		END
+END
+GO
+
+CREATE PROCEDURE BuscarNumeroPedidoXCliente
+@cliente VARCHAR(20)
+AS
+BEGIN
+	IF NOT EXISTS (SELECT * FROM Pedido WHERE cliente = @cliente)
+		RETURN -1 --Esto es, no existe tal pedido
+	ELSE
+		BEGIN
+			SELECT numero FROM Pedido WHERE cliente = @cliente
 			RETURN 1
 		END
 END
