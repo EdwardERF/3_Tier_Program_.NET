@@ -201,14 +201,35 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE LogueoUsuario
+CREATE PROCEDURE LogueoEmpleado
 @nomUsu VARCHAR(20),
 @pass VARCHAR(20)
 AS
 BEGIN
 	SELECT *
-	FROM Usuario U
+	FROM Usuario U INNER JOIN Empleado E ON U.nomUsu = E.nomUsu
 	WHERE U.nomUsu = @nomUsu AND U.pass = @pass
+END
+GO
+
+CREATE PROCEDURE LogueoCliente
+@nomUsu VARCHAR(20),
+@pass VARCHAR(20)
+AS
+BEGIN
+	SELECT *
+	FROM Usuario U INNER JOIN Cliente C ON U.nomUsu = C.nomUsu
+	WHERE U.nomUsu = @nomUsu AND U.pass = @pass
+END
+GO
+
+CREATE PROCEDURE BuscarUsuario
+@nomUsu VARCHAR(20)
+AS
+BEGIN
+	SELECT *
+	FROM Usuario
+	WHERE Usuario.nomUsu = @nomUsu
 END
 GO
 
@@ -250,8 +271,7 @@ AS
 BEGIN
 	IF NOT EXISTS(SELECT * FROM Empleado WHERE nomUsu = @nomUsu)
 		RETURN -1 --Esto es, no existe un empleado con ese nombre
-
-	IF EXISTS(SELECT * FROM Cliente WHERE nomUsu = @nomUsu)
+	ELSE IF EXISTS(SELECT * FROM Cliente WHERE nomUsu = @nomUsu)
 		RETURN -2 --Esto es, ERROR - Se esta intentando modificar un cliente, no un empleado
 
 	BEGIN TRAN
@@ -311,7 +331,7 @@ BEGIN
 		RETURN -1 --No existe empleado
 	ELSE
 		BEGIN
-		SELECT * FROM Empleado WHERE nomUsu = @nomUsu
+			SELECT pass, nombre, apellido, horaInicio, horaFinal FROM Usuario U, Empleado E WHERE E.nomUsu = @nomUsu AND U.nomUsu = @nomUsu
 		END
 END
 GO
@@ -351,7 +371,8 @@ BEGIN
 		RETURN -1 --No existe cliente
 	ELSE
 		BEGIN
-		SELECT * FROM Cliente WHERE nomUsu = @nomUsu
+			SELECT pass, nombre, apellido, dirEntrega, telefono FROM Cliente C, Usuario U WHERE C.nomUsu = @nomUsu AND U.nomUsu = @nomUsu
+			RETURN 1
 		END
 END
 GO
@@ -388,14 +409,16 @@ AS
 BEGIN
 	IF NOT EXISTS(SELECT * FROM Farmaceutica WHERE ruc = @ruc)
 		RETURN -1 --Esto es, no existe una farmaceutica con ese nombre
-
-	UPDATE Farmaceutica
-	SET nombre = @nombre, correo = @correo, calle = @calle, numero = @numero, apto = @apto
-	WHERE ruc = @ruc
-	IF @@ERROR <> 0
-		RETURN -1
 	ELSE
-		RETURN 1
+		BEGIN
+			UPDATE Farmaceutica
+			SET nombre = @nombre, correo = @correo, calle = @calle, numero = @numero, apto = @apto
+			WHERE ruc = @ruc
+			IF @@ERROR <> 0
+				RETURN -1
+			ELSE
+				RETURN 1
+		END
 END
 GO
 
@@ -406,10 +429,10 @@ BEGIN
 	IF NOT EXISTS(SELECT * FROM Farmaceutica WHERE ruc = @ruc)
 		RETURN -1 --Esto es, no existe Farmaceutica con ese ruc
 
-	IF EXISTS(SELECT * FROM Pedido P INNER JOIN Medicamento M ON P.rucMedicamento = M.ruc WHERE P.rucMedicamento = @ruc)
+	ELSE IF EXISTS(SELECT * FROM Pedido P INNER JOIN Medicamento M ON P.rucMedicamento = M.ruc WHERE P.rucMedicamento = @ruc)
 		RETURN -2 --Esto es, no se puede eliminar, hay pedidos asociados a esta farmaceutica
 
-	IF NOT EXISTS(SELECT * FROM Pedido P INNER JOIN Medicamento M ON P.rucMedicamento = M.ruc WHERE P.rucMedicamento = @ruc)
+	ELSE IF NOT EXISTS(SELECT * FROM Pedido P INNER JOIN Medicamento M ON P.rucMedicamento = M.ruc WHERE P.rucMedicamento = @ruc)
 		BEGIN
 			IF NOT EXISTS(SELECT * FROM Medicamento WHERE ruc = @ruc)
 				BEGIN
@@ -449,6 +472,17 @@ BEGIN
 END	
 GO
 
+CREATE PROCEDURE BuscarFarmaceuticaXNombre
+@nombre varchar(20)
+AS
+BEGIN
+	IF EXISTS (SELECT * FROM Farmaceutica WHERE nombre = @nombre)
+		SELECT * FROM Farmaceutica WHERE nombre = @nombre
+	ELSE
+		RETURN -1 --Esto es, no se encontro Farmaceutica con ese Nombre
+END	
+GO
+
 CREATE PROCEDURE AltaMedicamento
 @far BIGINT,
 @codigo INT,
@@ -459,15 +493,18 @@ AS
 BEGIN
 	IF EXISTS(SELECT * FROM MEDICAMENTO WHERE ruc = @far AND codigo = @codigo)
 		RETURN -1 --Esto es, ya existe dicho medicamento
-	BEGIN TRAN
-		INSERT Medicamento VALUES(@far, @codigo, @nombre, @descripcion, @precio)
-		IF @@ERROR <> 0
-			BEGIN
-				ROLLBACK TRAN
-				RETURN -2 --Esto es, error de SQL
-			END
-	COMMIT TRAN
-	RETURN 1 --Esto es, transaccion exitosa
+	ELSE
+		BEGIN
+			BEGIN TRAN
+				INSERT Medicamento VALUES(@far, @codigo, @nombre, @descripcion, @precio)
+				IF @@ERROR <> 0
+					BEGIN
+						ROLLBACK TRAN
+						RETURN -2 --Esto es, error de SQL
+					END
+			COMMIT TRAN
+			RETURN 1 --Esto es, transaccion exitosa
+		END
 END
 GO
 
@@ -529,6 +566,16 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE ListarMedicamentoUnico
+@ruc bigint,
+@codigo int
+AS
+BEGIN
+	SELECT * FROM Medicamento M
+	WHERE M.ruc = @ruc AND M.codigo = @codigo
+END
+GO
+
 CREATE PROCEDURE BuscarMedicamento
 @far BIGINT,
 @codigo INT
@@ -575,14 +622,37 @@ GO
 
 CREATE PROCEDURE ListarPedidosXMedicamento
 @rucMedicamento BIGINT,
-@codMedicamento int,
-@cliente varchar(20)
+@codMedicamento int
 AS
 BEGIN
-	IF NOT EXISTS (SELECT * FROM Pedido WHERE rucMedicamento = @rucMedicamento AND codMedicamento = @codMedicamento AND cliente = @cliente)
+	IF NOT EXISTS (SELECT * FROM Pedido WHERE rucMedicamento = @rucMedicamento AND codMedicamento = @codMedicamento)
 		RETURN -1
 	ELSE
-		SELECT * FROM Pedido WHERE rucMedicamento = @rucMedicamento AND codMedicamento = @codMedicamento AND cliente = @cliente
+		SELECT * FROM Pedido WHERE rucMedicamento = @rucMedicamento AND codMedicamento = @codMedicamento
+END
+GO
+
+CREATE PROCEDURE ListarPedidosGeneradosXMedicamento
+@rucMedicamento BIGINT,
+@codMedicamento int
+AS
+BEGIN
+	IF NOT EXISTS (SELECT * FROM Pedido WHERE rucMedicamento = @rucMedicamento AND codMedicamento = @codMedicamento AND estado = 0)
+		RETURN -1
+	ELSE
+		SELECT * FROM Pedido WHERE rucMedicamento = @rucMedicamento AND codMedicamento = @codMedicamento AND estado = 0
+END
+GO
+
+CREATE PROCEDURE ListarPedidosEnviadosXMedicamento
+@rucMedicamento BIGINT,
+@codMedicamento int
+AS
+BEGIN
+	IF NOT EXISTS (SELECT * FROM Pedido WHERE rucMedicamento = @rucMedicamento AND codMedicamento = @codMedicamento AND estado = 1)
+		RETURN -1
+	ELSE
+		SELECT * FROM Pedido WHERE rucMedicamento = @rucMedicamento AND codMedicamento = @codMedicamento AND estado = 1
 END
 GO
 
@@ -600,7 +670,10 @@ BEGIN
 	IF NOT EXISTS (SELECT * FROM Medicamento WHERE ruc = @ruc)
 		RETURN -1
 	ELSE
-		SELECT * FROM Medicamento WHERE ruc = @ruc
+		BEGIN
+			SELECT * FROM Medicamento WHERE ruc = @ruc
+			RETURN 1
+		END
 END
 GO
 
@@ -613,6 +686,13 @@ END
 GO
 
 CREATE PROCEDURE ListarGenerados
+AS
+BEGIN
+	SELECT * FROM Pedido WHERE estado = 0
+END
+GO
+
+CREATE PROCEDURE ListarGeneradosXCliente
 @cliente VARCHAR(20)
 AS
 BEGIN
@@ -621,10 +701,9 @@ END
 GO
 
 CREATE PROCEDURE ListarEnviados
-@cliente VARCHAR(20)
 AS
 BEGIN
-	SELECT * FROM Pedido WHERE estado = 1 AND cliente = @cliente
+	SELECT * FROM Pedido WHERE estado = 1
 END
 GO
 
@@ -644,7 +723,38 @@ BEGIN
 	IF NOT EXISTS (SELECT * FROM Pedido WHERE numero = @numero AND cliente = @cliente)
 		RETURN -1 --Esto es, no existe tal pedido
 	ELSE
-		SELECT * FROM Pedido WHERE numero = @numero AND cliente = @cliente
+		BEGIN
+			SELECT * FROM Pedido WHERE numero = @numero AND cliente = @cliente
+			RETURN 1
+		END
+END
+GO
+
+CREATE PROCEDURE BuscarPedidoXCliente
+@cliente VARCHAR(20)
+AS
+BEGIN
+	IF NOT EXISTS (SELECT * FROM Pedido WHERE cliente = @cliente)
+		RETURN -1 --Esto es, no existe tal pedido
+	ELSE
+		BEGIN
+			SELECT * FROM Pedido WHERE cliente = @cliente
+			RETURN 1
+		END
+END
+GO
+
+CREATE PROCEDURE BuscarPedidoXNumero
+@numero INT
+AS
+BEGIN
+	IF NOT EXISTS (SELECT * FROM Pedido WHERE numero = @numero)
+		RETURN -1 --Esto es, no existe tal pedido
+	ELSE
+		BEGIN
+			SELECT * FROM Pedido WHERE numero = @numero
+			RETURN 1
+		END
 END
 GO
 
@@ -930,7 +1040,7 @@ GO
 -------------------------------------------------------------------------------------------BUSCAR PEDIDO
 --COMANDO EXITOSO
 DECLARE @RET INT
-EXEC @RET = BuscarPedido 2
+EXEC @RET = BuscarPedido 'Ramon', 2
 PRINT @RET
 GO
 
