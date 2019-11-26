@@ -118,9 +118,19 @@ public partial class ABMMedicamento : System.Web.UI.Page
             }
             else
             {
-                this.ActivoBotonesA();
-                this.ActivoValidadores();
-                Session["MedicamentoABM"] = null;
+                Farmaceutica oFar = Logica.LogicaFarmaceutica.Buscar(oRUC);
+
+                if (oFar == null)
+                {
+                    lblError.Text = "No existe dicha Farmaceutica.";
+                    btnBuscar.Enabled = false;
+                }
+                else
+                {
+                    this.ActivoBotonesA();
+                    this.ActivoValidadores();
+                    Session["MedicamentoABM"] = null;
+                }
             }
         }
         catch(Exception ex)
