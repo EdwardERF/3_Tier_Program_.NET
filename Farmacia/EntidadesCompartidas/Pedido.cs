@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Xml.Schema;
 
 namespace EntidadesCompartidas
 {
@@ -16,8 +18,14 @@ namespace EntidadesCompartidas
 
         public int numero
         {
+            set
+            {
+                if (_numero != 0)
+                    _numero = value;
+                else
+                    throw new Exception("Error - Numero invalido");
+            }
             get { return _numero; }
-            set { _numero = value; }
         }
 
         public string cliente
@@ -34,20 +42,38 @@ namespace EntidadesCompartidas
 
         public Int64 rucMedicamento
         {
+            set
+            {
+                if (_rucMedicamento != 0)
+                    _rucMedicamento = value;
+                else
+                    throw new Exception("Error - RUC invalido");
+            }
             get { return _rucMedicamento; }
-            set { _rucMedicamento = value; }
         }
 
         public int codMedicamento
         {
+            set
+            {
+                if (_codMedicamento != 0)
+                    _codMedicamento = value;
+                else
+                    throw new Exception("Error - RUC invalido");
+            }
             get { return _codMedicamento; }
-            set { _codMedicamento = value; }
         }
 
         public int cantidad
         {
+            set
+            {
+                if (_cantidad != 0)
+                    _cantidad = value;
+                else
+                    throw new Exception("Error - RUC invalido");
+            }
             get { return _cantidad; }
-            set { _cantidad = value; }
         }
 
         public int estado
@@ -63,6 +89,7 @@ namespace EntidadesCompartidas
             get { return _estado; }
         }
 
+        /*
         public Pedido(int pNumero, string pCliente, Int64 pRucMedicamento, int pCodMedicamento, int pCantidad, int pEstado)
         {
             numero = pNumero;
@@ -81,6 +108,8 @@ namespace EntidadesCompartidas
             cantidad = pCantidad;
             estado = pEstado;
         }
+        */
+
 
         public override string ToString()
         {

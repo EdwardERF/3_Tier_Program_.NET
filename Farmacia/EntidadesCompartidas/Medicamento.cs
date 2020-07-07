@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -18,19 +19,38 @@ namespace EntidadesCompartidas
 
         public Farmaceutica Far
         {
+            set
+            {
+                if (_far != null)
+                    _far = value;
+                else
+                    throw new Exception("Error - Farmaceutica es nula");
+            }
             get { return _far; }
-            set { _far = value; }
         }
 
         public Int64 Ruc
         {
+            set
+            {
+                if (_ruc != 0)
+                    _ruc = value;
+                else
+                    throw new Exception("Error - RUC invalido");
+            }
             get { return Far.ruc; }
         }
         
         public int Codigo
         {
+            set
+            {
+                if (_codigo != 0)
+                    _codigo = value;
+                else
+                    throw new Exception("Error - Codigo invalido");
+            }
             get { return _codigo; }
-            set { _codigo = value; }
         }
 
         public string Nombre
@@ -59,8 +79,14 @@ namespace EntidadesCompartidas
 
         public int Precio
         {
+            set
+            {
+                if (_precio != 0)
+                    _precio = value;
+                else
+                    throw new Exception("Error - Precio invalido");
+            }
             get { return _precio; }
-            set { _precio = value; }
         }
 
         public Medicamento(Farmaceutica pFar, int pcodigo, string pnombre, string pdescripcion, int pprecio)

@@ -16,8 +16,14 @@ namespace EntidadesCompartidas
 
         public Int64 ruc
         {
+            set
+            {
+                if (value != 0)
+                    _ruc = value;
+                else
+                    throw new Exception("Error - RUC invalido");
+            }
             get { return _ruc; }
-            set { _ruc = value; }
         }
 
         public string nombre
@@ -58,13 +64,25 @@ namespace EntidadesCompartidas
 
         public int numero
         {
+            set
+            {
+                if (value != 0)
+                    _numero = value;
+                else
+                    throw new Exception("Error - RUC nulo");
+            }
             get { return _numero; }
-            set { _numero = value; }
         }
 
         public int apto
         {
-            set { _apto = value; }
+            set
+            {
+                if (value != 0)
+                    _apto = value;
+                else
+                    throw new Exception("Error - Numero de apto invalido");
+            }
             get { return _apto; }
         }
 
