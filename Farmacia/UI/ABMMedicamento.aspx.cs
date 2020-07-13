@@ -100,6 +100,7 @@ public partial class ABMMedicamento : System.Web.UI.Page
             int oCodigo = Convert.ToInt32(txtCodMedicamento.Text.Trim());
 
             Medicamento oMed = Logica.LogicaMedicamento.Buscar(oRUC, oCodigo);
+            Farmaceutica oFar = Logica.LogicaFarmaceutica.Buscar(oRUC);
 
             if(oMed != null)
             {
@@ -116,21 +117,16 @@ public partial class ABMMedicamento : System.Web.UI.Page
 
                 lblError.Text = "";
             }
-            else
+            else if ((oFar == null) && (oMed == null))
             {
-                Farmaceutica oFar = Logica.LogicaFarmaceutica.Buscar(oRUC);
-
-                if (oFar == null)
-                {
-                    lblError.Text = "No existe dicha Farmaceutica.";
-                    btnBuscar.Enabled = false;
-                }
-                else
-                {
-                    this.ActivoBotonesA();
-                    this.ActivoValidadores();
-                    Session["MedicamentoABM"] = null;
-                }
+                lblError.Text = "No existe dicha Farmaceutica.";
+                btnBuscar.Enabled = false;
+            }
+            else if ((oFar != null) && (oMed == null))
+            {
+                this.ActivoBotonesA();
+                this.ActivoValidadores();
+                Session["MedicamentoABM"] = null;
             }
         }
         catch(Exception ex)

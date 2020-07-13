@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -9,6 +10,9 @@ namespace EntidadesCompartidas
 {
     public class Pedido
     {
+        private Medicamento _oMed;
+        private Cliente _oCli;
+
         private int _numero;
         private string _cliente;
         private Int64 _rucMedicamento;
@@ -16,11 +20,36 @@ namespace EntidadesCompartidas
         private int _cantidad;
         private int _estado;
 
+        
+        public Medicamento oMed
+        {
+            set
+            {
+                if (_oMed is null)
+                    throw new Exception("Error - Medicamento invalido");
+                else
+                    _oMed = value;
+            }
+            get { return _oMed; }
+        }
+
+        public Cliente oCli
+        {
+            set
+            {
+                if (_oCli != null)
+                    _oCli = value;
+                else
+                    throw new Exception("Error - Cliente invalido");
+            }
+            get { return _oCli; }
+        }
+
         public int numero
         {
             set
             {
-                if (_numero != 0)
+                if (_numero >= 0)
                     _numero = value;
                 else
                     throw new Exception("Error - Numero invalido");
@@ -44,7 +73,7 @@ namespace EntidadesCompartidas
         {
             set
             {
-                if (_rucMedicamento != 0)
+                if (_rucMedicamento >= 0)
                     _rucMedicamento = value;
                 else
                     throw new Exception("Error - RUC invalido");
@@ -56,10 +85,10 @@ namespace EntidadesCompartidas
         {
             set
             {
-                if (_codMedicamento != 0)
+                if (_codMedicamento >= 0)
                     _codMedicamento = value;
                 else
-                    throw new Exception("Error - RUC invalido");
+                    throw new Exception("Error - Codigo invalido");
             }
             get { return _codMedicamento; }
         }
@@ -68,10 +97,10 @@ namespace EntidadesCompartidas
         {
             set
             {
-                if (_cantidad != 0)
+                if (_cantidad >= 0)
                     _cantidad = value;
                 else
-                    throw new Exception("Error - RUC invalido");
+                    throw new Exception("Error - Cantidad invalida");
             }
             get { return _cantidad; }
         }
@@ -89,27 +118,15 @@ namespace EntidadesCompartidas
             get { return _estado; }
         }
 
-        /*
-        public Pedido(int pNumero, string pCliente, Int64 pRucMedicamento, int pCodMedicamento, int pCantidad, int pEstado)
+        public Pedido(int pNum, Cliente poCli, Medicamento poMed, int pCantidad, int pEstado)
         {
-            numero = pNumero;
-            cliente = pCliente;
-            rucMedicamento = pRucMedicamento;
-            codMedicamento = pCodMedicamento;
+            numero = pNum;
+            cliente = poCli.nomUsu;
+            rucMedicamento = poMed.Ruc;
+            codMedicamento = poMed.Codigo;
             cantidad = pCantidad;
             estado = pEstado;
         }
-
-        public Pedido(string pCliente, Int64 pRucMedicamento, int pCodMedicamento, int pCantidad, int pEstado)
-        {
-            cliente = pCliente;
-            rucMedicamento = pRucMedicamento;
-            codMedicamento = pCodMedicamento;
-            cantidad = pCantidad;
-            estado = pEstado;
-        }
-        */
-
 
         public override string ToString()
         {

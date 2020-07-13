@@ -19,13 +19,14 @@ namespace EntidadesCompartidas
 
         public Farmaceutica Far
         {
-            set
+            /*set
             {
                 if (_far != null)
                     _far = value;
                 else
                     throw new Exception("Error - Farmaceutica es nula");
-            }
+            }*/
+            set { _far = value; }
             get { return _far; }
         }
 
@@ -45,7 +46,7 @@ namespace EntidadesCompartidas
         {
             set
             {
-                if (_codigo != 0)
+                if (_codigo >= 0)
                     _codigo = value;
                 else
                     throw new Exception("Error - Codigo invalido");
@@ -81,7 +82,7 @@ namespace EntidadesCompartidas
         {
             set
             {
-                if (_precio != 0)
+                if (_precio >= 0)
                     _precio = value;
                 else
                     throw new Exception("Error - Precio invalido");

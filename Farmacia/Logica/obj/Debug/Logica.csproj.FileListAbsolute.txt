@@ -20,3 +20,14 @@ C:\Users\edwar\Desktop\Web_Net - Proyecto Final\Farmacia\Logica\obj\Debug\Logica
 C:\Users\edwar\Desktop\Web_Net - Proyecto Final\Farmacia\Logica\obj\Debug\Logica.csproj.CopyComplete
 C:\Users\edwar\Desktop\Web_Net - Proyecto Final\Farmacia\Logica\obj\Debug\Logica.dll
 C:\Users\edwar\Desktop\Web_Net - Proyecto Final\Farmacia\Logica\obj\Debug\Logica.pdb
+C:\Users\Edward\Desktop\ProyectoFinalWebNet\Farmacia\Logica\bin\Debug\Logica.dll
+C:\Users\Edward\Desktop\ProyectoFinalWebNet\Farmacia\Logica\bin\Debug\Logica.pdb
+C:\Users\Edward\Desktop\ProyectoFinalWebNet\Farmacia\Logica\bin\Debug\EntidadesCompartidas.dll
+C:\Users\Edward\Desktop\ProyectoFinalWebNet\Farmacia\Logica\bin\Debug\Persistencia.dll
+C:\Users\Edward\Desktop\ProyectoFinalWebNet\Farmacia\Logica\bin\Debug\EntidadesCompartidas.pdb
+C:\Users\Edward\Desktop\ProyectoFinalWebNet\Farmacia\Logica\bin\Debug\Persistencia.pdb
+C:\Users\Edward\Desktop\ProyectoFinalWebNet\Farmacia\Logica\obj\Debug\Logica.csprojAssemblyReference.cache
+C:\Users\Edward\Desktop\ProyectoFinalWebNet\Farmacia\Logica\obj\Debug\Logica.csproj.CoreCompileInputs.cache
+C:\Users\Edward\Desktop\ProyectoFinalWebNet\Farmacia\Logica\obj\Debug\Logica.csproj.CopyComplete
+C:\Users\Edward\Desktop\ProyectoFinalWebNet\Farmacia\Logica\obj\Debug\Logica.dll
+C:\Users\Edward\Desktop\ProyectoFinalWebNet\Farmacia\Logica\obj\Debug\Logica.pdb

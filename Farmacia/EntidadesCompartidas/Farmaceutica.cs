@@ -78,7 +78,7 @@ namespace EntidadesCompartidas
         {
             set
             {
-                if (value != 0)
+                if (value >= 0)
                     _apto = value;
                 else
                     throw new Exception("Error - Numero de apto invalido");

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 using EntidadesCompartidas;
 using Logica;
+using Persistencia;
 
 public partial class CambioEstadoPedido : System.Web.UI.Page
 {
@@ -42,7 +43,10 @@ public partial class CambioEstadoPedido : System.Web.UI.Page
         int cantidad = Convert.ToInt32(gvEstadoPedido.SelectedRow.Cells[5].Text.Trim());
         int estado = Convert.ToInt32(gvEstadoPedido.SelectedRow.Cells[6].Text.Trim());
 
-        Pedido oPed = new Pedido(numero, nomUsu, rucMedicamento, codMedicamento, cantidad, estado);
+        Cliente oCli = PersistenciaCliente.Buscar(nomUsu);
+        Medicamento oMed = PersistenciaMedicamento.Buscar(rucMedicamento, codMedicamento);
+
+        Pedido oPed = new Pedido(numero, oCli, oMed, cantidad, estado);
 
         lblError.Text = oPed.ToString();
 
@@ -66,7 +70,7 @@ public partial class CambioEstadoPedido : System.Web.UI.Page
 
             LogicaPedido.CambioEstadoPedido(numero);
 
-            lblError.Text = "Cambio de Estado realizado";
+            //lblError.Text = "Cambio de Estado realizado";
         }
         catch(Exception ex)
         {

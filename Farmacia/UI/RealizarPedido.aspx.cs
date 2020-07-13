@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 using EntidadesCompartidas;
 using Logica;
+using Persistencia;
 
 public partial class RealizarPedido : System.Web.UI.Page
 {
@@ -111,14 +112,16 @@ public partial class RealizarPedido : System.Web.UI.Page
 
             oUsu = (Usuario)Session["Cliente"];
 
-            //Usuario oUsu = LogicaUsuario.BuscarUsuario("admin");
+            Cliente oCli = PersistenciaCliente.Buscar(oUsu.nomUsu);
 
             ruc = Convert.ToInt64(gvMedicamentos.SelectedRow.Cells[1].Text.Trim());
             codigo = Convert.ToInt32(gvMedicamentos.SelectedRow.Cells[2].Text.Trim());
             precio = Convert.ToInt32(gvMedicamentos.SelectedRow.Cells[5].Text.Trim());
             cantidad = Convert.ToInt32(txtCantidad.Text.Trim());
 
-            Pedido oPed = new Pedido(oUsu.nomUsu, ruc, codigo, cantidad, 0);
+            Medicamento oMed = PersistenciaMedicamento.Buscar(ruc, codigo);
+
+            Pedido oPed = new Pedido(0, oCli, oMed, cantidad, precio);
 
             LogicaPedido.Alta(oPed);
         }

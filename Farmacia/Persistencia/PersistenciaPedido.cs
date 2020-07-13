@@ -106,12 +106,16 @@ namespace Persistencia
 
                 if (oReader.Read())
                 {
+                    //numero = (int)oReader["numero"];
                     rucMedicamento = (Int64)oReader["rucMedicamento"];
                     codMedicamento = (int)oReader["codMedicamento"];
                     cantidad = (int)oReader["cantidad"];
                     estado = (int)oReader["estado"];
 
-                    oPed = new Pedido(oNum, oCliente, rucMedicamento, codMedicamento, cantidad, estado);
+                    Cliente cliente = PersistenciaCliente.Buscar(oCliente);
+                    Medicamento oMed = PersistenciaMedicamento.Buscar(rucMedicamento, codMedicamento);
+
+                    oPed = new Pedido(oNum, cliente, oMed, cantidad, estado);
                 }
                 oReader.Close();
             }
@@ -154,7 +158,10 @@ namespace Persistencia
                     estado = (int)oReader["estado"];
                     oNum = (int)oReader["numero"];
 
-                    oPed = new Pedido(oNum, oCliente, rucMedicamento, codMedicamento, cantidad, estado);
+                    Cliente cliente = PersistenciaCliente.Buscar(oCliente);
+                    Medicamento oMed = PersistenciaMedicamento.Buscar(rucMedicamento, codMedicamento);
+
+                    oPed = new Pedido(oNum, cliente, oMed, cantidad, estado);
                 }
 
                 oReader.Close();
@@ -199,7 +206,10 @@ namespace Persistencia
                     cantidad = (int)oReader["cantidad"];
                     estado = (int)oReader["estado"];
 
-                    oPed = new Pedido(oNum, oCliente, rucMedicamento, codMedicamento, cantidad, estado);
+                    Cliente cliente = PersistenciaCliente.Buscar(oCliente);
+                    Medicamento oMed = PersistenciaMedicamento.Buscar(rucMedicamento, codMedicamento);
+
+                    oPed = new Pedido(oNum, cliente, oMed, cantidad, estado);
                 }
 
                 oReader.Close();
