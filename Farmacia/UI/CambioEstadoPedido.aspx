@@ -5,7 +5,15 @@
         <p>
             Cambio de Estado de Pedido</p>
         <p>
-            <asp:GridView style="margin-left:auto; margin-right:auto" ID="gvEstadoPedido" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="gvEstadoPedido_SelectedIndexChanged" AllowPaging="True" OnPageIndexChanging="gvEstadoPedido_PageIndexChanging" PageSize="6" >
+            <asp:GridView style="margin-left:auto; margin-right:auto" ID="gvEstadoPedido" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="gvEstadoPedido_SelectedIndexChanged" AllowPaging="True" OnPageIndexChanging="gvEstadoPedido_PageIndexChanging" PageSize="6" AutoGenerateColumns="False" >
+                <Columns>
+                    <asp:BoundField DataField="Pedido.numero" HeaderText="Numero" />
+                    <asp:BoundField DataField="cliente" HeaderText="Cliente" />
+                    <asp:BoundField DataField="oMed.Codigo" HeaderText="Cod. Medicamento" />
+                    <asp:BoundField DataField="oMed.Ruc" HeaderText="RUC Medicamento" />
+                    <asp:BoundField DataField="cantidad" HeaderText="Cantidad" />
+                    <asp:BoundField DataField="estado" HeaderText="Estado" />
+                </Columns>
             </asp:GridView>
         </p>
         <p>

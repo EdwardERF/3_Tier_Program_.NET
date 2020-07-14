@@ -15,8 +15,6 @@ namespace EntidadesCompartidas
 
         private int _numero;
         private string _cliente;
-        private Int64 _rucMedicamento;
-        private int _codMedicamento;
         private int _cantidad;
         private int _estado;
 
@@ -25,10 +23,10 @@ namespace EntidadesCompartidas
         {
             set
             {
-                if (_oMed is null)
-                    throw new Exception("Error - Medicamento invalido");
-                else
+                //if (_oMed != null)
                     _oMed = value;
+                //else
+                //    throw new Exception("Error - Medicamento invalido");
             }
             get { return _oMed; }
         }
@@ -69,29 +67,6 @@ namespace EntidadesCompartidas
             get { return _cliente; }
         }
 
-        public Int64 rucMedicamento
-        {
-            set
-            {
-                if (_rucMedicamento >= 0)
-                    _rucMedicamento = value;
-                else
-                    throw new Exception("Error - RUC invalido");
-            }
-            get { return _rucMedicamento; }
-        }
-
-        public int codMedicamento
-        {
-            set
-            {
-                if (_codMedicamento >= 0)
-                    _codMedicamento = value;
-                else
-                    throw new Exception("Error - Codigo invalido");
-            }
-            get { return _codMedicamento; }
-        }
 
         public int cantidad
         {
@@ -122,8 +97,7 @@ namespace EntidadesCompartidas
         {
             numero = pNum;
             cliente = poCli.nomUsu;
-            rucMedicamento = poMed.Ruc;
-            codMedicamento = poMed.Codigo;
+            oMed = poMed;
             cantidad = pCantidad;
             estado = pEstado;
         }
@@ -138,8 +112,8 @@ namespace EntidadesCompartidas
             else
                 estadoTraducido = "Entregado";
 
-            return "Nro Pedido: " + numero + "<br/>Cliente: " + cliente + "<br/>RUC Medicamento: " + rucMedicamento + "<br/>Codigo Medicamento: "
-                + codMedicamento + "<br/>Cantidad: " + cantidad + "<br/>Estado: " + estadoTraducido;
+            return "Nro Pedido: " + numero + "<br/>Cliente: " + cliente + "<br/>RUC Medicamento: " + oMed.Ruc + "<br/>Codigo Medicamento: "
+                + oMed.Codigo + "<br/>Cantidad: " + cantidad + "<br/>Estado: " + estadoTraducido;
         }
     }
 }
