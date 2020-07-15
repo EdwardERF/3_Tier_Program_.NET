@@ -187,10 +187,19 @@ public partial class ABMEmpleado : System.Web.UI.Page
         {
             Empleado oEmp = (Empleado)Session["EmpleadoABM"];
 
-            LogicaUsuario.EliminarEmpleado(oEmp);
+            Empleado logged_emp = (Empleado)Session["Empleado"];
 
-            this.LimpioFormulario();
-            lblError.Text = "Eliminacion exitosa";
+            if (logged_emp.nomUsu != oEmp.nomUsu)
+            {
+                LogicaUsuario.EliminarEmpleado(oEmp);
+                this.LimpioFormulario();
+                lblError.Text = "Eliminacion exitosa";
+            }
+            else
+            {
+                lblError.Text = "Error - Imposible eliminar empleado actualmente logueado";
+            }
+
         }
         catch(Exception ex)
         {
