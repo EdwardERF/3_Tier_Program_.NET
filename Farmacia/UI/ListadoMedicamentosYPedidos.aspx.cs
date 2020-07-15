@@ -15,7 +15,7 @@ public partial class ListadoMedicamentosYPedidos : System.Web.UI.Page
         {
             try
             {
-                List<string> oLista = LogicaFarmaceutica.ListarFarmaceuticas();
+                List<Farmaceutica> oLista = LogicaFarmaceutica.ListarFarmaceuticas();
                 Session["ListaCompleta"] = oLista;
 
                 ddlListadoMedicamento.DataSource = oLista;
@@ -40,7 +40,7 @@ public partial class ListadoMedicamentosYPedidos : System.Web.UI.Page
 
             Farmaceutica oFar = LogicaFarmaceutica.BuscarXNombre(Seleccion);
 
-            List<Medicamento> oLista = LogicaMedicamento.ListarMedicamentosXFarmaceutica(oFar.ruc);
+            List<Medicamento> oLista = LogicaMedicamento.ListarMedicamentosXFarmaceutica(oFar);
 
             if(oLista != null)
             {
@@ -66,7 +66,7 @@ public partial class ListadoMedicamentosYPedidos : System.Web.UI.Page
 
             Farmaceutica oFar = LogicaFarmaceutica.BuscarXNombre(Seleccion);
 
-            gvListadoMedicamento.DataSource = LogicaMedicamento.ListarMedicamentosXFarmaceutica(oFar.ruc);
+            gvListadoMedicamento.DataSource = LogicaMedicamento.ListarMedicamentosXFarmaceutica(oFar);
             gvListadoMedicamento.DataBind();
         }
         catch(Exception ex)

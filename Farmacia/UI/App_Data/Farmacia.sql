@@ -639,11 +639,13 @@ AS
 BEGIN
 	IF NOT EXISTS(SELECT * FROM Pedido WHERE numero = @numero)
 		RETURN -1 --Esto es, no existe tal pedido
-	ELSE
+	ELSE IF NOT EXISTS(SELECT * FROM Pedido WHERE numero = @numero AND estado = 0)
 		BEGIN
 			DELETE Pedido WHERE numero = @numero
 			RETURN 1 --Esto es, transaccion exitosa
 		END
+	ELSE
+		RETURN -2 --Pedido no esta en estado generado; no se puede borrar
 END
 GO
 

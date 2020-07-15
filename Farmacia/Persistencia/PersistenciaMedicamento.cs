@@ -93,14 +93,14 @@ namespace Persistencia
 
         }
 
-        public static void Eliminar(Int64 oRUC, int oCodigo)
+        public static void Eliminar(Medicamento oMed)
         {
             SqlConnection oConexion = new SqlConnection(Conexion.STR);
             SqlCommand oComando = new SqlCommand("EliminarMedicamento", oConexion);
             oComando.CommandType = CommandType.StoredProcedure;
 
-            oComando.Parameters.AddWithValue("@far", oRUC);
-            oComando.Parameters.AddWithValue("@codigo", oCodigo);
+            oComando.Parameters.AddWithValue("@far", oMed.Ruc);
+            oComando.Parameters.AddWithValue("@codigo", oMed.Codigo);
 
             SqlParameter oParametro = new SqlParameter("@Retorno", SqlDbType.Int);
             oParametro.Direction = ParameterDirection.ReturnValue;
@@ -222,7 +222,7 @@ namespace Persistencia
             return oLista;
         }
 
-        public static List<Medicamento> ListarMedicamentoUnico(Int64 oRUC, int oCodigo)
+        public static List<Medicamento> ListarMedicamentoUnico(Medicamento Medi)
         {
             Medicamento oMed;
             List<Medicamento> oLista = new List<Medicamento>();
@@ -232,8 +232,8 @@ namespace Persistencia
             SqlCommand oComando = new SqlCommand("ListarMedicamentoUnico", oConexion);
             oComando.CommandType = CommandType.StoredProcedure;
 
-            oComando.Parameters.AddWithValue("@ruc", oRUC);
-            oComando.Parameters.AddWithValue("@codigo", oCodigo);
+            oComando.Parameters.AddWithValue("@ruc", Medi.Ruc);
+            oComando.Parameters.AddWithValue("@codigo", Medi.Codigo);
 
             try
             {
@@ -270,7 +270,7 @@ namespace Persistencia
             return oLista;
         }
 
-        public static List<Medicamento> ListarMedicamentosXFarmaceutica(Int64 oRUC)
+        public static List<Medicamento> ListarMedicamentosXFarmaceutica(Farmaceutica oFar)
         {
             Medicamento oMed;
             List<Medicamento> oLista = new List<Medicamento>();
@@ -280,7 +280,7 @@ namespace Persistencia
             SqlCommand oComando = new SqlCommand("ListarMedicamentosXFarmaceutica", oConexion);
             oComando.CommandType = CommandType.StoredProcedure;
 
-            oComando.Parameters.AddWithValue("ruc", oRUC);
+            oComando.Parameters.AddWithValue("ruc", oFar.ruc);
 
             try
             {
@@ -293,7 +293,7 @@ namespace Persistencia
                     {
                         int oCodigo = (int)oReader["codigo"];
 
-                        oMed = PersistenciaMedicamento.Buscar(oRUC, oCodigo);
+                        oMed = PersistenciaMedicamento.Buscar(oFar.ruc, oCodigo);
 
                         oLista.Add(oMed);
                     }

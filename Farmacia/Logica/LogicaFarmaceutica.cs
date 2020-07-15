@@ -20,9 +20,9 @@ namespace Logica
             PersistenciaFarmaceutica.Modificar(oFar);
         }
 
-        public static void Eliminar(Int64 oRUC)
+        public static void Eliminar(Farmaceutica oFar)
         {
-            PersistenciaFarmaceutica.Eliminar(oRUC);
+            PersistenciaFarmaceutica.Eliminar(oFar);
         }
 
         public static Farmaceutica Buscar(Int64 oRUC)
@@ -37,7 +37,7 @@ namespace Logica
             return oFar;
         }
 
-        public static List<string> ListarFarmaceuticas()
+        public static List<Farmaceutica> ListarFarmaceuticas()
         {
             return PersistenciaFarmaceutica.ListarFarmaceuticas();
         }

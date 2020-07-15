@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 
 using EntidadesCompartidas;
+using System.Runtime.Remoting.Messaging;
 
 namespace Persistencia
 {
@@ -90,13 +91,13 @@ namespace Persistencia
             }
         }
 
-        public static void Eliminar(Int64 oRUC)
+        public static void Eliminar(Farmaceutica oFar)
         {
             SqlConnection oConexion = new SqlConnection(Conexion.STR);
             SqlCommand oComando = new SqlCommand("EliminarFarmaceutica", oConexion);
             oComando.CommandType = CommandType.StoredProcedure;
 
-            oComando.Parameters.AddWithValue("@ruc", oRUC);
+            oComando.Parameters.AddWithValue("@ruc", oFar.ruc);
 
             SqlParameter oParametro = new SqlParameter("@Retorno", SqlDbType.Int);
             oParametro.Direction = ParameterDirection.ReturnValue;
@@ -231,10 +232,11 @@ namespace Persistencia
             return oFar;
         }
 
-        public static List<string> ListarFarmaceuticas()
+        public static List<Farmaceutica> ListarFarmaceuticas()
         {
-            string Farm;
-            List<string> oLista = new List<string>();
+            Farmaceutica oFar;
+            Int64 ruc;
+            List<Farmaceutica> oLista = new List<Farmaceutica>();
             SqlDataReader oReader;
 
             SqlConnection oConexion = new SqlConnection(Conexion.STR);
@@ -250,9 +252,11 @@ namespace Persistencia
                 {
                     while (oReader.Read())
                     {
-                        Farm = (string)oReader["nombre"];
+                        ruc = (Int64)oReader["ruc"];
 
-                        oLista.Add(Farm);
+                        oFar = PersistenciaFarmaceutica.Buscar(ruc);
+
+                        oLista.Add(oFar);
                     }
 
                     oReader.Close();

@@ -4,3 +4,5 @@ Error -3 en EliminarEmpleado: nomUsu es un cliente.
 
 Error -1 en AltaFarmaceutica: RUC Farmaceutica ya existe.
 
+Error -2 en EliminarPedido: Pedido no esta en estado generado; no se puede borrar
+

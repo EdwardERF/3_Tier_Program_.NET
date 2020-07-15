@@ -191,7 +191,7 @@ public partial class ABMMedicamento : System.Web.UI.Page
         {
             Medicamento oMed = (Medicamento)Session["MedicamentoABM"];
 
-            LogicaMedicamento.Eliminar(oMed.Ruc, oMed.Codigo);
+            LogicaMedicamento.Eliminar(oMed);
 
             this.LimpioFormulario();
 

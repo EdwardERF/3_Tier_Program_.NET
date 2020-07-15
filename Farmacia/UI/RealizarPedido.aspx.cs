@@ -45,7 +45,9 @@ public partial class RealizarPedido : System.Web.UI.Page
             Int64 oRUC = Convert.ToInt64(gvMedicamentos.SelectedRow.Cells[1].Text.Trim());
             int oCodigo = Convert.ToInt32(gvMedicamentos.SelectedRow.Cells[2].Text.Trim());
 
-            gvSeleccion.DataSource = LogicaMedicamento.ListarMedicamentoUnico(oRUC, oCodigo);
+            Medicamento oMed = LogicaMedicamento.Buscar(oRUC, oCodigo);
+
+            gvSeleccion.DataSource = LogicaMedicamento.ListarMedicamentoUnico(oMed);
             gvSeleccion.DataBind();
 
             ActivarCalcularCosto();

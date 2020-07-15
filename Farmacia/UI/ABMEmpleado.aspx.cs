@@ -187,7 +187,7 @@ public partial class ABMEmpleado : System.Web.UI.Page
         {
             Empleado oEmp = (Empleado)Session["EmpleadoABM"];
 
-            LogicaUsuario.EliminarEmpleado(oEmp.nomUsu);
+            LogicaUsuario.EliminarEmpleado(oEmp);
 
             this.LimpioFormulario();
             lblError.Text = "Eliminacion exitosa";

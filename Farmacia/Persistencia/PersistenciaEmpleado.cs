@@ -91,13 +91,13 @@ namespace Persistencia
             }
         }
 
-        public static void Eliminar(string nomUsu)
+        public static void Eliminar(Empleado oEmp)
         {
             SqlConnection oConexion = new SqlConnection(Conexion.STR);
             SqlCommand oComando = new SqlCommand("EliminarEmpleado", oConexion);
             oComando.CommandType = CommandType.StoredProcedure;
 
-            oComando.Parameters.AddWithValue("@nomUsu", nomUsu);
+            oComando.Parameters.AddWithValue("@nomUsu", oEmp.nomUsu);
 
             SqlParameter oParametro = new SqlParameter("@Retorno", SqlDbType.Int);
             oParametro.Direction = ParameterDirection.ReturnValue;

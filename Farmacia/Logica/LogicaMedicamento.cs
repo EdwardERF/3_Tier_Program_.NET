@@ -20,9 +20,9 @@ namespace Logica
             PersistenciaMedicamento.Modificar(oMed);
         }
 
-        public static void Eliminar(Int64 oRUC, int oCodigo)
+        public static void Eliminar(Medicamento oMed)
         {
-            PersistenciaMedicamento.Eliminar(oRUC, oCodigo);
+            PersistenciaMedicamento.Eliminar(oMed);
         }
 
         public static List<Medicamento> Listar()
@@ -30,14 +30,14 @@ namespace Logica
             return PersistenciaMedicamento.Listar();
         }
 
-        public static List<Medicamento> ListarMedicamentoUnico(Int64 oRUC, int oCodigo)
+        public static List<Medicamento> ListarMedicamentoUnico(Medicamento oMed)
         {
-            return PersistenciaMedicamento.ListarMedicamentoUnico(oRUC, oCodigo);
+            return PersistenciaMedicamento.ListarMedicamentoUnico(oMed);
         }
 
-        public static List<Medicamento> ListarMedicamentosXFarmaceutica(Int64 oRUC)
+        public static List<Medicamento> ListarMedicamentosXFarmaceutica(Farmaceutica oFar)
         {
-            return PersistenciaMedicamento.ListarMedicamentosXFarmaceutica(oRUC);
+            return PersistenciaMedicamento.ListarMedicamentosXFarmaceutica(oFar);
         }
 
         public static Medicamento Buscar(Int64 oRUC, int oCodigo)

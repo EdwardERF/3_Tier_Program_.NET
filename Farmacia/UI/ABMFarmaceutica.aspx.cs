@@ -181,7 +181,7 @@ public partial class ABMFarmaceutica : System.Web.UI.Page
         {
             Farmaceutica oFar = (Farmaceutica)Session["FarmaceuticaABM"];
 
-            Logica.LogicaFarmaceutica.Eliminar(oFar.ruc);
+            Logica.LogicaFarmaceutica.Eliminar(oFar);
 
             this.LimpioFormulario();
 

@@ -39,9 +39,9 @@ namespace Logica
             PersistenciaEmpleado.Modificar(oEmp);
         }
 
-        public static void EliminarEmpleado(string nomUsu)
+        public static void EliminarEmpleado(Empleado oEmp)
         {
-            PersistenciaEmpleado.Eliminar(nomUsu);
+            PersistenciaEmpleado.Eliminar(oEmp);
         }
 
         public static Empleado BuscarEmpleado(string nomUsu)
