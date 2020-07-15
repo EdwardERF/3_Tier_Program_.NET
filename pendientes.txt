@@ -1,0 +1,6 @@
+Error -2 en Alta Empleado: nomUsu ya existe.
+
+Error -3 en EliminarEmpleado: nomUsu es un cliente.
+
+Error -1 en AltaFarmaceutica: RUC Farmaceutica ya existe.
+

@@ -16,3 +16,9 @@ C:\Users\Edward\Desktop\ProyectoFinalWebNet\Farmacia\EntidadesCompartidas\obj\De
 C:\Users\Edward\Desktop\ProyectoFinalWebNet\Farmacia\EntidadesCompartidas\bin\Debug\EntidadesCompartidas.dll
 C:\Users\Edward\Desktop\ProyectoFinalWebNet\Farmacia\EntidadesCompartidas\bin\Debug\EntidadesCompartidas.pdb
 C:\Users\Edward\Desktop\ProyectoFinalWebNet\Farmacia\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.csprojAssemblyReference.cache
+C:\Users\Edward\Desktop\Proyectos\ProyectoFinalWebNet\Farmacia\EntidadesCompartidas\bin\Debug\EntidadesCompartidas.dll
+C:\Users\Edward\Desktop\Proyectos\ProyectoFinalWebNet\Farmacia\EntidadesCompartidas\bin\Debug\EntidadesCompartidas.pdb
+C:\Users\Edward\Desktop\Proyectos\ProyectoFinalWebNet\Farmacia\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.csprojAssemblyReference.cache
+C:\Users\Edward\Desktop\Proyectos\ProyectoFinalWebNet\Farmacia\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.csproj.CoreCompileInputs.cache
+C:\Users\Edward\Desktop\Proyectos\ProyectoFinalWebNet\Farmacia\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.dll
+C:\Users\Edward\Desktop\Proyectos\ProyectoFinalWebNet\Farmacia\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.pdb
