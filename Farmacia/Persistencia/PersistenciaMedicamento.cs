@@ -39,7 +39,7 @@ namespace Persistencia
                 else if (valReturn == -1)
                     throw new Exception("Error - Ya existe tal Medicamento");
                 else if (valReturn == -2)
-                    throw new Exception("Error SQL");
+                    throw new Exception("Error - No existe Farmaceutica");
             }
             catch (Exception ex)
             {

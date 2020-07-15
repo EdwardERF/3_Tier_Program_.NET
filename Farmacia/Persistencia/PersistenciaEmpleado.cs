@@ -39,6 +39,8 @@ namespace Persistencia
                     throw new Exception("Alta exitosa");
                 if (valReturn == -1)
                     throw new Exception("Error SQL");
+                if (valReturn == -2)
+                    throw new Exception("Error - Empleado ya existente");
             }
             catch (Exception ex)
             {
@@ -114,6 +116,8 @@ namespace Persistencia
                     throw new Exception("Eliminacion exitosa");
                 else if (valReturn == -1)
                     throw new Exception("Error SQL");
+                else if (valReturn == -3)
+                    throw new Exception("Error - El nombre que indica es un cliente");
             }
             catch (Exception ex)
             {

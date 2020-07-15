@@ -39,7 +39,7 @@ namespace Persistencia
                 if (valReturn == 1)
                     throw new Exception("Alta exitosa");
                 if (valReturn == -1)
-                    throw new Exception("Error SQL");
+                    throw new Exception("Error - RUC ya existente");
             }
             catch(Exception ex)
             {

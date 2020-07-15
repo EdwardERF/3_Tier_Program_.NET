@@ -9,7 +9,7 @@
                 Seleccione:
                 <asp:DropDownList ID="ddlListadoMedicamento" runat="server">
                 </asp:DropDownList>
-                <asp:Button ID="btnListar" runat="server" Text="Listar" OnClick="btnListar_Click" />
+                <asp:Button ID="btnListar" runat="server" Text="Listar" OnClick="btnListar_Click" CausesValidation="False" />
                 <br />
                 <br />
             </div>

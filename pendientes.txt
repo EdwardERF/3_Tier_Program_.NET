@@ -1,16 +1,16 @@
-Error -2 en Alta Empleado: nomUsu ya existe.
+Error -2 en Alta Empleado: nomUsu ya existe. //PRONTO
 
-Error -3 en EliminarEmpleado: nomUsu es un cliente.
+Error -3 en EliminarEmpleado: nomUsu es un cliente. //PRONTO
 
-Error -1 en AltaFarmaceutica: RUC Farmaceutica ya existe.
+Error -1 en AltaFarmaceutica: RUC Farmaceutica ya existe. //PRONTO
 
-Error -2 en EliminarPedido: Pedido no esta en estado generado; no se puede borrar
+Error -2 en EliminarPedido: Pedido no esta en estado generado; no se puede borrar //PRONTO
 
-Error -2 en AltaMedicamento: Farmaceutica con ese ruc no existe.
+Error -2 en AltaMedicamento: Farmaceutica con ese ruc no existe. //PRONTO
 
-Error -2 en AltaPedido: no existe medicamento
-Error -1 en AltaPedido: no existe farmaceutica
-Error -3 en AltaPedido: no existe cliente
+Error -2 en AltaPedido: no existe medicamento //PRONTO
+Error -1 en AltaPedido: no existe farmaceutica //PRONTO
+Error -3 en AltaPedido: no existe cliente //PRONTO
 
 validaciones de FK/PK:
 
@@ -22,5 +22,7 @@ validaciones de FK/PK:
 >> Pedido: numero(PK) - cliente(FK) - rucMedicamento (FK) - codMedicamento (FK) //PRONTO
 
 CHEQUEAR PROCEDURE EliminarUsuario
+
+// listado medicamentos y pedidos >> que solo aparezca el nombre de la Farmaceutica, y no todos sus datos
 
 

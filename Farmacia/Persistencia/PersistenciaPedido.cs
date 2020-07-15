@@ -36,7 +36,11 @@ namespace Persistencia
                 if (valReturn == 1)
                     throw new Exception("Alta exitosa");
                 if (valReturn == -1)
-                    throw new Exception("Error SQL");
+                    throw new Exception("Error - No existe Farmaceutica");
+                if (valReturn == -2)
+                    throw new Exception("Error - No existe Medicamento");
+                if (valReturn == -3)
+                    throw new Exception("Error - No existe Cliente");
             }
             catch (Exception ex)
             {
@@ -67,12 +71,12 @@ namespace Persistencia
 
                 int valReturn = (int)oComando.Parameters["@Retorno"].Value;
 
-                //if (valReturn == 1)
-                //    throw new Exception("Eliminacion exitosa");
-                if (valReturn == -1)
+                if (valReturn == 1)
+                    throw new Exception("Eliminacion exitosa");
+                else if (valReturn == -1)
                     throw new Exception("Error - No existe tal Pedido");
                 else if (valReturn == -2)
-                    throw new Exception("Error SQL");
+                    throw new Exception("Error - Solo se pueden borrar pedidos en estado Generado");
             }
             catch (Exception ex)
             {

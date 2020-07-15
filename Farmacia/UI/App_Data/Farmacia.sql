@@ -177,6 +177,7 @@ INSERT Cliente VALUES('Pedro', 'Bv. Artigas 1467', 094789053)
 INSERT Cliente VALUES('Oscar', 'Mercedes 1230', 091302040)
 
 --Pedidos
+
 INSERT Pedido VALUES('Ramon', 123456789123, 0000, 8, 0)
 INSERT Pedido VALUES('Ramon', 123456789123, 0001, 10, 0)
 INSERT Pedido VALUES('Ramon', 123456789123, 0002, 5, 0)
