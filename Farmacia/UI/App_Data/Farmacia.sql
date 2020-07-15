@@ -535,12 +535,17 @@ CREATE PROCEDURE AltaMedicamento
 @precio INT
 AS
 BEGIN
-	IF EXISTS(SELECT * FROM MEDICAMENTO WHERE ruc = @far AND codigo = @codigo)
+	IF EXISTS(SELECT * FROM Medicamento WHERE ruc = @far AND codigo = @codigo)
 		RETURN -1 --Esto es, ya existe dicho medicamento
 	ELSE
 		BEGIN
-			INSERT Medicamento VALUES(@far, @codigo, @nombre, @descripcion, @precio)
-			RETURN 1 --Esto es, transaccion exitosa
+			IF EXISTS (SELECT * FROM Farmaceutica WHERE ruc = @far)
+				BEGIN
+					INSERT Medicamento VALUES(@far, @codigo, @nombre, @descripcion, @precio)
+					RETURN 1 --Esto es, transaccion exitosa
+				END
+			ELSE
+				RETURN -2 -- No existe esa farmaceutica
 		END
 END
 GO
@@ -628,8 +633,23 @@ CREATE PROCEDURE AltaPedido
 @cantidad int
 AS
 BEGIN
-	INSERT Pedido VALUES(@cliente, @rucMedicamento, @codMedicamento, @cantidad, 0)
-	RETURN 1 --Esto es, transaccion exitosa
+	IF EXISTS(SELECT * FROM Farmaceutica WHERE ruc = @rucMedicamento)
+		BEGIN
+			IF EXISTS(SELECT * FROM Medicamento WHERE ruc = @rucMedicamento AND codigo = @codMedicamento)
+				BEGIN
+					IF EXISTS(SELECT * FROM Cliente WHERE nomUsu = @cliente)
+						BEGIN
+							INSERT Pedido VALUES(@cliente, @rucMedicamento, @codMedicamento, @cantidad, 0)
+							RETURN 1 --Esto es, transaccion exitosa
+						END
+					ELSE
+						RETURN -3 -- No existe cliente
+				END
+			ELSE
+				RETURN -2 -- No existe Medicamento
+		END
+	ELSE
+		RETURN -1 -- No existe farmaceutica
 END
 GO
 

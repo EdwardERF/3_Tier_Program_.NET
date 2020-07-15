@@ -6,3 +6,21 @@ Error -1 en AltaFarmaceutica: RUC Farmaceutica ya existe.
 
 Error -2 en EliminarPedido: Pedido no esta en estado generado; no se puede borrar
 
+Error -2 en AltaMedicamento: Farmaceutica con ese ruc no existe.
+
+Error -2 en AltaPedido: no existe medicamento
+Error -1 en AltaPedido: no existe farmaceutica
+Error -3 en AltaPedido: no existe cliente
+
+validaciones de FK/PK:
+
+>> Farmaceutica: ruc(PK) //PRONTO
+>> Medicamento: ruc(FK, PK) - codigo(PK) //PRONTO
+>> Usuario: nomUsu(PK)
+>> Cliente: nomUsu(FK/PK) //PRONTO
+>> Empleado: nomUsu(FK/PK) //PRONTO
+>> Pedido: numero(PK) - cliente(FK) - rucMedicamento (FK) - codMedicamento (FK) //PRONTO
+
+CHEQUEAR PROCEDURE EliminarUsuario
+
+
