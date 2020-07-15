@@ -21,18 +21,19 @@ namespace EntidadesCompartidas
         
         public Medicamento oMed
         {
+            get { return _oMed; }
             set
             {
-                //if (_oMed != null)
+                if (_oMed != null)
                     _oMed = value;
-                //else
-                //    throw new Exception("Error - Medicamento invalido");
+                else
+                    throw new Exception("Error - Medicamento invalido");
             }
-            get { return _oMed; }
         }
 
         public Cliente oCli
         {
+            get { return _oCli; }
             set
             {
                 if (_oCli != null)
@@ -40,7 +41,6 @@ namespace EntidadesCompartidas
                 else
                     throw new Exception("Error - Cliente invalido");
             }
-            get { return _oCli; }
         }
 
         public int numero
@@ -96,7 +96,7 @@ namespace EntidadesCompartidas
         public Pedido(int pNum, Cliente poCli, Medicamento poMed, int pCantidad, int pEstado)
         {
             numero = pNum;
-            cliente = poCli.nomUsu;
+            oCli = poCli;
             oMed = poMed;
             cantidad = pCantidad;
             estado = pEstado;
@@ -112,7 +112,7 @@ namespace EntidadesCompartidas
             else
                 estadoTraducido = "Entregado";
 
-            return "Nro Pedido: " + numero + "<br/>Cliente: " + cliente + "<br/>RUC Medicamento: " + oMed.Ruc + "<br/>Codigo Medicamento: "
+            return "Nro Pedido: " + numero + "<br/>Cliente: " + oCli.nomUsu + "<br/>RUC Medicamento: " + oMed.Ruc + "<br/>Codigo Medicamento: "
                 + oMed.Codigo + "<br/>Cantidad: " + cantidad + "<br/>Estado: " + estadoTraducido;
         }
     }

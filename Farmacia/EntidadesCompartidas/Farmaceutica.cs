@@ -18,7 +18,7 @@ namespace EntidadesCompartidas
         {
             set
             {
-                if (value != 0)
+                if (value >= 0)
                     _ruc = value;
                 else
                     throw new Exception("Error - RUC invalido");
@@ -66,7 +66,7 @@ namespace EntidadesCompartidas
         {
             set
             {
-                if (value != 0)
+                if (value >= 0)
                     _numero = value;
                 else
                     throw new Exception("Error - RUC nulo");
