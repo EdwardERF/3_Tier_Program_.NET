@@ -19,14 +19,14 @@ namespace EntidadesCompartidas
 
         public Farmaceutica Far
         {
-            /*set
+            set
             {
                 if (_far != null)
                     _far = value;
                 else
                     throw new Exception("Error - Farmaceutica es nula");
-            }*/
-            set { _far = value; }
+            }
+            //set { _far = value; }
             get { return _far; }
         }
 
