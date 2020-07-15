@@ -21,10 +21,10 @@ namespace EntidadesCompartidas
         {
             set
             {
-                if (_far != null)
-                    _far = value;
-                else
+                if (_far == null)
                     throw new Exception("Error - Farmaceutica es nula");
+                else
+                    _far = value;
             }
             //set { _far = value; }
             get { return _far; }

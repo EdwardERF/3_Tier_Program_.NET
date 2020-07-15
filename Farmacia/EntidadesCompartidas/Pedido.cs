@@ -24,10 +24,10 @@ namespace EntidadesCompartidas
             get { return _oMed; }
             set
             {
-                if (_oMed != null)
-                    _oMed = value;
-                else
+                if (_oMed == null)
                     throw new Exception("Error - Medicamento invalido");
+                else
+                    _oMed = value;
             }
         }
 
@@ -36,10 +36,10 @@ namespace EntidadesCompartidas
             get { return _oCli; }
             set
             {
-                if (_oCli != null)
-                    _oCli = value;
-                else
+                if (_oCli == null)
                     throw new Exception("Error - Cliente invalido");
+                else
+                    _oCli = value;
             }
         }
 
