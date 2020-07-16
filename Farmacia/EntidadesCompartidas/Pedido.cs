@@ -14,7 +14,6 @@ namespace EntidadesCompartidas
         private Cliente _oCli;
 
         private int _numero;
-        private string _cliente;
         private int _cantidad;
         private int _estado;
 
@@ -54,19 +53,6 @@ namespace EntidadesCompartidas
             }
             get { return _numero; }
         }
-
-        public string cliente
-        {
-            set
-            {
-                if (value.Length <= 20)
-                    _cliente = value;
-                else
-                    throw new Exception("Error - Nombre de cliente muy extenso");
-            }
-            get { return _cliente; }
-        }
-
 
         public int cantidad
         {
@@ -112,8 +98,8 @@ namespace EntidadesCompartidas
             else
                 estadoTraducido = "Entregado";
 
-            return "Nro Pedido: " + numero + "<br/>Cliente: " + oCli.nomUsu + "<br/>RUC Medicamento: " + oMed.Ruc + "<br/>Codigo Medicamento: "
-                + oMed.Codigo + "<br/>Cantidad: " + cantidad + "<br/>Estado: " + estadoTraducido;
+            return "Nro Pedido: " + numero + "<br/>Cliente: " + oCli.nomUsu + "<br/>RUC Medicamento: " + oMed.Far.ruc + "<br/>Codigo Medicamento: "
+                + oMed.Far.ruc + "<br/>Cantidad: " + cantidad + "<br/>Estado: " + estadoTraducido;
         }
     }
 }

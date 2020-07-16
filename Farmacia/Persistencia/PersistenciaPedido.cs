@@ -18,7 +18,7 @@ namespace Persistencia
             oComando.CommandType = CommandType.StoredProcedure;
 
             oComando.Parameters.AddWithValue("@cliente", oPed.oCli.nomUsu);
-            oComando.Parameters.AddWithValue("@rucMedicamento", oPed.oMed.Ruc);
+            oComando.Parameters.AddWithValue("@rucMedicamento", oPed.oMed.Far.ruc);
             oComando.Parameters.AddWithValue("@codMedicamento", oPed.oMed.Codigo);
             oComando.Parameters.AddWithValue("@cantidad", oPed.cantidad);
 

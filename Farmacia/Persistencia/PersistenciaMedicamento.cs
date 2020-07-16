@@ -17,7 +17,7 @@ namespace Persistencia
             SqlCommand oComando = new SqlCommand("AltaMedicamento", oConexion);
             oComando.CommandType = CommandType.StoredProcedure;
 
-            oComando.Parameters.AddWithValue("@far", oMed.Ruc);
+            oComando.Parameters.AddWithValue("@far", oMed.Far.ruc);
             oComando.Parameters.AddWithValue("@codigo", oMed.Codigo);
             oComando.Parameters.AddWithValue("@nombre", oMed.Nombre);
             oComando.Parameters.AddWithValue("@descripcion", oMed.Descripcion);
@@ -58,7 +58,7 @@ namespace Persistencia
             SqlCommand oComando = new SqlCommand("ModificarMedicamento", oConexion);
             oComando.CommandType = CommandType.StoredProcedure;
 
-            oComando.Parameters.AddWithValue("@far", oMed.Ruc);
+            oComando.Parameters.AddWithValue("@far", oMed.Far.ruc);
             oComando.Parameters.AddWithValue("@codigo", oMed.Codigo);
             oComando.Parameters.AddWithValue("@nombre", oMed.Nombre);
             oComando.Parameters.AddWithValue("@descripcion", oMed.Descripcion);
@@ -99,7 +99,7 @@ namespace Persistencia
             SqlCommand oComando = new SqlCommand("EliminarMedicamento", oConexion);
             oComando.CommandType = CommandType.StoredProcedure;
 
-            oComando.Parameters.AddWithValue("@far", oMed.Ruc);
+            oComando.Parameters.AddWithValue("@far", oMed.Far.ruc);
             oComando.Parameters.AddWithValue("@codigo", oMed.Codigo);
 
             SqlParameter oParametro = new SqlParameter("@Retorno", SqlDbType.Int);
@@ -232,7 +232,7 @@ namespace Persistencia
             SqlCommand oComando = new SqlCommand("ListarMedicamentoUnico", oConexion);
             oComando.CommandType = CommandType.StoredProcedure;
 
-            oComando.Parameters.AddWithValue("@ruc", Medi.Ruc);
+            oComando.Parameters.AddWithValue("@ruc", Medi.Far.ruc);
             oComando.Parameters.AddWithValue("@codigo", Medi.Codigo);
 
             try
