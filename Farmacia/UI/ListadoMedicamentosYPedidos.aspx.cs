@@ -15,7 +15,16 @@ public partial class ListadoMedicamentosYPedidos : System.Web.UI.Page
         {
             try
             {
-                List<Farmaceutica> oLista = LogicaFarmaceutica.ListarFarmaceuticas();
+                List<string> oLista = new List<string>();
+                List<Farmaceutica> oListaFarm = LogicaFarmaceutica.ListarFarmaceuticas();
+
+                for(int i = 0; i < oListaFarm.Count; i++)
+                {
+                    string name;
+                    name = oListaFarm[i].nombre;
+                    oLista.Add(name);
+                }
+
                 Session["ListaCompleta"] = oLista;
 
                 ddlListadoMedicamento.DataSource = oLista;
