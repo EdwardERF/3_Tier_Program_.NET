@@ -162,7 +162,6 @@ public partial class ABMEmpleado : System.Web.UI.Page
         try
         {
             Empleado oEmp = (Empleado)Session["EmpleadoABM"];
-            //Empleado oEmp = null;
 
             oEmp.pass = txtPass.Text.Trim();
             oEmp.nombre = txtNombre.Text.Trim();

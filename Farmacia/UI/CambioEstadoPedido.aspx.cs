@@ -43,10 +43,10 @@ public partial class CambioEstadoPedido : System.Web.UI.Page
         int cantidad = Convert.ToInt32(gvEstadoPedido.SelectedRow.Cells[5].Text.Trim());
         int estado = Convert.ToInt32(gvEstadoPedido.SelectedRow.Cells[6].Text.Trim());
 
-        Cliente oCli = PersistenciaCliente.Buscar(nomUsu);
-        Medicamento oMed = PersistenciaMedicamento.Buscar(rucMedicamento, codMedicamento);
+        Cliente oCli = LogicaUsuario.BuscarCliente(nomUsu);
+        Medicamento oMed = LogicaMedicamento.Buscar(rucMedicamento, codMedicamento);
 
-        Pedido oPed = new Pedido(numero, oCli, oMed, cantidad, estado);
+        Pedido oPed = new Pedido(numero, cantidad, estado, oCli, oMed);
 
         lblError.Text = oPed.ToString();
 

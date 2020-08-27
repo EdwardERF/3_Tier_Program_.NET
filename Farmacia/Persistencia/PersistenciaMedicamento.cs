@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 
 using EntidadesCompartidas;
+using Persistencia;
 
 namespace Persistencia
 {
@@ -151,19 +152,21 @@ namespace Persistencia
                 oConexion.Open();
                 oReader = oComando.ExecuteReader();
 
-                if (oReader.Read())
+                if (oReader.HasRows)
                 {
-                    ruc = (Int64)oReader["ruc"];
-                    codigo = (int)oReader["codigo"];
-                    precio = (int)oReader["precio"];
-                    nombre = (string)oReader["nombre"];
-                    descripcion = (string)oReader["descripcion"];
+                    if (oReader.Read())
+                    {
+                        ruc = (Int64)oReader["ruc"];
+                        codigo = (int)oReader["codigo"];
+                        precio = (int)oReader["precio"];
+                        nombre = (string)oReader["nombre"];
+                        descripcion = (string)oReader["descripcion"];
 
-                    Farmaceutica oFar = PersistenciaFarmaceutica.Buscar(oRUC);
+                        Farmaceutica oFar = PersistenciaFarmaceutica.Buscar(oRUC);
 
-                    oMed = new Medicamento(oFar, codigo, nombre, descripcion, precio);
+                        oMed = new Medicamento(oFar, codigo, nombre, descripcion, precio);
+                    }
                 }
-
                 oReader.Close();
             }
             catch (Exception ex)

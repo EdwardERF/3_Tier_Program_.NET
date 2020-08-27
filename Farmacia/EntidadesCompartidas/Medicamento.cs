@@ -11,7 +11,7 @@ namespace EntidadesCompartidas
         //Atributo de asociacion
         private Farmaceutica _far;
 
-        //private Int64 _ruc;
+        private Int64 _ruc;
         private int _codigo;
         private string _nombre;
         private string _descripcion;
@@ -19,18 +19,17 @@ namespace EntidadesCompartidas
 
         public Farmaceutica Far
         {
-            /*set
+            set
             {
-                if (_far == null)
+                if (value == null)
                     throw new Exception("Error - Farmaceutica es nula");
                 else
                     _far = value;
-            }*/
-            set { _far = value; }
+            }
             get { return _far; }
         }
 
-        /*public Int64 Ruc
+        public Int64 Ruc
         {
             set
             {
@@ -40,7 +39,7 @@ namespace EntidadesCompartidas
                     throw new Exception("Error - RUC invalido");
             }
             get { return Far.ruc; }
-        }*/
+        }
         
         public int Codigo
         {

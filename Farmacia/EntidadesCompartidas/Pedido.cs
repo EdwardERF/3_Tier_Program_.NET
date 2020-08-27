@@ -23,7 +23,7 @@ namespace EntidadesCompartidas
             get { return _oMed; }
             set
             {
-                if (_oMed == null)
+                if (value == null)
                     throw new Exception("Error - Medicamento invalido");
                 else
                     _oMed = value;
@@ -35,7 +35,7 @@ namespace EntidadesCompartidas
             get { return _oCli; }
             set
             {
-                if (_oCli == null)
+                if (value == null)
                     throw new Exception("Error - Cliente invalido");
                 else
                     _oCli = value;
@@ -79,13 +79,13 @@ namespace EntidadesCompartidas
             get { return _estado; }
         }
 
-        public Pedido(int pNum, Cliente poCli, Medicamento poMed, int pCantidad, int pEstado)
+        public Pedido(int pNum, int pCantidad, int pEstado, Cliente poCli, Medicamento poMed)
         {
             numero = pNum;
-            oCli = poCli;
-            oMed = poMed;
             cantidad = pCantidad;
+            oCli = poCli;
             estado = pEstado;
+            oMed = poMed;
         }
 
         public override string ToString()

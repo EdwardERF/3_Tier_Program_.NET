@@ -177,6 +177,7 @@ INSERT Cliente VALUES('Pedro', 'Bv. Artigas 1467', 094789053)
 INSERT Cliente VALUES('Oscar', 'Mercedes 1230', 091302040)
 
 --Pedidos
+
 INSERT Pedido VALUES('Ramon', 123456789123, 0000, 8, 0)
 INSERT Pedido VALUES('Ramon', 123456789123, 0001, 10, 0)
 INSERT Pedido VALUES('Ramon', 123456789123, 0002, 5, 0)
@@ -279,21 +280,26 @@ CREATE PROCEDURE AltaEmpleado
 @horaFinal VARCHAR(20)
 AS
 BEGIN
-	BEGIN TRAN
-		INSERT Usuario VALUES(@nomUsu, @pass, @nombre, @apellido)
-		if @@ERROR <> 0
-			begin
-				ROLLBACK TRAN
-				return -1 --Esto es, error de transaccion
-			end
-		INSERT Empleado VALUES(@nomUsu, @horaInicio, @horaFinal)
-		if @@ERROR <> 0
-			BEGIN
-				ROLLBACK TRAN
-				return -1 --Esto es, error de transaccion
-			END
-	COMMIT TRAN
-	RETURN 1 --Esto es, transaccion exitosa
+	IF NOT EXISTS(SELECT * FROM Usuario WHERE nomUsu = @nomusu)
+	BEGIN
+		BEGIN TRAN
+			INSERT Usuario VALUES(@nomUsu, @pass, @nombre, @apellido)
+			if @@ERROR <> 0
+				begin
+					ROLLBACK TRAN
+					return -1 --Esto es, error de transaccion
+				end
+			INSERT Empleado VALUES(@nomUsu, @horaInicio, @horaFinal)
+			if @@ERROR <> 0
+				BEGIN
+					ROLLBACK TRAN
+					return -1 --Esto es, error de transaccion
+				END
+		COMMIT TRAN
+		RETURN 1 --Esto es, transaccion exitosa
+	END
+	ELSE
+		RETURN -2 -- Usuario ya existe
 END
 GO
 
@@ -308,28 +314,28 @@ AS
 BEGIN
 	IF NOT EXISTS(SELECT * FROM Empleado WHERE nomUsu = @nomUsu)
 		RETURN -1 --Esto es, no existe un empleado con ese nombre
-	ELSE IF EXISTS(SELECT * FROM Cliente WHERE nomUsu = @nomUsu)
-		RETURN -2 --Esto es, ERROR - Se esta intentando modificar un cliente, no un empleado
-
-	BEGIN TRAN
-		UPDATE Usuario
-			SET pass = @pass, nombre = @nombre, apellido = @apellido
-			WHERE nomUsu = @nomUsu
-			IF @@ERROR <> 0
-				BEGIN
-					ROLLBACK TRAN
-					RETURN -1
-				END
-		UPDATE Empleado
-			SET horaInicio = @horaInicio, horaFinal = @horaFinal
-			WHERE nomUsu = @nomUsu
-			IF @@ERROR <> 0
-				BEGIN
-					ROLLBACK TRAN
-					RETURN -1
-				END
-	COMMIT TRAN
-	RETURN 1
+	ELSE
+	BEGIN
+		BEGIN TRAN
+			UPDATE Usuario
+				SET pass = @pass, nombre = @nombre, apellido = @apellido
+				WHERE nomUsu = @nomUsu
+				IF @@ERROR <> 0
+					BEGIN
+						ROLLBACK TRAN
+						RETURN -1
+					END
+			UPDATE Empleado
+				SET horaInicio = @horaInicio, horaFinal = @horaFinal
+				WHERE nomUsu = @nomUsu
+				IF @@ERROR <> 0
+					BEGIN
+						ROLLBACK TRAN
+						RETURN -1
+					END
+		COMMIT TRAN
+		RETURN 1
+	END
 END
 GO
 
@@ -339,6 +345,8 @@ AS
 BEGIN
 	IF NOT EXISTS(SELECT * FROM Empleado WHERE nomUsu = @nomUsu)
 		RETURN -1 --Esto es, Error - No existe empleado con ese nombre de usuario
+	ELSE IF EXISTS(SELECT * FROM Cliente WHERE nomUsu = @nomUsu)
+		RETURN -3 -- nomUsu es un cliente
 	ELSE
 		BEGIN
 			BEGIN TRAN
@@ -382,21 +390,26 @@ CREATE PROCEDURE AltaCliente
 @telefono INT
 AS
 BEGIN
-	BEGIN TRAN
-		INSERT Usuario VALUES(@nomUsu, @pass, @nombre, @apellido)
-		IF @@ERROR <> 0
-			BEGIN
-				ROLLBACK TRAN
-				RETURN -1 --Error SQL
-			END
-		INSERT Cliente VALUES(@nomUsu, @dirEntrega, @telefono)
-		IF @@ERROR <> 0
-			BEGIN
-				ROLLBACK TRAN
-				RETURN -1 --Error SQL
-			END
-	COMMIT TRAN
-	RETURN 1 --Transaccion exitosa
+	IF NOT EXISTS(SELECT * FROM Usuario WHERE nomUsu = @nomUsu)
+	BEGIN
+		BEGIN TRAN
+			INSERT Usuario VALUES(@nomUsu, @pass, @nombre, @apellido)
+			IF @@ERROR <> 0
+				BEGIN
+					ROLLBACK TRAN
+					RETURN -1 --Error SQL
+				END
+			INSERT Cliente VALUES(@nomUsu, @dirEntrega, @telefono)
+			IF @@ERROR <> 0
+				BEGIN
+					ROLLBACK TRAN
+					RETURN -1 --Error SQL
+				END
+		COMMIT TRAN
+		RETURN 1 --Transaccion exitosa
+	END
+	ELSE
+		RETURN -2 -- Usuario ya existe
 END
 GO
 
@@ -423,15 +436,13 @@ CREATE PROCEDURE AltaFarmaceutica
 @apto int
 AS
 BEGIN
-	BEGIN TRAN
-		INSERT Farmaceutica VALUES(@ruc, @nombre, @correo, @calle, @numero, @apto)
-		IF @@ERROR <> 0
-			BEGIN
-				ROLLBACK TRAN
-				RETURN -1 --Error SQL
-			END
-	COMMIT TRAN
-	RETURN 1 --Transaccion exitosa
+	IF NOT EXISTS(SELECT * FROM Farmaceutica WHERE ruc = @ruc)
+		BEGIN
+			INSERT Farmaceutica VALUES(@ruc, @nombre, @correo, @calle, @numero, @apto)
+			RETURN 1 --Transaccion exitosa
+		END
+	ELSE
+		RETURN -1 -- RUC Farmaceutica ya existe
 END
 GO
 
@@ -451,10 +462,7 @@ BEGIN
 			UPDATE Farmaceutica
 			SET nombre = @nombre, correo = @correo, calle = @calle, numero = @numero, apto = @apto
 			WHERE ruc = @ruc
-			IF @@ERROR <> 0
-				RETURN -1
-			ELSE
-				RETURN 1
+			RETURN 1
 		END
 END
 GO
@@ -528,19 +536,17 @@ CREATE PROCEDURE AltaMedicamento
 @precio INT
 AS
 BEGIN
-	IF EXISTS(SELECT * FROM MEDICAMENTO WHERE ruc = @far AND codigo = @codigo)
+	IF EXISTS(SELECT * FROM Medicamento WHERE ruc = @far AND codigo = @codigo)
 		RETURN -1 --Esto es, ya existe dicho medicamento
 	ELSE
 		BEGIN
-			BEGIN TRAN
-				INSERT Medicamento VALUES(@far, @codigo, @nombre, @descripcion, @precio)
-				IF @@ERROR <> 0
-					BEGIN
-						ROLLBACK TRAN
-						RETURN -2 --Esto es, error de SQL
-					END
-			COMMIT TRAN
-			RETURN 1 --Esto es, transaccion exitosa
+			IF EXISTS (SELECT * FROM Farmaceutica WHERE ruc = @far)
+				BEGIN
+					INSERT Medicamento VALUES(@far, @codigo, @nombre, @descripcion, @precio)
+					RETURN 1 --Esto es, transaccion exitosa
+				END
+			ELSE
+				RETURN -2 -- No existe esa farmaceutica
 		END
 END
 GO
@@ -556,17 +562,12 @@ BEGIN
 	IF NOT EXISTS (SELECT * FROM Medicamento WHERE codigo = @codigo)
 		RETURN -1 --Esto es, no existe ningun medicamento con ese codigo y ruc
 	ELSE
-		BEGIN TRAN
+		BEGIN
 			UPDATE Medicamento
 			SET nombre = @nombre, descripcion = @descripcion, precio = @precio
 			WHERE ruc = @far AND codigo = @codigo
-			IF @@ERROR <> 0
-				BEGIN
-					ROLLBACK TRAN
-					RETURN -2 --Esto es, error SQL
-				END
-		COMMIT TRAN
-		RETURN 1 --Esto es, transaccion exitosa
+			RETURN 1 --Esto es, transaccion exitosa
+		END
 END
 GO
 
@@ -633,11 +634,23 @@ CREATE PROCEDURE AltaPedido
 @cantidad int
 AS
 BEGIN
-	INSERT Pedido VALUES(@cliente, @rucMedicamento, @codMedicamento, @cantidad, 0)
-	IF @@ERROR <> 0
-		RETURN -1 --Esto es, error SQL
+	IF EXISTS(SELECT * FROM Farmaceutica WHERE ruc = @rucMedicamento)
+		BEGIN
+			IF EXISTS(SELECT * FROM Medicamento WHERE ruc = @rucMedicamento AND codigo = @codMedicamento)
+				BEGIN
+					IF EXISTS(SELECT * FROM Cliente WHERE nomUsu = @cliente)
+						BEGIN
+							INSERT Pedido VALUES(@cliente, @rucMedicamento, @codMedicamento, @cantidad, 0)
+							RETURN 1 --Esto es, transaccion exitosa
+						END
+					ELSE
+						RETURN -3 -- No existe cliente
+				END
+			ELSE
+				RETURN -2 -- No existe Medicamento
+		END
 	ELSE
-		RETURN 1 --Esto es, transaccion exitosa
+		RETURN -1 -- No existe farmaceutica
 END
 GO
 
@@ -647,14 +660,13 @@ AS
 BEGIN
 	IF NOT EXISTS(SELECT * FROM Pedido WHERE numero = @numero)
 		RETURN -1 --Esto es, no existe tal pedido
-	ELSE
+	ELSE IF NOT EXISTS(SELECT * FROM Pedido WHERE numero = @numero AND estado = 0)
 		BEGIN
 			DELETE Pedido WHERE numero = @numero
-			IF @@ERROR <> 0
-				RETURN -2 --Esto es, error SQL
-			ELSE
-				RETURN 1 --Esto es, transaccion exitosa
+			RETURN 1 --Esto es, transaccion exitosa
 		END
+	ELSE
+		RETURN -2 --Pedido no esta en estado generado; no se puede borrar
 END
 GO
 
@@ -796,6 +808,8 @@ BEGIN
 END
 GO
 
+
+
 CREATE PROCEDURE BuscarPedidoXNumero
 @numero INT
 AS
@@ -815,10 +829,7 @@ CREATE PROCEDURE CambioEstadoPedido
 AS
 BEGIN
 	UPDATE Pedido SET estado = estado + 1 WHERE Pedido.numero = @numero AND estado < 2
-	IF @@ERROR <> 0
-		RETURN -1 --Esto es, error SQL
-	ELSE
-		RETURN 1
+	RETURN 1
 END
 GO
 

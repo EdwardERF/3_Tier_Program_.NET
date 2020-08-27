@@ -114,16 +114,16 @@ public partial class RealizarPedido : System.Web.UI.Page
 
             oUsu = (Usuario)Session["Cliente"];
 
-            Cliente oCli = PersistenciaCliente.Buscar(oUsu.nomUsu);
+            Cliente oCli = LogicaUsuario.BuscarCliente(oUsu.nomUsu);
 
             ruc = Convert.ToInt64(gvMedicamentos.SelectedRow.Cells[1].Text.Trim());
             codigo = Convert.ToInt32(gvMedicamentos.SelectedRow.Cells[2].Text.Trim());
             precio = Convert.ToInt32(gvMedicamentos.SelectedRow.Cells[5].Text.Trim());
             cantidad = Convert.ToInt32(txtCantidad.Text.Trim());
 
-            Medicamento oMed = PersistenciaMedicamento.Buscar(ruc, codigo);
+            Medicamento oMed = LogicaMedicamento.Buscar(ruc, codigo);
 
-            Pedido oPed = new Pedido(0, oCli, oMed, cantidad, precio);
+            Pedido oPed = new Pedido(0, cantidad, 0, oCli, oMed);
 
             LogicaPedido.Alta(oPed);
         }

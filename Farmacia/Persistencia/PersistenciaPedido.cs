@@ -108,18 +108,21 @@ namespace Persistencia
                 oConexion.Open();
                 oReader = oComando.ExecuteReader();
 
-                if (oReader.Read())
+                if (oReader.HasRows)
                 {
-                    //numero = (int)oReader["numero"];
-                    rucMedicamento = (Int64)oReader["rucMedicamento"];
-                    codMedicamento = (int)oReader["codMedicamento"];
-                    cantidad = (int)oReader["cantidad"];
-                    estado = (int)oReader["estado"];
+                    if (oReader.Read())
+                    {
+                        //numero = (int)oReader["numero"];
+                        rucMedicamento = (Int64)oReader["rucMedicamento"];
+                        codMedicamento = (int)oReader["codMedicamento"];
+                        cantidad = (int)oReader["cantidad"];
+                        estado = (int)oReader["estado"];
 
-                    Cliente cliente = PersistenciaCliente.Buscar(oCliente);
-                    Medicamento oMed = PersistenciaMedicamento.Buscar(rucMedicamento, codMedicamento);
+                        Cliente cliente = PersistenciaCliente.Buscar(oCliente);
+                        Medicamento oMed = PersistenciaMedicamento.Buscar(rucMedicamento, codMedicamento);
 
-                    oPed = new Pedido(oNum, cliente, oMed, cantidad, estado);
+                        oPed = new Pedido(oNum, cantidad, estado, cliente, oMed);
+                    }
                 }
                 oReader.Close();
             }
@@ -154,20 +157,22 @@ namespace Persistencia
                 oConexion.Open();
                 oReader = oComando.ExecuteReader();
 
-                if (oReader.Read())
+                if (oReader.HasRows)
                 {
-                    rucMedicamento = (Int64)oReader["rucMedicamento"];
-                    codMedicamento = (int)oReader["codMedicamento"];
-                    cantidad = (int)oReader["cantidad"];
-                    estado = (int)oReader["estado"];
-                    oNum = (int)oReader["numero"];
+                    if (oReader.Read())
+                    {
+                        rucMedicamento = (Int64)oReader["rucMedicamento"];
+                        codMedicamento = (int)oReader["codMedicamento"];
+                        cantidad = (int)oReader["cantidad"];
+                        estado = (int)oReader["estado"];
+                        oNum = (int)oReader["numero"];
 
-                    Cliente cliente = PersistenciaCliente.Buscar(oCliente);
-                    Medicamento oMed = PersistenciaMedicamento.Buscar(rucMedicamento, codMedicamento);
+                        Cliente cliente = PersistenciaCliente.Buscar(oCliente);
+                        Medicamento oMed = PersistenciaMedicamento.Buscar(rucMedicamento, codMedicamento);
 
-                    oPed = new Pedido(oNum, cliente, oMed, cantidad, estado);
+                        oPed = new Pedido(oNum, cantidad, estado, cliente, oMed);
+                    }
                 }
-
                 oReader.Close();
             }
             catch (Exception ex)
@@ -202,20 +207,22 @@ namespace Persistencia
                 oConexion.Open();
                 oReader = oComando.ExecuteReader();
 
-                if (oReader.Read())
+                if (oReader.HasRows)
                 {
-                    oCliente = (string)oReader["cliente"];
-                    rucMedicamento = (Int64)oReader["rucMedicamento"];
-                    codMedicamento = (int)oReader["codMedicamento"];
-                    cantidad = (int)oReader["cantidad"];
-                    estado = (int)oReader["estado"];
+                    if (oReader.Read())
+                    {
+                        oCliente = (string)oReader["cliente"];
+                        rucMedicamento = (Int64)oReader["rucMedicamento"];
+                        codMedicamento = (int)oReader["codMedicamento"];
+                        cantidad = (int)oReader["cantidad"];
+                        estado = (int)oReader["estado"];
 
-                    Cliente cliente = PersistenciaCliente.Buscar(oCliente);
-                    Medicamento oMed = PersistenciaMedicamento.Buscar(rucMedicamento, codMedicamento);
+                        Cliente cliente = PersistenciaCliente.Buscar(oCliente);
+                        Medicamento oMed = PersistenciaMedicamento.Buscar(rucMedicamento, codMedicamento);
 
-                    oPed = new Pedido(oNum, cliente, oMed, cantidad, estado);
+                        oPed = new Pedido(oNum, cantidad, estado, cliente, oMed);
+                    }
                 }
-
                 oReader.Close();
             }
             catch (Exception ex)
@@ -280,6 +287,7 @@ namespace Persistencia
             {
                 oConexion.Open();
                 oReader = oComando.ExecuteReader();
+
 
                 if (oReader.HasRows)
                 {

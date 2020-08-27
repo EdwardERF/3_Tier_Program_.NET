@@ -146,25 +146,27 @@ namespace Persistencia
                 oConexion.Open();
                 oReader = oComando.ExecuteReader();
 
-                if(oReader.Read())
+                if (oReader.HasRows)
                 {
-                    nombre = (string)oReader["nombre"];
-                    correo = (string)oReader["correo"];
-                    calle = (string)oReader["calle"];
-                    numero = (int)oReader["numero"];
-
-                    if(oReader["apto"] != DBNull.Value)
+                    if (oReader.Read())
                     {
-                        apto = (int)oReader["apto"];
-                    }
-                    else
-                    {
-                        apto = 0;
-                    }
+                        nombre = (string)oReader["nombre"];
+                        correo = (string)oReader["correo"];
+                        calle = (string)oReader["calle"];
+                        numero = (int)oReader["numero"];
 
-                    oFar = new Farmaceutica(oRUC, nombre, correo, calle, numero, apto);
+                        if (oReader["apto"] != DBNull.Value)
+                        {
+                            apto = (int)oReader["apto"];
+                        }
+                        else
+                        {
+                            apto = 0;
+                        }
+
+                        oFar = new Farmaceutica(oRUC, nombre, correo, calle, numero, apto);
+                    }
                 }
-
                 oReader.Close();
             }
             catch(Exception ex)
@@ -181,7 +183,7 @@ namespace Persistencia
 
         public static Farmaceutica BuscarXNombre(string Nombre)
         {
-            string correo, calle;
+            string correo, calle, nombre;
             int numero, apto;
             Int64 ruc;
 
@@ -199,25 +201,28 @@ namespace Persistencia
                 oConexion.Open();
                 oReader = oComando.ExecuteReader();
 
-                if (oReader.Read())
+                if (oReader.HasRows)
                 {
-                    ruc = (Int64)oReader["ruc"];
-                    correo = (string)oReader["correo"];
-                    calle = (string)oReader["calle"];
-                    numero = (int)oReader["numero"];
-
-                    if(oReader["apto"] != DBNull.Value)
+                    if (oReader.Read())
                     {
-                        apto = (int)oReader["apto"];
-                    }
-                    else
-                    {
-                        apto = 1;
-                    }
+                        nombre = (string)oReader["nombre"];
+                        ruc = (Int64)oReader["ruc"];
+                        correo = (string)oReader["correo"];
+                        calle = (string)oReader["calle"];
+                        numero = (int)oReader["numero"];
 
-                    oFar = new Farmaceutica(ruc, Nombre, correo, calle, numero, apto);
+                        if (oReader["apto"] != DBNull.Value)
+                        {
+                            apto = (int)oReader["apto"];
+                        }
+                        else
+                        {
+                            apto = 1;
+                        }
+
+                        oFar = new Farmaceutica(ruc, nombre, correo, calle, numero, apto);
+                    }
                 }
-
                 oReader.Close();
             }
             catch (Exception ex)
